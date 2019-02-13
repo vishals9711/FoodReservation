@@ -17,7 +17,7 @@ export class HomePage {
     const modal = await this.modalController.create({
       component: ModalComponent,
       componentProps: { value: 123 },
-      backdropDismiss:false
+      backdropDismiss:true
     });
     return await modal.present();
   }

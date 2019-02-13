@@ -1,17 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Login Credentials</ion-title>
+    <ion-title align-self-center>Login</ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
 
-    <ion-button (click)="userLogin()">
-        <ion-icon slot="start" name="star"></ion-icon>
-        Login 
-    </ion-button>
+  <ion-input type="email" placeholder="Email" position="floating" padding></ion-input>
 
-    <ion-button (click)="guestLogin()">
-        <ion-icon slot="start" name="star"></ion-icon>
-        Guest Login
-    </ion-button>
+  <ion-input type="password" placeholder="Password" padding></ion-input>
+
+     <ion-button expand="block" (click)="userLogin()">Login</ion-button>
+     <ion-item href="redirect somewhere" >
+      <a>Forgot Your Password?</a>
+    </ion-item>
 </ion-content>
