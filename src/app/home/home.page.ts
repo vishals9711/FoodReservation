@@ -10,7 +10,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 export class HomePage {
 
   constructor(public modalController: ModalController){
-    this.presentModal();
+    //this.presentModal();
   }
 
   async presentModal() {

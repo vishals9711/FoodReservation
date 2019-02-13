@@ -19,8 +19,4 @@ export class ModalComponent {
     await this.modalController.dismiss();
   }
 
-  async guestLogin(){
-    await this.modalController.dismiss();
-  }
-
 }
