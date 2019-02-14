@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration-page1',
@@ -7,11 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RegistrationPage1Page implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
 
-  
+  gotoRegister2(){
+    this.router.navigate(['registration-page2']);
+  }
 
 }

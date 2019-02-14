@@ -13,10 +13,11 @@
       <ion-input placeholder="Last Name" ></ion-input>
     </ion-item>
     <ion-item>
-        <ion-input placeholder="Mobile No." ></ion-input>
+        <ion-input placeholder="Mobile No." type="tel"></ion-input>
     </ion-item>
     <ion-item>
-        <ion-button expand="full">Next</ion-button>
+      <ion-textarea input-style="box" placeholder="Address"></ion-textarea>
     </ion-item>
+      <ion-button expand="block" (click)="gotoRegister2()" shape="round">Next</ion-button>
   </ion-list>
 </ion-content>
