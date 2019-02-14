@@ -1,5 +1,7 @@
 {
   "name": "foodReservation",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
