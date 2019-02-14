@@ -18,5 +18,12 @@ export class ModalComponent {
   async userLogin(){
     await this.modalController.dismiss();
   }
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalComponent,
+      componentProps: { value: 123 }
+    });
+    return await modal.present();
+  }
 
 }
