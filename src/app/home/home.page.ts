@@ -26,7 +26,7 @@ export class HomePage {
 
   
   gotoRegister1() {
-    this.router.navigate(['registration-page1.page']);
+    this.router.navigate(['registration-page1']);
   }
   
 }
