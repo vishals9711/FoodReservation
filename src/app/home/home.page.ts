@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../components/modal/modal.component';
+import { RegistrationPage1Page } from '../registration-page1/registration-page1.page';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -9,7 +11,7 @@ import { ModalComponent } from '../components/modal/modal.component';
 })
 export class HomePage {
 
-  constructor(public modalController: ModalController){
+  constructor(public modalController: ModalController,private router:Router){
     //this.presentModal();
   }
 
@@ -22,4 +24,9 @@ export class HomePage {
     return await modal.present();
   }
 
+  
+  gotoRegister1() {
+    this.router.navigate(['registration-page1.page']);
+  }
+  
 }
