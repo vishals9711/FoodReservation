@@ -12,9 +12,14 @@ import { ModalComponent } from './components/modal/modal.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
-import { Router } from '@angular/router'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+import { IonicStorageModule } from '@ionic/storage';
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
 
-const appRoutes:Routes = [
+
+const appRoutes: Routes = [
   {
     path: 'home.page',
     component: HomePage
@@ -22,13 +27,16 @@ const appRoutes:Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, ModalComponent, LandingPageComponent],
+  declarations: [AppComponent, ModalComponent, LandingPageComponent, HeaderComponent, FooterComponent],
   entryComponents: [ModalComponent],
   imports: [
     BrowserModule,
     //RouterModule.forRoot(appRoutes),
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    FormsModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
@@ -37,4 +45,6 @@ const appRoutes:Routes = [
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
+
+

@@ -1,10 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { ModalController } from '@ionic/angular';
-import { ModalComponent } from '../app/components/modal/modal.component';
+
 @Component({
   selector: 'app-root',
   templateUrl: 'app.component.html'
@@ -27,8 +26,10 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public modalController: ModalController
+
   ) {
+
+
     this.initializeApp();
   }
 
@@ -38,12 +39,6 @@ export class AppComponent {
       this.splashScreen.hide();
     });
   }
-  async presentModal() {
-    const modal = await this.modalController.create({
-      component: ModalComponent,
-      componentProps: { value: 123 },
-      backdropDismiss:true
-    });
-    return await modal.present();
-  }
+
+
 }

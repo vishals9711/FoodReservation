@@ -1,15 +1,18 @@
 <ion-card>
-      <ion-card-content>
-  <ion-input type="email" placeholder="Email" position="floating" padding></ion-input>
+  <ion-card-content>
+    <ion-note *ngIf="wrongCredentials" color="danger" text-center>
+      <ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Wrong Username/Password
+    </ion-note>
+    <ion-input [(ngModel)]="userData.email" type="email" placeholder="Email" position="floating" padding id="email">
+    </ion-input>
 
-  <ion-input type="password" placeholder="Password" padding></ion-input>
+    <ion-input [(ngModel)]="userData.password" type="password" placeholder="Password" padding></ion-input>
 
-     <ion-button expand="block" (click)="userLogin()" shape="round">Login</ion-button>
-     <ion-button expand="block" (click)="gotoRegister1()" color="light" shape="round">Register</ion-button>
+    <ion-button expand="block" (click)="userLogin()" shape="round">Login</ion-button>
+    <ion-button expand="block" (click)="gotoRegister1()" color="light" shape="round">Register</ion-button>
 
-     <ion-item href="redirect somewhere" >
+    <ion-item href="redirect somewhere">
       <a>Forgot Your Password?</a>
     </ion-item>
   </ion-card-content>
 </ion-card>
-

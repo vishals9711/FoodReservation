@@ -1,0 +1,16 @@
+<ion-toolbar>
+    <ion-title><ion-icon name="pizza"></ion-icon> &nbsp;&nbsp;Food Reservation</ion-title>
+
+    <ion-buttons slot="primary"  *ngIf="!isLoggedIn" (click)="presentModal()" slot="end">
+    <ion-button color="secondary" fill="solid" shape="round">
+      <ion-icon slot="icon-only" name="paw"></ion-icon> Login
+    </ion-button>
+  </ion-buttons>
+
+  <ion-buttons slot="success" *ngIf="isLoggedIn" (click)="presentActionSheet()" slot="end">
+      <ion-button color="success" fill="solid" shape="round">
+        <ion-icon slot="icon-only" name="contact"></ion-icon> {{userName}}
+      </ion-button>
+    </ion-buttons>
+
+  </ion-toolbar>
