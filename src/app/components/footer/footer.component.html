@@ -1,18 +1,18 @@
 <ion-segment>
-    <ion-segment-button>
-      <ion-label>Item One</ion-label>
-      <ion-icon name="call"></ion-icon>
+    <ion-segment-button (click)="gotoHome()" checked>
+        <ion-label >Go Out</ion-label>
+      <ion-icon name="pizza"></ion-icon>    
     </ion-segment-button>
-    <ion-segment-button checked>
-      <ion-label>Item Two</ion-label>
+    <ion-segment-button (click)="gotoFav()">
+      <ion-label >Favourite</ion-label>
       <ion-icon name="heart"></ion-icon>
     </ion-segment-button>
     <ion-segment-button>
-      <ion-label>Item Three</ion-label>
-      <ion-icon name="pin"></ion-icon>
+        <ion-label>Explore</ion-label>
+      <ion-icon name="search"></ion-icon>
     </ion-segment-button>
     <ion-segment-button>
-        <ion-label>Item Three</ion-label>
-        <ion-icon name="pin"></ion-icon>
+        <ion-label>Profile</ion-label>
+        <ion-icon name="person"></ion-icon>
       </ion-segment-button>
   </ion-segment> 

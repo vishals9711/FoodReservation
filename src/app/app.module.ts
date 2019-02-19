@@ -9,7 +9,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ModalComponent } from './components/modal/modal.component';
-import { LandingPageComponent } from './landing-page/landing-page.component';
+
 import { RouterModule, Routes } from '@angular/router';
 import { HomePage } from './home/home.page';
 import { HttpClientModule } from '@angular/common/http';
@@ -27,7 +27,7 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, ModalComponent, LandingPageComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, ModalComponent, HeaderComponent, FooterComponent],
   entryComponents: [ModalComponent],
   imports: [
     BrowserModule,
