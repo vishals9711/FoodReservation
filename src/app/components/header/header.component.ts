@@ -14,10 +14,8 @@ export class HeaderComponent implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  constructor(public modalController: ModalController,
-    private storage: Storage,
-    public actionSheetController: ActionSheetController,
-    public events: Events) {
+  constructor(public modalController: ModalController, private storage: Storage,
+     public actionSheetController: ActionSheetController, public events: Events) {
     events.subscribe('user:created', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
       this.storage.get('isLoggedIn').then((val) => {

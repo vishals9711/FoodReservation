@@ -15,8 +15,10 @@ const routes: Routes = [
     path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
-  { path: 'registration-page1', loadChildren: './registration-page1/registration-page1.module#RegistrationPage1PageModule' },  { path: 'favpage', loadChildren: './favpage/favpage.module#FavpagePageModule' }
+  { path: 'registration-page1', loadChildren: './registration-page1/registration-page1.module#RegistrationPage1PageModule' },
+  { path: 'favpage', loadChildren: './favpage/favpage.module#FavpagePageModule' }
 
+  
 
 ];
 
