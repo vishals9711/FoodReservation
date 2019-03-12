@@ -30,7 +30,7 @@ export class ModalComponent {
       if (Object.entries(data).length != 0) {
         this.storage.set('userId', data['id']);
         this.storage.set('email', data['email']);
-        this.storage.set('name', "USER");
+        this.storage.set('name', data['name']);
         this.storage.set('isLoggedIn', true);
         this.modalController.dismiss();
         this.events.publish('user:created');

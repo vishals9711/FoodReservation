@@ -21,16 +21,12 @@ export class HomePage implements OnInit{
   constructor(public modalController: ModalController, public api: APIBackendService,
      private router: Router, public restaurantAPI: RestaurantinfoService, 
      private storage: Storage, public events: Events) {
-      
-        this.storage.get('name').then((userval) => {
-          //this.restaurantName = userval;
-        });
-
-        this.storage.get('email').then((emailval) => {
-          //this.restaurantDesc = emailval;
-        });
 
         this.restaurantAPI.getAllRestaurants().subscribe((data: {}) => {
+          console.log("--------------------");
+          console.log(data);
+          console.log("--------------------");
+
           this.storage.get('restaurantName').then((RName) => {
             this.restaurantName = RName;
           });
