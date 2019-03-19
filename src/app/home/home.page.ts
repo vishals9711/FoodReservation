@@ -7,7 +7,6 @@ import { Storage } from '@ionic/storage';
 import { Events } from '@ionic/angular';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-home',
   templateUrl: 'home.page.html',
@@ -17,23 +16,29 @@ export class HomePage implements OnInit{
 
   public restaurantName: string = '';
   public restaurantAddress: string = '';
-
+  public allRestaurantData: any;
+  
   constructor(public modalController: ModalController, public api: APIBackendService,
      private router: Router, public restaurantAPI: RestaurantinfoService, 
      private storage: Storage, public events: Events) {
-
+      // Buffer = require('buffer').Buffer;
+      
         this.restaurantAPI.getAllRestaurants().subscribe((data: {}) => {
           console.log("--------------------");
           console.log(data);
-          console.log("--------------------");
-
-          this.storage.get('restaurantName').then((RName) => {
-            this.restaurantName = RName;
-          });
           
-          this.storage.get('restaurantAddress').then((RAddress) => {
-            this.restaurantAddress = RAddress;
-          });
+          //var bufferBase64 = new Buffer( data[0].RImg, 'binary' ).toString('base64');
+          //console.log(bufferBase64);
+          console.log("--------------------");
+          this.allRestaurantData = data;
+
+          // this.storage.get('restaurantName').then((RName) => {
+          //   this.restaurantName = RName;
+          // });
+          
+          // this.storage.get('restaurantAddress').then((RAddress) => {
+          //   this.restaurantAddress = RAddress;
+          // });
     
         });
 
