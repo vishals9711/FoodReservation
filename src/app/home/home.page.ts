@@ -16,6 +16,8 @@ export class HomePage implements OnInit{
   public restaurantAddress: string = '';
   public allRestaurantData:any;
 
+  
+
   constructor(public modalController: ModalController, public api: APIBackendService,
      private router: Router, public restaurantAPI: RestaurantinfoService) {
 

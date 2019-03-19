@@ -1,20 +1,11 @@
 <div>
   <ion-searchbar placeholder="Cuisine" animated="true"></ion-searchbar>
 </div>
-
-
-  <!--
-  <ion-item>
-    <h4 padding>RECOMMENDED CUISINES</h4>
-  </ion-item>
-  -->
-
   <ion-content padding >
-    <div class="classSetBackground">
+    
   <ion-grid>
-    <ion-row>
-
-      <ion-col *ngFor="let eachRest of allRestaurantData">
+    <ion-row *ngFor="let eachRest of allRestaurantData">
+      
         <ion-card padding>
             <ion-card-title>{{ eachRest.RName}}</ion-card-title>       
             <ion-card-content>
@@ -22,8 +13,7 @@
               {{ eachRest.RCuisine}}
           </ion-card-content>
         </ion-card>
-      </ion-col>
+  
     </ion-row>
   </ion-grid>
-</div>
 </ion-content>
