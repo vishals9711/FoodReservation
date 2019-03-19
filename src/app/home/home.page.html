@@ -13,49 +13,17 @@
     <div class="classSetBackground">
   <ion-grid>
     <ion-row>
-      
-      <ion-col>
-        <ion-card padding>
-          <ion-card-title >{{restaurantName}}</ion-card-title>
-            <ion-card-content>
-              <ion-img src="/assets/goan.jpg"></ion-img>
-              Description.
-            </ion-card-content>
-        </ion-card>
-      </ion-col>
 
-      <ion-col>
+      <ion-col *ngFor="let eachRest of allRestaurantData">
         <ion-card padding>
-          <ion-card-title >Continental</ion-card-title>
-          <ion-card-content>
-              <ion-img src="/assets/continental.jpg"></ion-img>
-                Description.
+            <ion-card-title>{{ eachRest.RName}}</ion-card-title>       
+            <ion-card-content>
+              <ion-img src="/assets/{{eachRest.RImg}}"></ion-img>
+              {{ eachRest.RCuisine}}
           </ion-card-content>
         </ion-card>
       </ion-col>
-
-      <ion-col>
-        <ion-card padding>
-            <ion-card-title>Fast food Chains</ion-card-title>       
-            <ion-card-content>
-              <ion-img src="/assets/kfc.jpg"></ion-img>
-              Description.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
-      <ion-col>
-        <ion-card padding>
-            <ion-card-title>North Indian</ion-card-title>       
-            <ion-card-content>
-              <ion-img src="/assets/northindian.jpg"></ion-img>
-              Description.
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-
     </ion-row>
-
   </ion-grid>
 </div>
 </ion-content>

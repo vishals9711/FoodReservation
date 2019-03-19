@@ -18,7 +18,7 @@ export class RestaurantinfoService {
   constructor(public http: HttpClient) { }
 
   public getAllRestaurants(): Observable<any> {
-    return this.http.get(this.url + '/rest_info').pipe(
+    return this.http.get(this.url + '/restinfo').pipe(
       map(this.extractData));
   }
 
