@@ -21,6 +21,7 @@ export class ModalComponent {
 
   public userData = { email: '', password: '' };
   public wrongCredentials: boolean = false;
+  public userName: string;
   constructor(navParams: NavParams, private modalController: ModalController, private router: Router, public api: LoginAPIService, private storage: Storage, public events: Events) {
     // componentProps can also be accessed at construction time using NavParams
   }
@@ -28,13 +29,16 @@ export class ModalComponent {
   async userLogin() {
     this.api.authenticateUser(this.userData).subscribe((data: {}) => {
       if (Object.entries(data).length != 0) {
-        this.storage.set('userId', data['id']);
-        this.storage.set('email', data['email']);
-        this.storage.set('name', data['name']);
+        this.storage.set('userId', data[0].CId);
+        this.storage.set('email', data[0].CEmail);
+        this.storage.set('name', data[0].CName);
+
         this.storage.set('isLoggedIn', true);
         this.modalController.dismiss();
         this.events.publish('user:created');
+       
         this.router.navigate(['/home']);
+        
       } else {
         this.wrongCredentials = true;
       }
