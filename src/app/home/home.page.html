@@ -1,19 +1,42 @@
 <div>
-  <ion-searchbar placeholder="Cuisine" animated="true"></ion-searchbar>
+  <ion-searchbar placeholder="Cuisine/Restaurant" animated="true"></ion-searchbar>
 </div>
-  <ion-content padding >
-    
-  <ion-grid>
-    <ion-row *ngFor="let eachRest of allRestaurantData">
-      
-        <ion-card padding>
-            <ion-card-title>{{ eachRest.RName}}</ion-card-title>       
+
+
+  <!--
+  <ion-item>
+    <h4 padding>RECOMMENDED CUISINES</h4>
+  </ion-item>
+  -->
+
+<ion-content >
+  <div scrollx=true direction="x">
+    <ion-col class="fixed">
+      <ion-card  *ngFor = "let eachRest of allRestaurantData">
+          <ion-card-title padding>{{eachRest.RName}}</ion-card-title>
+          <ion-img src="data:image/jpeg;base64,{{eachRest.RImg}}"></ion-img>
+      </ion-card>
+    </ion-col>
+  </div>
+</ion-content>
+
+
+<!-- <ion-content padding>
+    <div class="classSetBackground">
+  <ion-grid  *ngFor = "let eachRest of allRestaurantData">
+    <ion-row>
+      <ion-col >
+        <ion-card >
+          <ion-card-title padding>{{eachRest.RName}}</ion-card-title>
             <ion-card-content>
-              <ion-img src="/assets/{{eachRest.RImg}}"></ion-img>
-              {{ eachRest.RCuisine}}
-          </ion-card-content>
+              
+              <ion-img src="data:image/jpeg;base64,{{eachRest.RImg}}"></ion-img>
+              {{eachRest.RAddress}}.
+            </ion-card-content>
         </ion-card>
-  
+      </ion-col>
+
     </ion-row>
   </ion-grid>
-</ion-content>
+</div>
+</ion-content> -->

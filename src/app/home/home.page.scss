@@ -1,4 +1,4 @@
-.welcome-card ion-img {
+ion-img {
   max-height: 35vh;
   overflow: hidden;
 }
@@ -9,6 +9,36 @@ ion-card {
 }
 
 .classSetBackground {
-  background: url("/assets/background1.jpg");
+  //background: url("/assets/background1.jpg");
 }
+
+// .horizontalCards {
+//   overflow-x: scroll;
+//   overflow-y: hidden;
+// }
+
+ion-card-title {
+  font-family: fantasy;
+  text-align: center;
+  text-decoration-style: solid;
+}
+
+.fixed[scrollx=true]{
+  display: flex;
+  flex-wrap: nowrap;
+  position: relative;
+  overflow-x: auto;
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.fixed[scrollx=true] {
+  overflow-x: auto;
+}
+
+// .fixed[scrolly=true] {
+//   overflow-x: auto;
+// }
+
 

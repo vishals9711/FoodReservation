@@ -1,9 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../modal/modal.component';
+//import { LoginAPIService } from '../service/login-api.service';
 import { Storage } from '@ionic/storage';
 import { ActionSheetController } from '@ionic/angular';
 import { Events } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-header',
@@ -30,6 +33,15 @@ export class HeaderComponent implements OnInit {
 
       });
     });
+
+
+    // this.loginAPI.authenticateUser().subscribe((data: {}) => { 
+    //   console.log("--------------------");
+    //   this.userName = data[0].CName;
+    // });
+
+
+
 
   }
 
