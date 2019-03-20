@@ -17,6 +17,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicStorageModule } from '@ionic/storage';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { RestpageComponent } from './restpage/restpage.component';
 
 
 const appRoutes: Routes = [
@@ -27,7 +28,7 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, ModalComponent, HeaderComponent, FooterComponent],
+  declarations: [AppComponent, ModalComponent, HeaderComponent, FooterComponent, RestpageComponent],
   entryComponents: [ModalComponent],
   imports: [
     BrowserModule,
