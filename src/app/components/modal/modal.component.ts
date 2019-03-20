@@ -32,6 +32,9 @@ export class ModalComponent {
         this.storage.set('email', data['email']);
         this.storage.set('name', data['name']);
         this.storage.set('isLoggedIn', true);
+        console.log("---------------------")
+        console.log(data);
+        console.log("---------------------")
         this.modalController.dismiss();
         this.events.publish('user:created');
         this.router.navigate(['/home']);
