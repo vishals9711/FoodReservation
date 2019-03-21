@@ -14,7 +14,7 @@
     <ion-col class="fixed">
       <ion-card  *ngFor = "let eachRest of allRestaurantData">
           <ion-card-title padding>{{eachRest.RName}}</ion-card-title>
-          <ion-img src="data:image/jpeg;base64,{{eachRest.RImg}}"></ion-img>
+          <ion-img src="data:image/jpeg;base64,{{eachRest.RImg}}" (click)="onClickRestaurant()"></ion-img>
       </ion-card>
     </ion-col>
   </div>

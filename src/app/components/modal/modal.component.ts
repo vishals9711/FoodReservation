@@ -21,7 +21,7 @@ export class ModalComponent {
 
   public userData = { email: '', password: '' };
   public wrongCredentials: boolean = false;
-  public userName: string;
+  //public userName: string;
   constructor(navParams: NavParams, private modalController: ModalController, private router: Router, public api: LoginAPIService, private storage: Storage, public events: Events) {
     // componentProps can also be accessed at construction time using NavParams
   }

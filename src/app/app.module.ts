@@ -18,6 +18,7 @@ import { IonicStorageModule } from '@ionic/storage';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RestpageComponent } from './restpage/restpage.component';
+import { FooditemslistComponent } from './fooditemslist/fooditemslist.component';
 
 
 const appRoutes: Routes = [
@@ -28,7 +29,7 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, ModalComponent, HeaderComponent, FooterComponent, RestpageComponent],
+  declarations: [AppComponent, ModalComponent, HeaderComponent, FooterComponent, RestpageComponent, ],
   entryComponents: [ModalComponent],
   imports: [
     BrowserModule,
@@ -37,7 +38,8 @@ const appRoutes: Routes = [
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    //RestpageComponent
   ],
   providers: [
     StatusBar,

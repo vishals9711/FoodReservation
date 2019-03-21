@@ -54,7 +54,9 @@ export class HomePage implements OnInit{
       return await modal.present();
     }
 
-
+    onClickRestaurant(){
+      this.router.navigate(['restaurant-expand']);
+    }
 
     ngOnInit() {
 
