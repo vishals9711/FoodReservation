@@ -12,54 +12,38 @@ import { Events } from '@ionic/angular';
   templateUrl: 'home.page.html',
   styleUrls: ['home.page.scss'],
 })
-export class HomePage implements OnInit{
+export class HomePage implements OnInit {
 
   public restaurantName: string = '';
   public restaurantAddress: string = '';
   public allRestaurantData: any;
-  
-  constructor(public modalController: ModalController, public api: APIBackendService,
-     private router: Router, public restaurantAPI: RestaurantinfoService, 
-     private storage: Storage, public events: Events) {
-      // Buffer = require('buffer').Buffer;
-      
-        this.restaurantAPI.getAllRestaurants().subscribe((data: {}) => {
-          console.log("--------------------");
-          console.log(data);
-          
-          //var bufferBase64 = new Buffer( data[0].RImg, 'binary' ).toString('base64');
-          //console.log(bufferBase64);
-          console.log("--------------------");
-          this.allRestaurantData = data;
 
-          // this.storage.get('restaurantName').then((RName) => {
-          //   this.restaurantName = RName;
-          // });
-          
-          // this.storage.get('restaurantAddress').then((RAddress) => {
-          //   this.restaurantAddress = RAddress;
-          // });
-    
-        });
+
+  constructor(public modalController: ModalController, public api: APIBackendService,
+    private router: Router, public restaurantAPI: RestaurantinfoService,
+    private storage: Storage, public events: Events) {
+
+
+    this.restaurantAPI.getAllRestaurants().subscribe((data: {}) => {
+      this.allRestaurantData = data;
+    });
+  }
+  async presentModal() {
+    const modal = await this.modalController.create({
+      component: ModalComponent,
+      componentProps: { value: 123 },
+      backdropDismiss: true
+    });
+    return await modal.present();
+  }
+
+  onClickRestaurant(eachRest: any) {
+    console.log("Hoem pagasdasdads")
+    console.log(eachRest);
+    this.router.navigate(['restaurant-expand', eachRest.RId]);
+  }
+  ngOnInit() {
 
   }
-    
-
-    async presentModal() {
-      const modal = await this.modalController.create({
-        component: ModalComponent,
-        componentProps: { value: 123 },
-        backdropDismiss: true
-      });
-      return await modal.present();
-    }
-
-    onClickRestaurant(){
-      this.router.navigate(['restaurant-expand']);
-    }
-
-    ngOnInit() {
-
-    }
 }
 

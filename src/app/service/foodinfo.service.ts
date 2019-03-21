@@ -6,7 +6,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class RestaurantinfoService {
+export class FoodinfoService {
 
   public url = "http://127.0.0.1:3800";
 
@@ -17,12 +17,9 @@ export class RestaurantinfoService {
 
   constructor(public http: HttpClient) { }
 
-  public getAllRestaurants(): Observable<any> {
-    return this.http.get(this.url + '/restinfo').pipe(
-      map(this.extractData));
-  }
-  public getRestaurant(passed_id): Observable<any> {
-    return this.http.get(this.url + '/restinfo/' + passed_id).pipe(
+ 
+  public getFood(passed_id): Observable<any> {
+    return this.http.get(this.url + '/foodinfo/' + passed_id).pipe(
       map(this.extractData));
   }
 

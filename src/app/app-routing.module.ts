@@ -17,7 +17,8 @@ const routes: Routes = [
   },
   { path: 'registration-page1', loadChildren: './registration-page1/registration-page1.module#RegistrationPage1PageModule' },
   { path: 'favpage', loadChildren: './favpage/favpage.module#FavpagePageModule' },
-  { path: 'restaurant-expand', loadChildren: './restaurant-expand/restaurant-expand.module#RestaurantExpandPageModule' },  { path: 'foodmenu', loadChildren: './foodmenu/foodmenu.module#FoodmenuPageModule' }
+  { path: 'restaurant-expand/:r_id', loadChildren: './restaurant-expand/restaurant-expand.module#RestaurantExpandPageModule' },
+  { path: 'foodmenu/:r_id', loadChildren: './foodmenu/foodmenu.module#FoodmenuPageModule' }
 
 
 

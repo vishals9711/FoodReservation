@@ -1,4 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { APIBackendService } from '../service/apibackend.service';
+import { FoodinfoService } from '../service/foodinfo.service';
+import { ToastController } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-foodmenu',
@@ -8,18 +14,41 @@ import { Component, OnInit } from '@angular/core';
 export class FoodmenuPage implements OnInit {
 
   automaticClose = false;
+  passed_id: string;
+  food_data: any;
 
-  constructor() { }
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restaurantAPI: FoodinfoService,private toastCtrl: ToastController) { }
 
-  toggleSection(index){
+  
+
+  ngOnInit() {
+    this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
+    console.log('asdasdadadasd')
+    console.log(this.passed_id)
+    this.restaurantAPI.getFood(this.passed_id).subscribe((data: {}) => {
+      this.food_data = data;
+      console.log("----------------------")
+      console.log(this.food_data);
+    });
+     
+    
+
+    
+  }
+  async buyItem(food_data)
+    {
+      let toast = await this.toastCtrl.create({
+        message: 'Added : ${food_data.name}'
+      });
+      toast.present();
+    }
+
+  toggleSection(index) {
+    this.food_data
 
   }
 
   toggleItem(index, childIndex) {
-    
-  }
 
-  ngOnInit() {
   }
-
 }

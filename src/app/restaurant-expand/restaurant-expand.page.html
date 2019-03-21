@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Restaurant Name, address</ion-title>
+    <ion-title>{{name}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,35 +8,35 @@
 <!-- restaurant image, info.,address, horizontal scroll of bestselling food items,
   clickable reservation and menu buttons -->
 
-  <ion-content >
-      <img src="./../../assets/continental.jpg">
-      <p>
-      Description.Description.Description.Description.Description.Description.Description.Description.Description.
-    </p>
-      <div padding>
-          <ion-button size="default" color="tertiary" (click)="goToMenu()">
-              <ion-icon slot="start" name="restaurant" ></ion-icon>
-              Place Order
-            </ion-button>
-              
-            <ion-button size="default" >
-                
-              <ion-icon slot="end" name="wine" ></ion-icon>
-              Book a Table
-            </ion-button>
-          </div>
-      
-      <h1>Bestsellers</h1>
-    <ion-slides [options]="sliderOpts">
-      <ion-slide *ngFor = "let img of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
-        <ion-card>
-        <img src="../../assets/foodItems/i{{img}}.jpg" >
+<ion-content>
+  <ion-img src="data:image/jpeg;base64,{{RestaurantData[0].RImg}}"></ion-img>
+  <p>
+    {{addre}}
+  </p>
+
+  <div padding>
+    <ion-button size="default" color="tertiary" (click)="goToMenu()">
+      <ion-icon slot="start" name="restaurant"></ion-icon>
+      Place Order
+    </ion-button>
+
+    <ion-button size="default">
+
+      <ion-icon slot="end" name="wine"></ion-icon>
+      Book a Table
+    </ion-button>
+  </div>
+
+  <h1>Bestsellers</h1>
+  <ion-slides [options]="sliderOpts">
+    <ion-slide *ngFor="let img of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+      <ion-card>
+        <img src="../../assets/foodItems/i{{img}}.jpg">
       </ion-card>
-      </ion-slide>
-    </ion-slides>
+    </ion-slide>
+  </ion-slides>
 
-    
 
-  
-  </ion-content>
-  
+
+
+</ion-content>
