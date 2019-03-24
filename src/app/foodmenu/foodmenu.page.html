@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Food Menu</ion-title>
+    <ion-title *ngIf="food_data">{{food_data[0].RName}}  Food Menu</ion-title>
     <!-- <ion-buttons>
       <ion-button slot="end">
         <ion-icon slot="icon-only" name="close" *ngIf="automaticClose"></ion-icon>
@@ -40,7 +40,9 @@
     <ion-col class="fixed">
       <ion-card  *ngFor = "let eachRest of food_data">
           <ion-card-title padding>{{eachRest.Name}}</ion-card-title>
-          <ion-img src="data:image/jpeg;base64,{{eachRest.Fimage}}"></ion-img>
+          
+          <ion-card-subtitle style='font-family:fantasy' slot="end">Rate: {{eachRest.Rate}}</ion-card-subtitle>
+          <img src="data:image/jpeg;base64,{{eachRest.Fimage}}"> 
       </ion-card>
     </ion-col>
   </div>

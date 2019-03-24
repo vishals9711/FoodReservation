@@ -1,5 +1,13 @@
 <div>
-  <ion-searchbar placeholder="Cuisine/Restaurant" animated="true"></ion-searchbar>
+  <ion-searchbar placeholder="Cuisine/Restaurant" animated="true" [(ngModel)]="searchRest" (keyup)="searchRests($event)"></ion-searchbar>
+  <div *ngIf="currentDD">
+    <ion-item  *ngFor="let eachItem of currentDD" (click)="redirectToRestuarant(eachItem)">
+      <ion-label>
+        {{ eachItem.name }}
+      </ion-label>
+    </ion-item>
+  </div>
+ 
 </div>
 
 

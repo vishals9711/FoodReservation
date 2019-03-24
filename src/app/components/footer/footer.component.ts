@@ -20,4 +20,9 @@ export class FooterComponent implements OnInit {
     this.router.navigate(['favpage']);
     console.log("Fav Page");
   }
+  gotoProf() {
+    this.router.navigate(['profile']);
+    
+  }
+
 }

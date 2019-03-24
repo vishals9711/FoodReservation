@@ -17,6 +17,11 @@ export class HomePage implements OnInit {
   public restaurantName: string = '';
   public restaurantAddress: string = '';
   public allRestaurantData: any;
+  searchRest: string;
+  public RestData: any;
+  public RestNameId: any = [];
+  public currentDD: any;
+
 
 
   constructor(public modalController: ModalController, public api: APIBackendService,
@@ -26,7 +31,15 @@ export class HomePage implements OnInit {
 
     this.restaurantAPI.getAllRestaurants().subscribe((data: {}) => {
       this.allRestaurantData = data;
+      for (var eachrestaurant of this.allRestaurantData) {
+        let obj = {
+          id: eachrestaurant.RId,
+          name: eachrestaurant.RName,
+        }
+        this.RestNameId.push(obj);
+      }
     });
+
   }
   async presentModal() {
     const modal = await this.modalController.create({
@@ -38,12 +51,24 @@ export class HomePage implements OnInit {
   }
 
   onClickRestaurant(eachRest: any) {
-    console.log("Hoem pagasdasdads")
+    console.log("Home page")
     console.log(eachRest);
     this.router.navigate(['restaurant-expand', eachRest.RId]);
   }
   ngOnInit() {
 
+  }
+  searchRests(event) {
+    if(event.target.value == ''){
+        this.currentDD = [];
+    }else{
+      this.currentDD = this.RestNameId.filter(v => new RegExp(event.target.value, 'gi').test(v.name)).slice(0, 10);
+    }
+   
+  }
+
+  redirectToRestuarant(restObj:any) {
+    this.router.navigate(['restaurant-expand', restObj.id]);
   }
 }
 

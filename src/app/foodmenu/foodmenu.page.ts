@@ -28,7 +28,7 @@ export class FoodmenuPage implements OnInit {
     this.restaurantAPI.getFood(this.passed_id).subscribe((data: {}) => {
       this.food_data = data;
       console.log("----------------------")
-      console.log(this.food_data);
+      console.log(this.food_data[0].RName);
     });
      
     

@@ -25,5 +25,9 @@ export class RestaurantinfoService {
     return this.http.get(this.url + '/restinfo/' + passed_id).pipe(
       map(this.extractData));
   }
+  public getRestaurantByName(name): Observable<any> {
+    return this.http.get(this.url + '/restinfo/' + name).pipe(
+      map(this.extractData));
+  }
 
 }

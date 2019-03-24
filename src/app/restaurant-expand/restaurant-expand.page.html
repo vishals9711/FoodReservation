@@ -9,7 +9,7 @@
   clickable reservation and menu buttons -->
 
 <ion-content>
-  <ion-img src="data:image/jpeg;base64,{{RestaurantData[0].RImg}}"></ion-img>
+  <ion-img *ngIf="RestaurantData" src="data:image/jpeg;base64,{{RestaurantData[0].RImg}}"></ion-img>
   <p>
     {{addre}}
   </p>
