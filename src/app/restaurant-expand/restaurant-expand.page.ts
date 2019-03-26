@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {Router} from '@angular/router';
+import {Router, ActivatedRoute} from '@angular/router';
+import { NavController } from '@ionic/angular';
+
 
 
 @Component({
@@ -18,14 +20,27 @@ export class RestaurantExpandPage implements OnInit {
 
   }
 
-  constructor(public router: Router) { }
 
-  goToMenu() {
-    this.router.navigate(['foodmenu']);
+
+  constructor(public router: Router) { 
+
+    
   }
+
+  
+  
   
 
   ngOnInit() {
+    
+    
+    //this.restDetails = this.activatedRoute.snapshot.paramMap.get('restdetails');
+    //console.log(this.restDetails);
+
+  }
+
+  goToMenu() {
+    this.router.navigate(['foodmenu']);
   }
 
 }

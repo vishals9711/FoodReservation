@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>Restaurant Name, address</ion-title>
+    <ion-title >title1</ion-title>
+      <!-- <h2>{{restDetails.RName}}</h2> -->
+      <!-- <h4>{{restDetails.RAddress}}</h4> -->
+    <!-- </ion-title> -->
   </ion-toolbar>
 </ion-header>
 
@@ -9,7 +12,7 @@
   clickable reservation and menu buttons -->
 
   <ion-content >
-      <img src="./../../assets/continental.jpg">
+      <ion-img src=""></ion-img>
       <p>
       Description.Description.Description.Description.Description.Description.Description.Description.Description.
     </p>
@@ -25,18 +28,21 @@
               Book a Table
             </ion-button>
           </div>
-      
-      <h1>Bestsellers</h1>
-    <ion-slides [options]="sliderOpts">
-      <ion-slide *ngFor = "let img of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
-        <ion-card>
-        <img src="../../assets/foodItems/i{{img}}.jpg" >
-      </ion-card>
-      </ion-slide>
-    </ion-slides>
+      <div>
+      <h1>Bestsellers</h1>    
+       <ion-slides [options]="sliderOpts"> 
+          <ion-slide *ngFor = "let n of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+            <ion-card>
+              <img src="../../assets/i{{n}}.jpg" >
+          </ion-card>
+          </ion-slide>
+      </ion-slides> 
+    </div>
 
-    
+
+  </ion-content>
 
   
-  </ion-content>
+  
+
   

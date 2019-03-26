@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { Router, NavigationExtras } from '@angular/router';
 import { ModalComponent } from '../components/modal/modal.component';
 import { APIBackendService } from '../service/apibackend.service';
 import { RestaurantinfoService } from '../service/restaurantinfo.service';
@@ -18,6 +18,8 @@ export class HomePage implements OnInit{
   public restaurantAddress: string = '';
   public allRestaurantData: any;
   
+
+
   constructor(public modalController: ModalController, public api: APIBackendService,
      private router: Router, public restaurantAPI: RestaurantinfoService, 
      private storage: Storage, public events: Events) {
@@ -54,7 +56,9 @@ export class HomePage implements OnInit{
       return await modal.present();
     }
 
+
     onClickRestaurant(){
+
       this.router.navigate(['restaurant-expand']);
     }
 
