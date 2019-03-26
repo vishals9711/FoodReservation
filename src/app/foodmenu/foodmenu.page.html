@@ -1,16 +1,18 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>foodmenu</ion-title>
-    <ion-buttons>
+  <ion-toolbar >
+    <ion-title *ngIf="food_data" padding>
+      {{food_data[0].RName}}  Food Menu
+    </ion-title>
+    <!-- <ion-buttons>
       <ion-button slot="end">
         <ion-icon slot="icon-only" name="close" *ngIf="automaticClose"></ion-icon>
         <ion-icon slot="icon-only" name="resize" *ngIf="!automaticClose"></ion-icon>
       </ion-button>
-    </ion-buttons>
+    </ion-buttons> -->
   </ion-toolbar>
-</ion-header>
+ </ion-header>
 
-<ion-content >
+<!-- <ion-content >
   <ion-list *ngFor="let i of [1, 2, 3, 4, 5, 6, 7, 8]" class="accordion-list" lines="none" detail="false" no-padding>
     <ion-item tappable (click)="toggleSection(i)" >
       <ion-icon slot="start" name="arrow-forward" ></ion-icon>
@@ -34,4 +36,42 @@
 
   </ion-list>
 
+</ion-content> -->
+<!-- <ion-content >
+  <div scrollx=true direction="x">
+    <ion-col class="fixed">
+      <ion-card  *ngFor = "let eachRest of food_data">
+          <h3 padding>{{eachRest.Name}}</h3>
+          <img src="data:image/jpeg;base64,{{eachRest.Fimage}}" slot="end" style="height: 50px; width: 50px">sample text
+          <p style='font-family:fantasy' slot="end">Rate: {{eachRest.Rate}}</p>
+          
+      </ion-card>
+    </ion-col>
+  </div>
+</ion-content> -->
+
+
+<ion-content>
+  <ion-list *ngFor = "let eachRest of food_data" class="accordion-list" lines="none" detail="false" no-padding>
+    <ion-item >
+      <!-- <ion-icon slot="start" name="arrow-forward" ></ion-icon> -->
+      <img src="data:image/jpeg;base64,{{eachRest.Fimage}}"  style="height: 50px; width: 80px">
+      <ion-label padding >
+          <h2 text-wrap>{{eachRest.Name}}</h2> 
+          
+        <p> ingredient list <ion-icon name="arrow-dropdown"></ion-icon></p>
+      </ion-label>
+      <ion-icon name="remove" color="danger" (click)="removeItem()"></ion-icon>
+          &nbsp;
+          {{noOfItems}}
+          &nbsp;
+        <ion-icon name="add" color="success" (click)="addItem()"></ion-icon>
+      <span slot="end">&#8377; {{eachRest.Rate}}/- &nbsp;     
+      </span>
+      
+      
+      <!-- <h3 slot="end" >{{eachRest.Rate}}/-</h3> -->
+    </ion-item>
+    
+  </ion-list>
 </ion-content>

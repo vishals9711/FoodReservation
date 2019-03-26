@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {Router, ActivatedRoute} from '@angular/router';
-import { NavController } from '@ionic/angular';
-
+import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { APIBackendService } from '../service/apibackend.service';
+import { RestaurantinfoService } from '../service/restaurantinfo.service';
 
 
 @Component({
@@ -19,28 +20,43 @@ export class RestaurantExpandPage implements OnInit {
     spaceBetween: 10
 
   }
+  passed_id: string;
+  RestaurantData: any;
+  name: any;
+  addre: any;
+  cuisine: any;
+  img: any;
 
 
 
-  constructor(public router: Router) { 
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restaurantAPI: RestaurantinfoService) { }
 
-    
-  }
 
-  
-  
-  
 
   ngOnInit() {
+    this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
+
+
+    this.restaurantAPI.getRestaurant(this.passed_id).subscribe((data: {}) => {
+      this.RestaurantData = data;
+      console.log("------------Rest dataaaaaaaaaaaaaaaaaaaaa")
+    console.log(this.RestaurantData);
+    this.name = this.RestaurantData[0].RName;
+    this.addre = this.RestaurantData[0].RAddress;
+    this.cuisine = this.RestaurantData[0].RCuisine;
+    this.img = this.RestaurantData[0].RImg;
+    });
+
     
-    
-    //this.restDetails = this.activatedRoute.snapshot.paramMap.get('restdetails');
-    //console.log(this.restDetails);
 
   }
-
   goToMenu() {
-    this.router.navigate(['foodmenu']);
+    this.router.navigate(['foodmenu', this.passed_id]);
+    console.log("got ID")
+    console.log(this.passed_id)
   }
+
+
+
 
 }

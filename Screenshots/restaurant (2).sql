@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.5.1
--- http://www.phpmyadmin.net
+-- version 4.7.4
+-- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 12, 2019 at 05:41 PM
--- Server version: 10.1.19-MariaDB
--- PHP Version: 5.5.38
+-- Generation Time: Mar 19, 2019 at 06:11 PM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -76,6 +78,119 @@ CREATE TABLE `describes_fooddetails` (
   `Name` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `describes_fooddetails`
+--
+
+INSERT INTO `describes_fooddetails` (`ItemID`, `Type`, `Name`) VALUES
+(1, 'Soups', 'Veg Sweet Corn Soup'),
+(2, 'Soups', 'Veg Manchow Soup'),
+(3, 'Soups', 'Veg Hot & Sour Soup'),
+(4, 'Soups', 'Veg Wonton Soup'),
+(5, 'Soups', 'Veg Clear Soup'),
+(6, 'Soups', 'Tomato Soup'),
+(7, 'Soups', 'Chicken Sweet Corn Soup'),
+(8, 'Soups', 'Chicken Manchow Soup'),
+(9, 'Soups', 'Chicken Hot & Sour Soup'),
+(10, 'Soups', 'Chicken Tomato Soup'),
+(11, 'Quick Bites', 'Garlic Bread'),
+(12, 'Quick Bites', 'Paneer Shawarma'),
+(13, 'Quick Bites', 'Chicken Shawarma'),
+(14, 'Quick Bites', 'French Fries'),
+(15, 'Quick Bites', 'Veg Grilled Sandwich'),
+(16, 'Quick Bites', 'Cheese Grilled Sandwich'),
+(17, 'Quick Bites', 'Pav Bhaji'),
+(18, 'Quick Bites', 'Masala Dosa'),
+(19, 'Quick Bites', 'Bhel Puri'),
+(20, 'Quick Bites', 'Shev Puri'),
+(21, 'Quick Bites', 'Chicken Nuggets'),
+(22, 'Quick Bites', 'Crunchy Chicken Strips'),
+(23, 'Quick Bites', 'Butter Corn'),
+(24, 'Quick Bites', 'Veg Wrap'),
+(25, 'Quick Bites ', 'Chicken Momos'),
+(26, 'Quick Bites', 'Roasted Chicken Sandwich'),
+(27, 'Quick Bites', 'Tandoori Chicken Sandwich'),
+(28, 'Quick Bites', 'Veg Momos'),
+(29, 'Quick Bites', 'Idli Sambar'),
+(30, 'Quick Bites', 'Chole Bhatoore'),
+(31, 'Salads', 'Classic Caesar Salad'),
+(32, 'Salads', 'Garden Salad'),
+(33, 'Salads', 'Green Salad'),
+(37, 'Salads', 'Oriental Chicken Crunch'),
+(38, 'Starters', 'Gobi Manchurian'),
+(39, 'Starters', 'Paneer Pakora'),
+(40, 'Starters', 'Paneer Tikka'),
+(41, 'Starters', 'Veg Seekh Kebab'),
+(42, 'Starters', 'Chicken Tikka'),
+(43, 'Starters', 'Tandoori Chicken'),
+(44, 'Starters', 'Chicken Tangdi Kebab'),
+(45, 'Starters', 'Fish Tikka'),
+(46, 'Starters', 'Fish Fry'),
+(47, 'Starters', 'Masala Prawns Fry'),
+(48, 'Starters', 'Chicken Crispy'),
+(49, 'Starters', 'Chilli Chicken'),
+(50, 'Starters', 'Chicken Lollipop'),
+(51, 'Starters', 'Chicken Manchurian'),
+(52, 'Starters ', 'Chicken 65'),
+(53, 'Starters ', 'Pepper Chicken'),
+(54, 'Main Course', 'Mushroom Gravy'),
+(55, 'Main Course', 'Paneer Gravy'),
+(56, 'Main Course', 'Kadai Paneer'),
+(57, 'Main Course', 'Palak Paneer'),
+(58, 'Main Course', 'Mixed Veg Korma'),
+(59, 'Main Course', 'Veg Kolhapuri'),
+(60, 'Main Course', 'Chicken Masala'),
+(61, 'Main Course', 'Chicken Kolhapuri'),
+(62, 'Main Course', 'Chicken Handi'),
+(63, 'Main Course', 'Kadai Chicken'),
+(64, 'Main Course', 'Butter Chicken'),
+(65, 'Main Course', 'Chicken Hyderabadi'),
+(66, 'Main Course', 'Chicken Tikka Masala'),
+(67, 'Main Course', 'Chicken Mugalai'),
+(68, 'Main Course', 'Chicken Patiala'),
+(69, 'Main Course', 'Chicken Patiala'),
+(70, 'Main Course', 'Dal Tadka'),
+(71, 'Main Course ', 'Veg Biryani'),
+(72, 'Main Course', 'Chicken Biryani'),
+(73, 'Main Course', 'Mutton Biryani'),
+(74, 'Main Course', 'Egg Biryani'),
+(75, 'Main Course', 'Jeera Rice'),
+(76, 'Main Course', 'Chapati'),
+(77, 'Main Course', 'Tandoori Roti'),
+(78, 'Main Course', 'Naan'),
+(79, 'Main Course', 'Veg Fried Rice'),
+(80, 'Main Course', 'Veg Schezwan Fried Rice'),
+(81, 'Main Course', 'Egg Fried Rice'),
+(82, 'Main Course', 'Chicken Fried Rice'),
+(83, 'Main Course', 'Chicken Triple Fried Rice'),
+(84, 'Main Course', 'Mutton Fried Rice'),
+(85, 'Main Course', 'Veg Noodles'),
+(86, 'Main Course', 'Chicken Hakka Noodles'),
+(87, 'Main Course', 'Chicken Schezwan Noodles'),
+(88, 'Main Course', 'Egg Noodles'),
+(89, 'Main Course', 'Mutton Kolhapuri'),
+(90, 'Main Course', 'Mutton Masala'),
+(91, 'Main Course', 'Chicken Sukka'),
+(92, 'Main Course', 'Chicken Cafreal'),
+(93, 'Main Course', 'Prawns Curry'),
+(94, 'Main Course', 'Cheese Margherita Pizza'),
+(95, 'Main Course ', 'Chicken Pizza'),
+(96, 'Main Course', 'Pasta in Red Sauce'),
+(97, 'Main Course', 'Pasta in White Sauce'),
+(98, 'Beverages', 'Tea'),
+(99, 'Beverages', 'Coffee'),
+(100, 'Beverages', 'Chocolate Shake'),
+(101, 'Beverages', 'Mango Shake'),
+(102, 'Beverages', 'Strawberry Shake'),
+(103, 'Beverages', 'Sprite'),
+(104, 'Beverages', 'Pepsi'),
+(105, 'Beverages', 'Coke'),
+(106, 'Dessert', 'Black Forest Pastry'),
+(107, 'Dessert', 'Chocolate Brownie'),
+(108, 'Dessert', 'Chocolate Hazelnut'),
+(109, 'Dessert', 'Serradura Jar'),
+(110, 'Dessert ', 'Chocolate Mousse');
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +213,46 @@ CREATE TABLE `food_menu` (
   `RId` int(11) NOT NULL,
   `Rate` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `food_menu`
+--
+
+INSERT INTO `food_menu` (`ItemID`, `RId`, `Rate`) VALUES
+(1, 111, 80),
+(2, 111, 80),
+(3, 111, 70),
+(4, 111, 90),
+(5, 111, 80),
+(6, 111, 90),
+(7, 111, 100),
+(12, 111, 100),
+(13, 111, 70),
+(14, 111, 80),
+(17, 111, 100),
+(18, 111, 120),
+(24, 111, 100),
+(25, 111, 150),
+(1, 112, 80),
+(3, 112, 100),
+(5, 112, 100),
+(6, 112, 120),
+(7, 112, 120),
+(7, 113, 100),
+(8, 113, 120),
+(20, 113, 150),
+(21, 113, 110),
+(22, 113, 150),
+(4, 114, 140),
+(5, 114, 140),
+(17, 114, 50),
+(18, 114, 60),
+(14, 114, 90),
+(12, 115, 120),
+(13, 115, 110),
+(14, 115, 120),
+(21, 115, 200),
+(22, 115, 250);
 
 -- --------------------------------------------------------
 
@@ -231,9 +386,9 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`CId`);
 
 --
--- Indexes for table `food_menu`
+-- Indexes for table `describes_fooddetails`
 --
-ALTER TABLE `food_menu`
+ALTER TABLE `describes_fooddetails`
   ADD PRIMARY KEY (`ItemID`);
 
 --
@@ -275,41 +430,50 @@ ALTER TABLE `session`
 --
 ALTER TABLE `creates_session`
   MODIFY `SId` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
   MODIFY `CId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+
 --
--- AUTO_INCREMENT for table `food_menu`
+-- AUTO_INCREMENT for table `describes_fooddetails`
 --
-ALTER TABLE `food_menu`
-  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `describes_fooddetails`
+  MODIFY `ItemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=111;
+
 --
 -- AUTO_INCREMENT for table `payment`
 --
 ALTER TABLE `payment`
   MODIFY `PId` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `rest_info`
 --
 ALTER TABLE `rest_info`
   MODIFY `RId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=116;
+
 --
 -- AUTO_INCREMENT for table `r_order`
 --
 ALTER TABLE `r_order`
   MODIFY `OId` int(11) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `r_table`
 --
 ALTER TABLE `r_table`
   MODIFY `TId` int(10) NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
   MODIFY `SId` int(11) NOT NULL AUTO_INCREMENT;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

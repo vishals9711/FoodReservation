@@ -2,14 +2,15 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
+
 import { IonicModule } from '@ionic/angular';
-import { FoodmenuPage } from './foodmenu.page';
-import {SharedComponentsModule} from './../shared-components.module'
+
+import { ProfilePage } from './profile.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: FoodmenuPage
+    component: ProfilePage
   }
 ];
 
@@ -18,9 +19,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    SharedComponentsModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [FoodmenuPage]
+  declarations: [ProfilePage]
 })
-export class FoodmenuPageModule {}
+export class ProfilePageModule {}

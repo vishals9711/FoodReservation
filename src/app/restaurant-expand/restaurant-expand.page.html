@@ -1,9 +1,11 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title >title1</ion-title>
-      <!-- <h2>{{restDetails.RName}}</h2> -->
-      <!-- <h4>{{restDetails.RAddress}}</h4> -->
-    <!-- </ion-title> -->
+<ion-header >
+  <ion-toolbar >
+    
+    <ion-title padding>
+        <ion-icon name="restaurant"></ion-icon>
+      {{name}}
+      
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -11,38 +13,42 @@
 <!-- restaurant image, info.,address, horizontal scroll of bestselling food items,
   clickable reservation and menu buttons -->
 
-  <ion-content >
-      <ion-img src=""></ion-img>
-      <p>
-      Description.Description.Description.Description.Description.Description.Description.Description.Description.
-    </p>
-      <div padding>
-          <ion-button size="default" color="tertiary" (click)="goToMenu()">
-              <ion-icon slot="start" name="restaurant" ></ion-icon>
+<ion-content>
+  <ion-img *ngIf="RestaurantData" src="data:image/jpeg;base64,{{RestaurantData[0].RImg}}"></ion-img>
+  <p padding>{{addre}}</p>
+
+  
+
+  <ion-grid>
+      <ion-row>
+        <ion-col col-6>
+          <ion-button expand="full" color="tertiary" (click)="goToMenu()">
+              <ion-icon slot="start" name="restaurant"></ion-icon>
               Place Order
-            </ion-button>
+            
+          </ion-button>
+        </ion-col>
+        <ion-col col-6>
+            <ion-button expand="full" color="primary" >
+                <ion-icon slot="end" name="wine"></ion-icon>
+                Book a Table
               
-            <ion-button size="default" >
-                
-              <ion-icon slot="end" name="wine" ></ion-icon>
-              Book a Table
             </ion-button>
-          </div>
-      <div>
-      <h1>Bestsellers</h1>    
-       <ion-slides [options]="sliderOpts"> 
-          <ion-slide *ngFor = "let n of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
-            <ion-card>
-              <img src="../../assets/i{{n}}.jpg" >
-          </ion-card>
-          </ion-slide>
-      </ion-slides> 
-    </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 
 
-  </ion-content>
+  <h1 padding>Bestsellers</h1>
+  <ion-slides [options]="sliderOpts">
+    <ion-slide *ngFor="let img of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
+      <ion-card>
+        <img src="../../assets/foodItems/i{{img}}.jpg">
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 
-  
-  
 
-  
+
+
+</ion-content>

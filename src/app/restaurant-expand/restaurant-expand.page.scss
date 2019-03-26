@@ -1,5 +1,5 @@
 ion-slides {
-    background: #141414;
+    background-image: linear-gradient(to right,red, yellow);
     resize: 30%;
 
     img {
@@ -10,8 +10,24 @@ ion-slides {
 
 h1 {
     font-family: fantasy;
-    background: #141414;
+    //background: #141414;
     text-align: center;
-    color: rgb(109, 94, 94);
+    background-image: linear-gradient(to right,red, yellow);
+}
+
+ion-header {
+    
+
+    ion-title{
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        //text-align: center;
+        font-style: italic;
+        font-weight: bold;
+        background-image: linear-gradient(to right,red, yellow);
+    }
+}
+
+p {
+    background-image: linear-gradient(to right,red, yellow);
 }
 
