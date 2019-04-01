@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title *ngIf="RestaurantData">{{name}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card>
+    <ngx-charts-tree-map
+    [scheme]="colorScheme"
+    [results]="single"
+    (select)="onSelect($event)">
+  </ngx-charts-tree-map>
+</ion-card>
+
+<highcharts-chart 
+  [Highcharts]="Highcharts"
+  [options]="chartOptions"
+ 
+  style="width: 100%; height: 400px; display: block;"
+></highcharts-chart>
+</ion-content>

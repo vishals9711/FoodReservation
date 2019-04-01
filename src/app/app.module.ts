@@ -19,8 +19,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { RestpageComponent } from './restpage/restpage.component';
 import { FooditemslistComponent } from './fooditemslist/fooditemslist.component';
-import {RestaurantExpandPageModule} from './restaurant-expand/restaurant-expand.module'
-import {FoodmenuPageModule} from './foodmenu/foodmenu.module';
+import { RestaurantExpandPageModule } from './restaurant-expand/restaurant-expand.module'
+import { FoodmenuPageModule } from './foodmenu/foodmenu.module';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { HighchartsChartModule } from 'highcharts-angular';
+import { ChartModule } from 'angular2-highcharts';
+
+
 
 
 const appRoutes: Routes = [
@@ -31,7 +37,7 @@ const appRoutes: Routes = [
 ]
 
 @NgModule({
-  declarations: [AppComponent, ModalComponent, HeaderComponent, FooterComponent, RestpageComponent,  ],
+  declarations: [AppComponent, ModalComponent, HeaderComponent, FooterComponent, RestpageComponent ],
   entryComponents: [ModalComponent],
   imports: [
     BrowserModule,
@@ -42,7 +48,13 @@ const appRoutes: Routes = [
     FormsModule,
     IonicStorageModule.forRoot(),
     RestaurantExpandPageModule,
-    FoodmenuPageModule
+    FoodmenuPageModule,
+    BrowserAnimationsModule,
+    NgxChartsModule,
+    HighchartsChartModule,
+    ChartModule.forRoot(require('highcharts'))
+    
+    
 
     //RestpageComponent
   ],

@@ -1,8 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { LoginAPIService } from '../service/login-api.service';
 import { Storage } from '@ionic/storage';
 import { ActionSheetController } from '@ionic/angular';
 import { Events } from '@ionic/angular';
+
+
 
 @Component({
   selector: 'app-profile',
@@ -13,7 +16,9 @@ export class ProfilePage implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
+  
 
+  
   constructor(private storage: Storage, public loginAPI: LoginAPIService, public events: Events) {
     events.subscribe('user:created', () => {
       this.storage.get('isLoggedIn').then((val) => {
@@ -34,6 +39,9 @@ export class ProfilePage implements OnInit {
   ngOnInit() {
     console.log(this.userName)
     console.log("Profile Page");
+    // set the data
   }
+  
+
 
 }

@@ -1,4 +1,4 @@
-import { Component, OnInit,Input } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
@@ -18,16 +18,16 @@ export class FoodmenuPage implements OnInit {
   food_data: any;
   noOfItems = 0;
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restaurantAPI: FoodinfoService,private toastCtrl: ToastController) { }
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController) { }
 
-  
-addItem() {
-  this.noOfItems++;
-}
 
-removeItem() {
-  this.noOfItems--;
-}
+  addItem() {
+    this.noOfItems++;
+  }
+
+  removeItem() {
+    this.noOfItems--;
+  }
 
 
   ngOnInit() {
@@ -39,18 +39,17 @@ removeItem() {
       console.log("----------------------")
       console.log(this.food_data[0].RName);
     });
-     
-    
 
-    
+
+
+
   }
-  async buyItem(food_data)
-    {
-      let toast = await this.toastCtrl.create({
-        message: 'Added : ${food_data.name}'
-      });
-      toast.present();
-    }
+  async buyItem(food_data) {
+    let toast = await this.toastCtrl.create({
+      message: 'Added : ${food_data.name}'
+    });
+    toast.present();
+  }
 
   toggleSection(index) {
     this.food_data

@@ -35,11 +35,12 @@
               {
                 "input": "src/theme/variables.scss"
               },
+              
               {
                 "input": "src/global.scss"
               }
             ],
-            "scripts": []
+            "scripts":[]
           },
           "configurations": {
             "production": {

@@ -3,15 +3,16 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import {NgxChartsModule} from '@swimlane/ngx-charts';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePage } from './profile.page';
+import { BooktablePage } from './booktable.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfilePage
+    component: BooktablePage
   }
 ];
 
@@ -21,8 +22,9 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     RouterModule.forChild(routes),
-    NgxChartsModule
+    NgxChartsModule,
+    HighchartsChartModule
   ],
-  declarations: [ProfilePage]
+  declarations: [BooktablePage]
 })
-export class ProfilePageModule {}
+export class BooktablePageModule {}

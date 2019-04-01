@@ -19,7 +19,9 @@ const routes: Routes = [
   { path: 'favpage', loadChildren: './favpage/favpage.module#FavpagePageModule' },
   { path: 'restaurant-expand/:r_id', loadChildren: './restaurant-expand/restaurant-expand.module#RestaurantExpandPageModule' },
   { path: 'foodmenu/:r_id', loadChildren: './foodmenu/foodmenu.module#FoodmenuPageModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' }
+  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
+  { path: 'booktable/:r_id', loadChildren: './booktable/booktable.module#BooktablePageModule' }
+
 
 
 

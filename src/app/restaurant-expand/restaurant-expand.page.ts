@@ -55,6 +55,9 @@ export class RestaurantExpandPage implements OnInit {
     console.log("got ID")
     console.log(this.passed_id)
   }
+  booktable(){
+    this.router.navigate(['booktable',this.passed_id]);
+  }
 
 
 
