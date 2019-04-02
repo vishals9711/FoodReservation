@@ -14,11 +14,11 @@ export class FooterComponent implements OnInit {
   }
   gotoHome() {
     this.router.navigate(['/home']);
-    console.log("Home Page");
+    
   }
   gotoFav() {
     this.router.navigate(['favpage']);
-    console.log("Fav Page");
+    
   }
   gotoProf() {
     this.router.navigate(['profile']);

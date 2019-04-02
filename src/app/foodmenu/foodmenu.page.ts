@@ -32,12 +32,10 @@ export class FoodmenuPage implements OnInit {
 
   ngOnInit() {
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
-    console.log('asdasdadadasd')
-    console.log(this.passed_id)
+    
     this.restaurantAPI.getFood(this.passed_id).subscribe((data: {}) => {
       this.food_data = data;
-      console.log("----------------------")
-      console.log(this.food_data[0].RName);
+      
     });
 
 

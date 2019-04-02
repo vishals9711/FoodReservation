@@ -39,8 +39,7 @@ export class RestaurantExpandPage implements OnInit {
 
     this.restaurantAPI.getRestaurant(this.passed_id).subscribe((data: {}) => {
       this.RestaurantData = data;
-      console.log("------------Rest dataaaaaaaaaaaaaaaaaaaaa")
-    console.log(this.RestaurantData);
+   
     this.name = this.RestaurantData[0].RName;
     this.addre = this.RestaurantData[0].RAddress;
     this.cuisine = this.RestaurantData[0].RCuisine;
@@ -52,8 +51,7 @@ export class RestaurantExpandPage implements OnInit {
   }
   goToMenu() {
     this.router.navigate(['foodmenu', this.passed_id]);
-    console.log("got ID")
-    console.log(this.passed_id)
+    
   }
   booktable(){
     this.router.navigate(['booktable',this.passed_id]);

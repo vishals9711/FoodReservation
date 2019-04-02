@@ -52,7 +52,6 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NgxChartsModule,
     HighchartsChartModule,
-    ChartModule.forRoot(require('highcharts'))
     
     
 

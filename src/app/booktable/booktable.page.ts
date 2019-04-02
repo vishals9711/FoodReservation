@@ -5,7 +5,6 @@ import { Events } from '@ionic/angular';
 import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { RestaurantinfoService } from '../service/restaurantinfo.service';
-import * as HighCharts from 'highcharts';
 
 @Component({
   selector: 'app-booktable',
@@ -29,7 +28,6 @@ export class BooktablePage implements OnInit {
     }
   ];
   
-  
   view: any[] = [700, 400];
   passed_id: string;
   RestaurantData:any;
@@ -46,48 +44,20 @@ export class BooktablePage implements OnInit {
 
   ngOnInit() {
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
-    console.log(this.passed_id)
+    
     this.restaurantAPI.getRestaurant(this.passed_id).subscribe((data: {}) => {
       this.RestaurantData = data;
       this.name = this.RestaurantData[0].RName;
     this.addre = this.RestaurantData[0].RAddress;
     this.cuisine = this.RestaurantData[0].RCuisine;
     this.img = this.RestaurantData[0].RImg;
-      console.log(data)
+      
     });
   }
   
   onSelect(event) {
-    console.log(event);
+    
 
   }
 
-
-  ionViewDidLoad() {}
-
-  myChart = HighCharts.chart('container', {
-    chart: {
-      type: 'bar'
-    },
-    title: {
-      text: 'Fruit Consumption'
-    },
-    xAxis: {
-      categories: ['Apples', 'Bananas', 'Oranges']
-    },
-    yAxis: {
-      title: {
-        text: 'Fruit eaten'
-      }
-    },
-    series: [{
-      name: 'Jane',
-      data: [1, 0, 4]
-    }, {
-      name: 'John',
-      data: [5, 7, 3]
-    }]
-  });
-
-  
 }

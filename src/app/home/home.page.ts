@@ -51,8 +51,7 @@ export class HomePage implements OnInit {
   }
 
   onClickRestaurant(eachRest: any) {
-    console.log("Home page")
-    console.log(eachRest);
+    
     this.router.navigate(['restaurant-expand', eachRest.RId]);
   }
   ngOnInit() {

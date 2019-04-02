@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
         text: 'Cart',
         icon: 'trash',
         handler: () => {
-          console.log('Delete clicked');
+         
         }
       }, {
         text: 'Logout',
@@ -79,7 +79,7 @@ export class HeaderComponent implements OnInit {
         icon: 'close',
         role: 'cancel',
         handler: () => {
-          console.log('Cancel clicked');
+         
         }
       }]
     });

@@ -33,12 +33,11 @@ export class ProfilePage implements OnInit {
 
       });
     });
-    console.log(this.userEmail);
+    
   }
 
   ngOnInit() {
-    console.log(this.userName)
-    console.log("Profile Page");
+    
     // set the data
   }
   
