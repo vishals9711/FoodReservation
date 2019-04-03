@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { RestaurantinfoService } from '../service/restaurantinfo.service';
 import { BookinginfoService } from '../service/bookinginfo.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-booktable',
@@ -47,7 +48,7 @@ export class BooktablePage implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService , public bookingAPI:BookinginfoService) {
+  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService , public bookingAPI:BookinginfoService,public router: Router) {
     events.subscribe('user:created', () => {
       this.storage.get('isLoggedIn').then((val) => {
         this.isLoggedIn = val;
@@ -91,6 +92,7 @@ export class BooktablePage implements OnInit {
       });
 
     });
+    this.router.navigate(['foodmenu', this.passed_id]);
  
   }
 
