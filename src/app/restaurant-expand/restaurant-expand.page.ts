@@ -61,8 +61,8 @@ export class RestaurantExpandPage implements OnInit {
     this.router.navigate(['booktable',this.passed_id]);
   }
 
-  viewReviews(id){
-    this.router.navigate(['rest-reviews-and-ratings', this.passed_id]);
+  viewReviews(Id){
+    this.router.navigate(['rest-reviews-and-ratings', Id]);
   }
 
 
