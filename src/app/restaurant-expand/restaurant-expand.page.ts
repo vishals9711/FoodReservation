@@ -52,17 +52,19 @@ export class RestaurantExpandPage implements OnInit {
 
     
 
-  }
+  } 
+
   goToMenu() {
     this.router.navigate(['foodmenu', this.passed_id]);
     
   }
+  
   booktable(){
     this.router.navigate(['booktable',this.passed_id]);
   }
 
-  viewReviews(Id){
-    this.router.navigate(['rest-reviews-and-ratings', Id]);
+  viewReviews(){
+    this.router.navigate(['rest-reviews-and-ratings', this.passed_id]);
   }
 
 
