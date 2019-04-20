@@ -14,11 +14,21 @@ export class RestReviewsAndRatingsPage {
 
   passed_id: string;
   reviewData: any;
+  inputRating = 0;
+
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restReviewService: RestaurantreviewsService) { }
 
 
-  
+  rateUp() {
+    if(this.inputRating!=5)
+      this.inputRating++;
+  }
+
+  rateDown() {
+    if(this.inputRating!=0)
+      this.inputRating--;
+  }
 
   ngOnInit() {
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');

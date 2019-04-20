@@ -1,13 +1,9 @@
 <ion-header >
   <ion-toolbar >
     
-    <ion-title no-padding>
-            
-          <h2 no-padding>
+    <ion-title padding text-wrap>     
               <ion-icon name="restaurant"></ion-icon>{{name}}
-            <h4 no-padding>{{address}}</h4>
-          </h2>
-   
+            <h4 no-padding>{{address}}</h4>   
     </ion-title>
   </ion-toolbar>
 </ion-header>
@@ -24,7 +20,7 @@
         &nbsp;
         <ion-icon name="create" (click)="viewReviews()"></ion-icon>
         &nbsp;
-          <u>User Ratings and Reviews:</u> &nbsp; {{rating}}/5
+          <u (click)="viewReviews()">User Ratings and Reviews:</u> &nbsp; {{rating}}/5
         <ion-icon name="star" ></ion-icon> 
       </h3>
     </div>
