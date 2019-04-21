@@ -25,6 +25,7 @@ export class RestaurantreviewsService {
   }
 
   public createReview(data): Observable<any> {
+    console.log('inside reviewService',data);
     return this.http.post(this.url + '/getSetReview', data).pipe(
       map(this.extractData));
   }

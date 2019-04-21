@@ -17,11 +17,13 @@ export class RestReviewsAndRatingsPage {
 
   passed_id: string;
   reviewData: any;
-  inputRating: any = 0;
+  inputRating = 0;
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
   public newReviewData: any = { restId: "", restReview:  "", userRating: this.inputRating , userId: ""};
+  public onClickSubmit: boolean = true;
+  public thisUser: boolean = false;
 
 
 
@@ -67,12 +69,20 @@ export class RestReviewsAndRatingsPage {
     
     submitReview() {
 
-      this.newReviewData.restId = this.passed_id;
+      
       this.newReviewData.userRating = this.inputRating;
-      this.restReviewService.createReview(this.newReviewData).subscribe((data: {}) => {
+      console.log('newReviewData',this.newReviewData);
 
-      });
+      this.restReviewService.createReview(this.newReviewData).subscribe();
+      this.onClickSubmit = false;
+      // if(this.newReviewData.userId = this.passed_id)
+      //   this.thisUser = true;
+
     }
+
+    // reEdit(){
+    //   this.onClickSubmit = false;
+    // }
 
     
 
@@ -81,7 +91,8 @@ export class RestReviewsAndRatingsPage {
 
     this.restReviewService.getAllReviewsByRId(this.passed_id).subscribe((data: {}) => {
       this.reviewData = data;
-      console.log(this.reviewData);
+      //console.log(this.reviewData);
+      this.newReviewData.restId = this.passed_id;
 
   });
   

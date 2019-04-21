@@ -8,8 +8,8 @@
 </ion-header>
 
 <ion-content >
-      <div *ngIf="isLoggedIn" padding style="border: 2px solid"> 
-        <ion-item>
+      <div *ngIf="isLoggedIn && onClickSubmit" padding style="border: 2px solid" > 
+        <ion-item >
         <ion-label color="primary" stacked><ion-icon name="contact"></ion-icon>
           {{userName}}</ion-label>
           <ion-icon name="arrow-down" color="danger" (click)="rateDown()"></ion-icon>
@@ -21,7 +21,7 @@
         
         <ion-textarea type="text" placeholder="Type your review here" [(ngModel)]="newReviewData.restReview"></ion-textarea>
       
-        <ion-button expand="block" (click)="submitReview()" shape="round">Submit</ion-button>
+        <ion-button expand="block" (click)="submitReview()" shape="round" >Submit</ion-button>
       </div>
     
     <ion-list *ngFor = "let reviewInfo of reviewData"  no-padding>
@@ -30,6 +30,7 @@
             <h1 text-wrap>
               <ion-icon name="contact"></ion-icon>
               {{reviewInfo.CName}}
+              <!-- <ion-icon name="create" *ngIf="thisUser" (click)="reEdit()"></ion-icon> -->
             </h1> 
             
           <p>"{{reviewInfo.RReview}}"</p>
