@@ -8,10 +8,10 @@
 </ion-header>
 
 <ion-content >
-      <div padding style="border: 2px solid"> 
+      <div *ngIf="isLoggedIn" padding style="border: 2px solid"> 
         <ion-item>
         <ion-label color="primary" stacked><ion-icon name="contact"></ion-icon>
-          UserName(only if logged in)</ion-label>
+          {{userName}}</ion-label>
           <ion-icon name="arrow-down" color="danger" (click)="rateDown()"></ion-icon>
          
           <h1>{{inputRating}}/5</h1>
@@ -19,7 +19,7 @@
         <ion-icon name="arrow-up" color="success" (click)="rateUp()"></ion-icon>
         </ion-item>
         
-        <ion-textarea type="text" placeholder="Type your review here"></ion-textarea>
+        <ion-textarea type="text" placeholder="Type your review here" [(ngModel)]="newReviewData.restReview"></ion-textarea>
       
         <ion-button expand="block" (click)="submitReview()" shape="round">Submit</ion-button>
       </div>
