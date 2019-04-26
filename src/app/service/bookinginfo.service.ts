@@ -25,5 +25,9 @@ export class BookinginfoService {
     return this.http.post(this.url + '/booksess', data).pipe(
       map(this.extractData));
   }
+  public createOrder(data): Observable<any> {
+    return this.http.post(this.url + '/order', data).pipe(
+      map(this.extractData));
+  }
 
 }

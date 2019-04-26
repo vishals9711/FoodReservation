@@ -42,7 +42,7 @@ export class BooktablePage implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public userId : number;
+  public userId : number=2;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
@@ -50,19 +50,9 @@ export class BooktablePage implements OnInit {
 
   constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService , public bookingAPI:BookinginfoService,public router: Router) {
     events.subscribe('user:created', () => {
-      this.storage.get('isLoggedIn').then((val) => {
-        this.isLoggedIn = val;
-        this.storage.get('name').then((userval) => {
-          this.userName = userval;
-        });
-        this.storage.get('email').then((emailval) => {
-          this.userEmail = emailval;
-        });
         this.storage.get('userId').then((idval) => {
-          this.userId = idval;
         });
       });
-    });
 
   }
   public userdata = { CId: this.userId};
@@ -80,8 +70,8 @@ export class BooktablePage implements OnInit {
   }
 
   onSelect(event) {
-    console.log(event.value)
-    this.bookingAPI.create_a_booking_session( { CId: this.userId}).subscribe((data: {}) => {
+    console.log(this.userId)
+    this.bookingAPI.create_a_booking_session( { CId: this.userId }).subscribe((data: {}) => {
       this.bookingId = data;
       console.log(data)
       console.log("-----------------------------------")
