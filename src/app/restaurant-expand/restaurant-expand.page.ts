@@ -26,6 +26,7 @@ export class RestaurantExpandPage implements OnInit {
   addre: any;
   cuisine: any;
   img: any;
+  rate:any;
 
 
 
@@ -43,6 +44,7 @@ export class RestaurantExpandPage implements OnInit {
     this.name = this.RestaurantData[0].RName;
     this.addre = this.RestaurantData[0].RAddress;
     this.cuisine = this.RestaurantData[0].RCuisine;
+    this.rate = this.RestaurantData[0].RRating;
     this.img = this.RestaurantData[0].RImg;
     });
 

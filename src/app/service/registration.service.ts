@@ -17,8 +17,21 @@ export class RegistrationService {
 
   constructor(public http: HttpClient) { }
 
-  public createRegistration(data): Observable<any> {
+  public createotp(data): Observable<any> {
+    return this.http.post(this.url + '/otpver', data).pipe(
+      map(this.extractData));
+  }
+  
+
+
+  public createx(data): Observable<any> {
     return this.http.post(this.url + '/registration', data).pipe(
+      map(this.extractData));
+  }
+  
+
+  public createRegistration(data): Observable<any> {
+    return this.http.post(this.url + '/finalRegister', data).pipe(
       map(this.extractData));
   }
 

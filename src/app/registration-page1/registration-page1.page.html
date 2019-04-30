@@ -12,7 +12,12 @@
         <ion-input placeholder="Name" [(ngModel)]="registerdata.name"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Email" [(ngModel)]="registerdata.email"></ion-input>
+        <ion-input placeholder="Email" [(ngModel)]="otpdata.email"></ion-input>
+        <ion-button expand="block" (click)="getOtp()" shape="round">Get Otp</ion-button>
+      </ion-item>
+      <p *ngIf="showMyMessage">otp has been sent.</p>
+      <ion-item>
+        <ion-input placeholder="Re-enter Email" [(ngModel)]="registerdata.email"></ion-input>
       </ion-item>
       <ion-item>
         <ion-input placeholder="Password" type="password" [(ngModel)]="registerdata.password"></ion-input>
@@ -26,10 +31,7 @@
         </ion-datetime>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="Enter OTP"></ion-input>
-      </ion-item>
-      <ion-item>
-        <ion-input placeholder="Enter Captcha"></ion-input>
+        <ion-input placeholder="Enter OTP" placeholder="otp" [(ngModel)]="registerdata.otp"></ion-input>
       </ion-item>
       <ion-button expand="block" (click)="Register()" shape="round">Register</ion-button>
     </ion-list>

@@ -1,5 +1,5 @@
 ion-slides {
-    background-image: linear-gradient(to right,red, yellow);
+    background-color: lightgrey;
     resize: 30%;
 
     img {
@@ -12,7 +12,7 @@ h1 {
     font-family: fantasy;
     //background: #141414;
     text-align: center;
-    background-image: linear-gradient(to right,red, yellow);
+    background-color: lightgrey;
 }
 
 ion-header {
@@ -23,11 +23,11 @@ ion-header {
         //text-align: center;
         font-style: italic;
         font-weight: bold;
-        background-image: linear-gradient(to right,red, yellow);
+        background-color: lightgrey;
     }
 }
 
 p {
-    background-image: linear-gradient(to right,red, yellow);
+    background-color: lightgrey;
 }
 
