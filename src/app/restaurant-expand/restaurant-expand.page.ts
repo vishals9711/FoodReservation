@@ -23,10 +23,11 @@ export class RestaurantExpandPage implements OnInit {
   passed_id: string;
   RestaurantData: any;
   name: any;
-  addre: any;
+  address: any;
   cuisine: any;
   img: any;
-  rate:any;
+  rating: any;
+  id: any;
 
 
 
@@ -42,24 +43,30 @@ export class RestaurantExpandPage implements OnInit {
       this.RestaurantData = data;
    
     this.name = this.RestaurantData[0].RName;
-    this.addre = this.RestaurantData[0].RAddress;
+    this.address = this.RestaurantData[0].RAddress;
     this.cuisine = this.RestaurantData[0].RCuisine;
     this.rate = this.RestaurantData[0].RRating;
     this.img = this.RestaurantData[0].RImg;
+    this.rating = this.RestaurantData[0].RRating;
+    this.id = this.RestaurantData[0].RId;
     });
 
     
 
-  }
+  } 
+
   goToMenu() {
     this.router.navigate(['foodmenu', this.passed_id]);
     
   }
+  
   booktable(){
     this.router.navigate(['booktable',this.passed_id]);
   }
 
-
+  viewReviews(){
+    this.router.navigate(['rest-reviews-and-ratings', this.passed_id]);
+  }
 
 
 }

@@ -1,12 +1,3 @@
-ion-content {
-    --background: var(--ion-color-light);
-}
-
-.accordion-list{
-    margin-bottom: 4px;
-    --ion-item-background: #fff;
-}
-
 ion-header {
     
 
@@ -15,7 +6,16 @@ ion-header {
         text-align: center;
         font-style: italic;
         font-weight: bold;
-        background-color: lightgrey;
+        background-image: linear-gradient(to right,red, yellow);
+    
     }
+}
 
+ion-content{
+
+
+    span{
+        font-weight: bold;
+        font-size: 20px;
+    }
 }

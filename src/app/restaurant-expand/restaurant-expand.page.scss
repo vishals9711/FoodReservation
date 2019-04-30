@@ -19,15 +19,25 @@ ion-header {
     
 
     ion-title{
-        font-family: Verdana, Geneva, Tahoma, sans-serif;
-        //text-align: center;
-        font-style: italic;
-        font-weight: bold;
-        background-color: lightgrey;
+            
+      
+            
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            //text-align: center;
+            font-style: italic;
+            font-weight: bold;
+            background-image: linear-gradient(to right,red, yellow);
+            text-align: center;
+
+        
     }
 }
 
-p {
-    background-color: lightgrey;
+.ratingBar {
+    font-family: fantasy;
+    background-image: linear-gradient(to right,red, yellow);
+    width: 100%;
+    padding: 2px;
+    //text-decoration: underline;
 }
 

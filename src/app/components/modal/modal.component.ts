@@ -27,7 +27,9 @@ export class ModalComponent {
   }
 
   async userLogin() {
-    this.api.authenticateUser(this.userData).subscribe((data: {}) => {
+    if (this.userData.email!='' && this.userData.password!='') {
+      console.log('email:',this.userData.email,'password:',this.userData.password)
+      this.api.authenticateUser(this.userData).subscribe((data: {}) => {
       if (Object.entries(data).length != 0) {
         this.storage.set('userId', data[0].CId);
         this.storage.set('email', data[0].CEmail);
@@ -39,12 +41,20 @@ export class ModalComponent {
         this.events.publish('user:created');
        
         this.router.navigate(['/home']);
-        
-      } else {
-        this.wrongCredentials = true;
+    
       }
-    });
+      });
+    
+      } else{
+          this.wrongCredentials = true;
+      }
+    
   }
+
+  closeModal1(){
+    this.modalController.dismiss();
+  }
+
   gotoRegister1() {
     this.modalController.dismiss();
     this.router.navigate(['registration-page1']);

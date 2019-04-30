@@ -25,7 +25,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule } from 'angular2-highcharts';
-
+import {RestReviewsAndRatingsPageModule} from './rest-reviews-and-ratings/rest-reviews-and-ratings.module';
 
 
 
@@ -52,6 +52,7 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     NgxChartsModule,
     HighchartsChartModule,
+    RestReviewsAndRatingsPageModule
     
     
 

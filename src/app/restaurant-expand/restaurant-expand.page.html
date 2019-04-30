@@ -1,10 +1,9 @@
 <ion-header >
   <ion-toolbar >
     
-    <ion-title padding>
-        <ion-icon name="restaurant"></ion-icon>
-      {{name}}   
-      
+    <ion-title padding text-wrap>     
+              <ion-icon name="restaurant"></ion-icon>{{name}}
+            <h4 no-padding>{{address}}</h4>   
     </ion-title>
     
     
@@ -17,9 +16,17 @@
 
 <ion-content>
   <ion-img *ngIf="RestaurantData" src="data:image/jpeg;base64,{{RestaurantData[0].RImg}}"></ion-img>
-  <p padding>{{addre}}</p>
 
-  
+    <div class="ratingBar">
+      <h3>
+        &nbsp;
+        <ion-icon name="create" (click)="viewReviews()"></ion-icon>
+        &nbsp;
+          <u (click)="viewReviews()">User Ratings and Reviews:</u> &nbsp; {{rating}}/5
+        <ion-icon name="star" ></ion-icon> 
+      </h3>
+    </div>
+
 
   <ion-grid>
       <ion-row>
