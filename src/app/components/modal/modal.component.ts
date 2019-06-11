@@ -28,7 +28,7 @@ export class ModalComponent {
 
   async userLogin() {
     if (this.userData.email!='' && this.userData.password!='') {
-      console.log('email:',this.userData.email,'password:',this.userData.password)
+      console.log('email:',this.userData.email,'password:',this.userData.password);
       this.api.authenticateUser(this.userData).subscribe((data: {}) => {
       if (Object.entries(data).length != 0) {
         this.storage.set('userId', data[0].CId);
@@ -36,13 +36,16 @@ export class ModalComponent {
         this.storage.set('name', data[0].CName);
 
         this.storage.set('isLoggedIn', true);
+        console.log('modal comp: "isLoggedIn"',this.storage.get('isLoggedIn'));
         
         this.modalController.dismiss();
         this.events.publish('user:created');
        
         this.router.navigate(['/home']);
     
-      }
+      }else{
+        this.wrongCredentials = true;
+    }
       });
     
       } else{

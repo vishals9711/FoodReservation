@@ -23,7 +23,7 @@
       <ion-card  *ngFor = "let eachRest of allRestaurantData" (click)="onClickRestaurant(eachRest)">
           <ion-card-title padding>{{eachRest.RName}} 
               <ion-text color="dark">
-                  <h5> {{eachRest.RRating}}/5   </h5>
+                  <h5> <ion-icon name="star"></ion-icon>{{eachRest.RRating}}/5   </h5>
                 </ion-text> </ion-card-title>
          
           <ion-img src="data:image/jpeg;base64,{{eachRest.RImg}}"></ion-img>
