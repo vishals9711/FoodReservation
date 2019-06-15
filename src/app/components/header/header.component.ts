@@ -28,6 +28,8 @@ export class HeaderComponent implements OnInit {
         this.storage.get('name').then((userval) => {
           this.userName = userval;
         });
+        console.log('header: "isLoggedIn"',this.storage.get('isLoggedIn'));
+        console.log('header: isLoggedIn',this.isLoggedIn);
 
         this.storage.get('email').then((emailval) => {
           this.userEmail = emailval;
