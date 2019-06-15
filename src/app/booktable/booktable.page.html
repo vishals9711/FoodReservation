@@ -1,15 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title *ngIf="RestaurantData">{{name}}</ion-title>
+    <ion-title *ngIf="RestaurantData">{{ name }}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
-  <ion-card>
+  <ion-card *ngIf="isChartLoaded">
     <ngx-charts-tree-map
-    [scheme]="colorScheme"
-    [results]="single"
-    (select)="onSelect($event)">
-  </ngx-charts-tree-map>
-</ion-card>
+      [scheme]="colorScheme"
+      [results]="single"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-tree-map>
+  </ion-card>
 </ion-content>

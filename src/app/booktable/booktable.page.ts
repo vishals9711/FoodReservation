@@ -15,20 +15,8 @@ import { Router } from '@angular/router';
 })
 export class BooktablePage implements OnInit {
 
-  single = [
-    {
-      "name": "Table 1 (8 Seats)",
-      "value": 1118
-    },
-    {
-      "name": "Table 2 (5 Seats)",
-      "value": 1115
-    },
-    {
-      "name": "Table 3 (7 Seats)",
-      "value": 1117
-    }
-  ];
+  single = [];
+  isChartLoaded = false;
 
   view: any[] = [700, 400];
   passed_id: string;
@@ -38,24 +26,29 @@ export class BooktablePage implements OnInit {
   cuisine: any;
   img: any;
   bookingId: any;
+  tables: any;
 
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public userId : number=2;
+  public userId = 2;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService , public bookingAPI:BookinginfoService,public router: Router) {
+  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService, public bookingAPI: BookinginfoService, public router: Router) {
     events.subscribe('user:created', () => {
-        this.storage.get('userId').then((idval) => {
-        });
+      this.storage.get('userId').then((idval) => {
+        this.userId = idval;
       });
+      this.storage.get('email').then((emailval) => {
+        this.userEmail = emailval;
+      });
+    });
 
   }
-  public userdata = { CId: this.userId};
+  public userdata = { CId: this.userId };
 
   ngOnInit() {
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
@@ -66,24 +59,45 @@ export class BooktablePage implements OnInit {
       this.addre = this.RestaurantData[0].RAddress;
       this.cuisine = this.RestaurantData[0].RCuisine;
       this.img = this.RestaurantData[0].RImg;
+      this.restaurantAPI.getTable(this.passed_id).subscribe((data: {}) => {
+        this.tables = data;
+        console.log("Tables ------------------")
+        console.log(this.tables);
+        for (let eachTable of this.tables) {
+          let oneTable = {
+            "name": eachTable.name,
+            "value": eachTable.TId
+          };
+
+          this.single.push(oneTable);
+        }
+
+        this.isChartLoaded = true;
+
+      });
     });
+    console.log("----------------------")
+    console.log(this.userId);
+    console.log("----------------------------")
+
+
   }
 
   onSelect(event) {
     console.log(this.userId)
-    this.bookingAPI.create_a_booking_session( { CId: this.userId }).subscribe((data: {}) => {
+    this.bookingAPI.create_a_booking_session({ CId: this.userId }).subscribe((data: {}) => {
       this.bookingId = data;
       console.log(data)
       console.log("-----------------------------------")
       console.log(this.bookingId.id)
-      this.bookingAPI.create_a_session( { SId: this.bookingId.id,TId:event.value}).subscribe((data: {}) => {
+      this.bookingAPI.create_a_session({ SId: this.bookingId.id, TId: event.value }).subscribe((data: {}) => {
         console.log("All okay")
-  
+
       });
 
     });
     this.router.navigate(['foodmenu', this.passed_id]);
- 
+
   }
 
 }

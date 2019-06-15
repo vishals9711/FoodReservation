@@ -1,0 +1,50 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title padding>
+      Cart
+    </ion-title>
+    <ion-title padding> Total Cost - &#8377;{{ total }} </ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list
+    *ngFor="let eachRest of cart; let i = index"
+    class="accordion-list"
+    lines="none"
+    detail="false"
+    no-padding
+  >
+    <ion-item>
+      <img
+        src="data:image/jpeg;base64,{{ eachRest.Fimage }}"
+        style="height: 50px; width: 80px"
+      />
+      <ion-label padding>
+        <h2 text-wrap>{{ eachRest.Name }}</h2>
+      </ion-label>
+
+      &nbsp;
+      {{ eachRest.qty }}
+      &nbsp;
+      <span slot="end">&#8377; {{ eachRest.price }}/- &nbsp; </span>
+
+      <!-- <h3 slot="end" >{{eachRest.Rate}}/-</h3> -->
+    </ion-item>
+    <div *ngIf="eachRest.children && eachRest.open">
+      Test
+    </div>
+  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="order()">
+      <ion-icon name="cart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div *ngIf="showCounter">
+    <p>Thank You for placing the order</p>
+    <p>Your Order ID: {{ orderid.id }}</p>
+    <h1>Your Order will be ready in:</h1>
+
+    <h2>{{ countDown | async | formatTime }}</h2>
+  </div>
+</ion-content>

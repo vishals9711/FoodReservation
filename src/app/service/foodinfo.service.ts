@@ -10,6 +10,8 @@ export class FoodinfoService {
 
   public url = "http://127.0.0.1:3800";
 
+  public cartData: any;
+
   private extractData(res: Response) {
     let body = res;
     return body || {};
@@ -17,10 +19,18 @@ export class FoodinfoService {
 
   constructor(public http: HttpClient) { }
 
- 
+
   public getFood(passed_id): Observable<any> {
     return this.http.get(this.url + '/foodinfo/' + passed_id).pipe(
       map(this.extractData));
+  }
+
+  public setCartData(cartObj) {
+    this.cartData = cartObj;
+  }
+
+  public getCartData() {
+    return this.cartData;
   }
 
 }

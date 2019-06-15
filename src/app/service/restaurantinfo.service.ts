@@ -29,5 +29,10 @@ export class RestaurantinfoService {
     return this.http.get(this.url + '/restinfo/' + name).pipe(
       map(this.extractData));
   }
+  public getTable(name): Observable<any> {
+    return this.http.get(this.url + '/table_info/' + name).pipe(
+      map(this.extractData));
+  }
+
 
 }
