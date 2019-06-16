@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { RestaurantinfoService } from '../service/restaurantinfo.service';
 import { BookinginfoService } from '../service/bookinginfo.service';
+import { LoginAPIService } from '../service/login-api.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -31,26 +32,24 @@ export class BooktablePage implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public userId = 2;
+  public userId: any;
 
   colorScheme = {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService, public bookingAPI: BookinginfoService, public router: Router) {
+  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService, public bookingAPI: BookinginfoService, public router: Router, public userLoginApi: LoginAPIService) {
     events.subscribe('user:created', () => {
-      this.storage.get('userId').then((idval) => {
-        this.userId = idval;
-      });
-      this.storage.get('email').then((emailval) => {
-        this.userEmail = emailval;
-      });
+      this.userId = this.userLoginApi.getUserId();
+      this.userEmail = this.userLoginApi.getEmail();
     });
 
   }
   public userdata = { CId: this.userId };
 
   ngOnInit() {
+    this.userId = this.userLoginApi.getUserId();
+    this.userEmail = this.userLoginApi.getEmail();
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
 
     this.restaurantAPI.getRestaurant(this.passed_id).subscribe((data: {}) => {
@@ -61,8 +60,7 @@ export class BooktablePage implements OnInit {
       this.img = this.RestaurantData[0].RImg;
       this.restaurantAPI.getTable(this.passed_id).subscribe((data: {}) => {
         this.tables = data;
-        console.log("Tables ------------------")
-        console.log(this.tables);
+
         for (let eachTable of this.tables) {
           let oneTable = {
             "name": eachTable.name,
@@ -76,22 +74,18 @@ export class BooktablePage implements OnInit {
 
       });
     });
-    console.log("----------------------")
-    console.log(this.userId);
-    console.log("----------------------------")
+
 
 
   }
 
   onSelect(event) {
-    console.log(this.userId)
+
     this.bookingAPI.create_a_booking_session({ CId: this.userId }).subscribe((data: {}) => {
       this.bookingId = data;
-      console.log(data)
-      console.log("-----------------------------------")
-      console.log(this.bookingId.id)
+
       this.bookingAPI.create_a_session({ SId: this.bookingId.id, TId: event.value }).subscribe((data: {}) => {
-        console.log("All okay")
+
 
       });
 

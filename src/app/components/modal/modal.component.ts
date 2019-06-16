@@ -3,7 +3,7 @@ import { NavParams, ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import { APIBackendService } from '../../service/apibackend.service';
 import { EmailValidator } from '@angular/forms';
-import { LoginAPIService } from '../../service/login-api.service'
+import { LoginAPIService } from '../../service/login-api.service';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
@@ -27,34 +27,35 @@ export class ModalComponent {
   }
 
   async userLogin() {
-    if (this.userData.email!='' && this.userData.password!='') {
-      console.log('email:',this.userData.email,'password:',this.userData.password);
+    if (this.userData.email != '' && this.userData.password != '') {
+      console.log('email:', this.userData.email, 'password:', this.userData.password);
       this.api.authenticateUser(this.userData).subscribe((data: {}) => {
-      if (Object.entries(data).length != 0) {
-        this.storage.set('userId', data[0].CId);
-        this.storage.set('email', data[0].CEmail);
-        this.storage.set('name', data[0].CName);
+        if (Object.entries(data).length != 0) {
 
-        this.storage.set('isLoggedIn', true);
-        console.log('modal comp: "isLoggedIn"',this.storage.get('isLoggedIn'));
-        
-        this.modalController.dismiss();
-        this.events.publish('user:created');
-       
-        this.router.navigate(['/home']);
-    
-      }else{
-        this.wrongCredentials = true;
-    }
-      });
-    
-      } else{
+          this.api.setUserData(data[0].CId, data[0].CEmail, data[0].CName);
+          this.storage.set('userId', data[0].CId);
+          this.storage.set('email', data[0].CEmail);
+          this.storage.set('name', data[0].CName);
+
+          this.storage.set('isLoggedIn', true);
+
+          this.modalController.dismiss();
+          this.events.publish('user:created');
+
+          this.router.navigate(['/home']);
+
+        } else {
           this.wrongCredentials = true;
-      }
-    
+        }
+      });
+
+    } else {
+      this.wrongCredentials = true;
+    }
+
   }
 
-  closeModal1(){
+  closeModal1() {
     this.modalController.dismiss();
   }
 

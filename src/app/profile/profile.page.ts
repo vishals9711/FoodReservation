@@ -14,6 +14,7 @@ import 'rxjs/add/observable/timer'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/take'
 import { Pipe, PipeTransform } from '@angular/core';
+import { LoginAPIService } from '../service/login-api.service';
 
 
 
@@ -33,19 +34,11 @@ export class ProfilePage implements OnInit {
 
 
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage) {
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
     events.subscribe('user:created', () => {
-      this.storage.get('isLoggedIn').then((val) => {
-        this.isLoggedIn = val;
-        this.storage.get('name').then((userval) => {
-          this.userName = userval;
-        });
-
-        this.storage.get('email').then((emailval) => {
-          this.userEmail = emailval;
-        });
-
-      });
+      this.isLoggedIn = this.userLoginApi.getIsloggedIn();
+      this.userName = this.userLoginApi.getName();
+      this.userEmail = this.userLoginApi.getEmail();
     });
 
   }

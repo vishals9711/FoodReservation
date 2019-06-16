@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { RestaurantreviewsService } from '../service/restaurantreviews.service';
+
+import { LoginAPIService } from '../service/login-api.service';
 import { Storage } from '@ionic/storage';
 import { Events } from '@ionic/angular';
 
@@ -21,70 +23,57 @@ export class RestReviewsAndRatingsPage {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public newReviewData: any = { restId: "", restReview:  "", userRating: this.inputRating , userId: ""};
+  public newReviewData: any = { restId: "", restReview: "", userRating: this.inputRating, userId: "" };
   public onClickSubmit: boolean = true;
   public thisUser: boolean = false;
 
 
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restReviewService: RestaurantreviewsService,
-    public events: Events, private storage: Storage) { 
+    public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
 
-      events.subscribe('user:created', () => {
-        // user and time are the same arguments passed in `events.publish(user, time)`
-        this.storage.get('isLoggedIn').then((val) => {
-          this.isLoggedIn = val;
-          this.storage.get('name').then((userval) => {
-            this.userName = userval;
-          });
-    
-          this.storage.get('email').then((emailval) => {
-            this.userEmail = emailval;
-          });
-          this.storage.get('userId').then((idval) => {
-            this.newReviewData.userId = idval;
-          });
-    
-        });
-      });
+    events.subscribe('user:created', () => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      this.isLoggedIn = this.userLoginApi.getIsloggedIn();
+      this.userName = this.userLoginApi.getName();
+      this.userEmail = this.userLoginApi.getEmail();
+      this.newReviewData.userId = this.userLoginApi.getUserId();
+    });
 
-      
-      
-
-    }
+  }
 
 
 
   rateUp() {
-    if(this.inputRating!=5)
+    if (this.inputRating != 5)
       this.inputRating++;
   }
 
   rateDown() {
-    if(this.inputRating!=0)
+    if (this.inputRating != 0)
       this.inputRating--;
-    }
+  }
 
 
-    
-    submitReview() {
 
-      
-      this.newReviewData.userRating = this.inputRating;
-      console.log('newReviewData',this.newReviewData);
+  submitReview() {
 
-      this.restReviewService.createReview(this.newReviewData).subscribe();
-      this.onClickSubmit = false;
-      // if(this.newReviewData.userId = this.passed_id)
-      //   this.thisUser = true;
 
-    }
+    this.newReviewData.userRating = this.inputRating;
+    console.log('newReviewData', this.newReviewData);
 
-    // reEdit(){
-    //   this.onClickSubmit = false;
-    // }
+    this.restReviewService.createReview(this.newReviewData).subscribe();
+    this.onClickSubmit = false;
+    // if(this.newReviewData.userId = this.passed_id)
+    //   this.thisUser = true;
 
-    
+  }
+
+  // reEdit(){
+  //   this.onClickSubmit = false;
+  // }
+
+
 
   ngOnInit() {
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
@@ -94,15 +83,15 @@ export class RestReviewsAndRatingsPage {
       //console.log(this.reviewData);
       this.newReviewData.restId = this.passed_id;
 
-  });
-  
+    });
+
 
 
   }
 
-  
- 
 
-  
-  
+
+
+
+
 }

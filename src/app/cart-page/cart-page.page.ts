@@ -13,6 +13,7 @@ import 'rxjs/add/observable/timer'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/take'
 import { Pipe, PipeTransform } from '@angular/core';
+import { LoginAPIService } from '../service/login-api.service';
 
 
 @Component({
@@ -32,7 +33,7 @@ export class CartPagePage implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public userId = 2;
+  public userId: any;
   r_id: any;
   orderid: any;
   countDown;
@@ -40,12 +41,18 @@ export class CartPagePage implements OnInit {
   tick = 1000;
   public showCounter: boolean = false;
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage) { }
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
+    events.subscribe('user:created', () => {
+      this.userId = this.userLoginApi.getUserId();
+      this.userEmail = this.userLoginApi.getEmail();
+    });
+  }
 
   ngOnInit() {
+    this.userId = this.userLoginApi.getUserId();
+    this.userEmail = this.userLoginApi.getEmail();
     this.cartData = this.restaurantAPI.getCartData();
-    console.log("---------cart datata")
-    console.log(this.cartData);
+
     this.passed_id = this.cartData[1].r_id;
     for (let eachItem of this.cartData) {
       if (eachItem.qty > 0) {
@@ -67,21 +74,20 @@ export class CartPagePage implements OnInit {
       this.final_order.push(obj);
     }
 
-    console.log("-------final cart------------")
-    console.log(this.cart);
+
     this.final_order.unshift({ total: this.total });
     this.final_order.unshift({ userid: this.userId });
     this.final_order.unshift({ r_id: this.r_id });
-    console.log("------adasdasd----------------")
+
 
 
   }
   order() {
 
     this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
-      console.log("All okay")
+
       this.orderid = data;
-      console.log(this.orderid.id);
+
       this.countDown = Observable.timer(0, this.tick)
         .take(this.counter)
         .map(() => --this.counter)

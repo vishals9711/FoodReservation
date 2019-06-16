@@ -5,6 +5,7 @@ import { APIBackendService } from '../service/apibackend.service';
 import { FoodinfoService } from '../service/foodinfo.service';
 import { ToastController } from '@ionic/angular';
 import { BookinginfoService } from '../service/bookinginfo.service';
+import { LoginAPIService } from '../service/login-api.service';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 
@@ -27,16 +28,12 @@ export class FoodmenuPage implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public userId = 2;
+  public userId: any;
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage) {
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
     events.subscribe('user:created', () => {
-      this.storage.get('userId').then((idval) => {
-        this.userId = idval;
-      });
-      this.storage.get('email').then((emailval) => {
-        this.userEmail = emailval;
-      });
+      this.userId = this.userLoginApi.getUserId();
+      this.userEmail = this.userLoginApi.getEmail();
     });
 
   }
@@ -89,7 +86,7 @@ export class FoodmenuPage implements OnInit {
 
         this.cartData.push(obj);
       }
-      console.log(this.cartData);
+
     });
     this.food_data[0].open = true;
   }
@@ -118,9 +115,7 @@ export class FoodmenuPage implements OnInit {
     this.restaurantAPI.setCartData(this.cartData);
 
     this.router.navigate(['cart-page']);
-    // this.bookingAPI.createOrder(this.cartData).subscribe((data: {}) => {
-    // console.log("All okay") 
-    // });
+
 
   }
 }
