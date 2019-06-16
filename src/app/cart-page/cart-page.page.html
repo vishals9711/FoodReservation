@@ -1,9 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title padding>
-      Cart
+      CART
     </ion-title>
-    <ion-title padding> Total Cost - &#8377;{{ total }} </ion-title>
+    <ion-title padding> TOTAL COST - &#8377;{{ total }} </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
@@ -40,10 +40,11 @@
     </ion-fab-button>
   </ion-fab>
 
-  <div *ngIf="showCounter">
-    <p>Thank You for placing the order</p>
+  
+  <div *ngIf="showCounter" class="ion-text-center">
+    <p>Thank you for placing your order!</p>
     <p>Your Order ID: {{ orderid.id }}</p>
-    <h1>Your Order will be ready in:</h1>
+    <h2>Your order will be ready in:</h2>
 
     <h2>{{ countDown | async | formatTime }}</h2>
   </div>
