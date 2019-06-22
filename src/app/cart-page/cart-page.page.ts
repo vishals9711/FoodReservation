@@ -8,7 +8,7 @@ import { BookinginfoService } from '../service/bookinginfo.service';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
 import { routerNgProbeToken } from '@angular/router/src/router_module';
-import { Observable } from 'rxjs/Observable'
+import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/timer'
 import 'rxjs/add/operator/map'
 import 'rxjs/add/operator/take'
@@ -41,7 +41,9 @@ export class CartPagePage implements OnInit {
   tick = 1000;
   public showCounter: boolean = false;
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, 
+    private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, 
+    public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
