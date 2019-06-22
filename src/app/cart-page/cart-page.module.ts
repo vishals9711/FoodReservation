@@ -2,17 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
-import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { FormatTimePipe } from './profile.page';
 
 import { IonicModule } from '@ionic/angular';
 
-import { ProfilePage } from './profile.page';
+import { CartPagePage } from './cart-page.page';
+import { FormatTimePipe } from './cart-page.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ProfilePage
+    component: CartPagePage
   }
 ];
 
@@ -21,9 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes),
-    NgxChartsModule
+    RouterModule.forChild(routes)
   ],
-  declarations: [ProfilePage, FormatTimePipe]
+  declarations: [CartPagePage, FormatTimePipe]
 })
-export class ProfilePageModule { }
+export class CartPagePageModule { }

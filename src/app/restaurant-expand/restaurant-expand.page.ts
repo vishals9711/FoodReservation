@@ -28,6 +28,7 @@ export class RestaurantExpandPage implements OnInit {
   img: any;
   rating: any;
   id: any;
+  rate: any;
 
 
 

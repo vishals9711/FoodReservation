@@ -1,48 +1,74 @@
 <ion-header>
   <ion-toolbar>
     <ion-title *ngIf="food_data" padding>
-      {{food_data[0].RName}} Food Menu
+      {{ food_data[0].RName }} Food Menu
     </ion-title>
     <ion-title *ngIf="food_data" padding>
-        Total Cost - &#8377;{{total}}
-      </ion-title>
+      Total Cost - &#8377;{{ total }}
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list *ngFor="let eachRest of food_data; let i = index;" class="accordion-list" lines="none" detail="false"
-    no-padding>
+  <ion-list
+    *ngFor="let eachRest of food_data; let i = index"
+    class="accordion-list"
+    lines="none"
+    detail="false"
+    no-padding
+  >
     <ion-item>
-
-      <img src="data:image/jpeg;base64,{{eachRest.Fimage}}" style="height: 50px; width: 80px">
+      <img
+        src="data:image/jpeg;base64,{{ eachRest.Fimage }}"
+        style="height: 50px; width: 80px"
+      />
       <ion-label padding>
-        <h2 text-wrap>{{eachRest.Name}}</h2>
+        <h2 text-wrap>{{ eachRest.Name }}</h2>
 
-
-        <p tappable (click)="toggleSection(i)"
-        [ngClass]="{'section-active':eachRest.open, 'section': !eachRest.open}"> Ingredient list <ion-icon slot="start" name="arrow-down" *ngIf="eachRest.open"></ion-icon>
-          <ion-icon slot="start" name="arrow-forward" *ngIf="!eachRest.open"></ion-icon>
+        <p
+          tappable
+          (click)="toggleSection(i)"
+          [ngClass]="{
+            'section-active': eachRest.open,
+            section: !eachRest.open
+          }"
+        >
+          Ingredient list
+          <ion-icon
+            slot="start"
+            name="arrow-down"
+            *ngIf="eachRest.open"
+          ></ion-icon>
+          <ion-icon
+            slot="start"
+            name="arrow-forward"
+            *ngIf="!eachRest.open"
+          ></ion-icon>
         </p>
-        
       </ion-label>
-      <ion-icon name="remove" color="danger" (click)="removeItem(eachRest.ItemID)"></ion-icon>
+      <ion-icon
+        name="remove"
+        color="danger"
+        (click)="removeItem(eachRest.ItemID)"
+      ></ion-icon>
       &nbsp;
-      {{displayQty(eachRest.ItemID)}}
+      {{ displayQty(eachRest.ItemID) }}
       &nbsp;
-      <ion-icon name="add" color="success" (click)="addItem(eachRest.ItemID)"></ion-icon>
-      <span slot="end">&#8377; {{eachRest.Rate}}/- &nbsp;
-      </span>
-
+      <ion-icon
+        name="add"
+        color="success"
+        (click)="addItem(eachRest.ItemID)"
+      ></ion-icon>
+      <span slot="end">&#8377; {{ eachRest.Rate }}/- &nbsp; </span>
 
       <!-- <h3 slot="end" >{{eachRest.Rate}}/-</h3> -->
     </ion-item>
     <div *ngIf="eachRest.children && eachRest.open">
-        Test
-      </div>
-    
+      Test
+    </div>
   </ion-list>
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed" >
-      <ion-fab-button (click)="order()">
-        <ion-icon name="cart"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="order()">
+      <ion-icon name="cart"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>

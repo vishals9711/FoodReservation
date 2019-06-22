@@ -20,30 +20,19 @@ export class HeaderComponent implements OnInit {
   public userData = { email: '', password: '' };
 
   constructor(public modalController: ModalController, private storage: Storage,
-     public actionSheetController: ActionSheetController, public events: Events, public loginAPI: LoginAPIService) {
+    public actionSheetController: ActionSheetController, public events: Events, public loginAPI: LoginAPIService) {
     events.subscribe('user:created', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
-      this.storage.get('isLoggedIn').then((val) => {
-        this.isLoggedIn = val;
-        this.storage.get('name').then((userval) => {
-          this.userName = userval;
-        });
-        console.log('header: "isLoggedIn"',this.storage.get('isLoggedIn'));
-        console.log('header: isLoggedIn',this.isLoggedIn);
+      if (this.loginAPI.getIsloggedIn() == true) {
+        this.isLoggedIn = this.loginAPI.getIsloggedIn();
+        this.userName = this.loginAPI.getName();
+        console.log('header: isLoggedIn', this.isLoggedIn);
+        this.userEmail = this.loginAPI.getEmail();
+      }
 
-        this.storage.get('email').then((emailval) => {
-          this.userEmail = emailval;
-        });
-
-      });
     });
 
 
-    //  this.loginAPI.authenticateUser(this.userData).subscribe((data: {}) => { 
-    //    console.log("--------------------");
-    //    this.userName = data[0].CName;
-    //    console.log(data[0].CName);
-    //  });
 
 
 
@@ -67,7 +56,7 @@ export class HeaderComponent implements OnInit {
         text: 'Cart',
         icon: 'trash',
         handler: () => {
-         
+
         }
       }, {
         text: 'Logout',
@@ -81,7 +70,7 @@ export class HeaderComponent implements OnInit {
         icon: 'close',
         role: 'cancel',
         handler: () => {
-         
+
         }
       }]
     });
@@ -89,16 +78,10 @@ export class HeaderComponent implements OnInit {
   }
 
   public logoutUser() {
-    this.storage.get('isLoggedIn').then((val) => {
-      this.storage.remove('userId');
-      this.storage.remove('email');
-      this.storage.remove('name');
-      this.storage.remove('isLoggedIn');
-
-      this.isLoggedIn = false;
-      this.userName = '';
-      this.userEmail = '';
-    });
+    this.loginAPI.clearUserData();
+    this.isLoggedIn = false;
+    this.userName = '';
+    this.userEmail = '';
   }
 
 }

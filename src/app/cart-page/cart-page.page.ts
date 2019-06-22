@@ -1,4 +1,3 @@
-
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
@@ -17,44 +16,86 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { LoginAPIService } from '../service/login-api.service';
 
 
-
 @Component({
-  selector: 'app-profile',
-  templateUrl: './profile.page.html',
-  styleUrls: ['./profile.page.scss'],
+  selector: 'app-cart-page',
+  templateUrl: './cart-page.page.html',
+  styleUrls: ['./cart-page.page.scss'],
 })
-export class ProfilePage implements OnInit {
+export class CartPagePage implements OnInit {
+  cartData: any;
+  cart = [];
+  final_order = [];
+  passed_id: string;
+  food_data: any;
+  noOfItems = 0;
+  quantity: any;
+  total: number = 0;
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public oid: any;
+  public userId: any;
+  r_id: any;
+  orderid: any;
   countDown;
-  counter = 1800;
+  counter = 1200;
   tick = 1000;
-
-
+  public showCounter: boolean = false;
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
     events.subscribe('user:created', () => {
-      this.isLoggedIn = this.userLoginApi.getIsloggedIn();
-      this.userName = this.userLoginApi.getName();
+      this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
     });
-
   }
 
   ngOnInit() {
-    this.oid = this.activatedRoute.snapshot.paramMap.get('oid');
-    console.log(this.oid)
-    this.countDown = Observable.timer(0, this.tick)
-      .take(this.counter)
-      .map(() => --this.counter)
+    this.userId = this.userLoginApi.getUserId();
+    this.userEmail = this.userLoginApi.getEmail();
+    this.cartData = this.restaurantAPI.getCartData();
+
+    this.passed_id = this.cartData[1].r_id;
+    for (let eachItem of this.cartData) {
+      if (eachItem.qty > 0) {
+        this.cart.push(eachItem);
+
+      }
+    }
+
+    this.total = this.cartData[0].total;
+    for (let eachItem of this.cart) {
+      let obj = {
+        ItemID: eachItem.ItemID,
+        price: eachItem.price,
+        qty: eachItem.qty,
+
+      };
+      this.r_id = eachItem.r_id;
+
+      this.final_order.push(obj);
+    }
 
 
-    // set the data
+    this.final_order.unshift({ total: this.total });
+    this.final_order.unshift({ userid: this.userId });
+    this.final_order.unshift({ r_id: this.r_id });
+
+
+
   }
+  order() {
 
+    this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
 
+      this.orderid = data;
+
+      this.countDown = Observable.timer(0, this.tick)
+        .take(this.counter)
+        .map(() => --this.counter)
+      // this.router.navigate(['profile', this.orderid.id]);
+      this.showCounter = true;
+    });
+
+  }
 
 }
 @Pipe({
