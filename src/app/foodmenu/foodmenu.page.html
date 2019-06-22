@@ -96,7 +96,7 @@
     </ion-title>
 
     <ion-list *ngFor="let eachRest of food_data; let i = index" no-padding> 
-      <ion-item *ngIf="food_data[i].Type == itemTypes[clickedItem] && arrowClicked">
+      <ion-item *ngIf="eachRest.Type == type && arrowClicked">
           <img src="data:image/jpeg;base64,{{ eachRest.Fimage }}" style="height: 50px; width: 80px"/>
         <ion-label padding>
           <h2 text-wrap>{{ eachRest.Name }}</h2>
