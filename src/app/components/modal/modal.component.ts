@@ -36,7 +36,7 @@ export class ModalComponent {
         this.storage.set('name', data[0].CName);
 
         this.storage.set('isLoggedIn', true);
-        console.log('modal comp: "isLoggedIn"',this.storage.get('isLoggedIn'));
+        console.log('modal comp: "isLoggedIn"', this.storage.get('isLoggedIn'));
         
         this.modalController.dismiss();
         this.events.publish('user:created');

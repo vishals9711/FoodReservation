@@ -13,7 +13,7 @@ import { Events } from '@ionic/angular';
   styleUrls: ['./rest-reviews-and-ratings.page.scss'],
 })
 
-export class RestReviewsAndRatingsPage {
+export class RestReviewsAndRatingsPage implements OnInit{
 
   passed_id: string;
   reviewData: any;
@@ -30,28 +30,38 @@ export class RestReviewsAndRatingsPage {
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restReviewService: RestaurantreviewsService,
     public events: Events, private storage: Storage) { 
 
-      events.subscribe('user:created', () => {
-        // user and time are the same arguments passed in `events.publish(user, time)`
-        this.storage.get('isLoggedIn').then((val) => {
-          this.isLoggedIn = val;
-          this.storage.get('name').then((userval) => {
-            this.userName = userval;
-          });
-    
-          this.storage.get('email').then((emailval) => {
-            this.userEmail = emailval;
-          });
-          this.storage.get('userId').then((idval) => {
-            this.newReviewData.userId = idval;
-          });
-    
-        });
-      });
+      //this.onClickSubmit = true;
 
-      
-      
 
-    }
+    //   this.events.subscribe('user:created', () => {
+    //   // user and time are the same arguments passed in `events.publish(user, time)`
+    //   this.storage.get('isLoggedIn').then((val) => {
+    //     this.isLoggedIn = val;
+    //     this.storage.get('name').then((userval) => {
+    //       this.userName = userval;
+    //     });
+    //     console.log('inside constructor: "isLoggedIn"',this.storage.get('isLoggedIn'));
+    //     console.log('inside constructor: isLoggedIn',this.isLoggedIn);
+    //     console.log('inside constructor: onClickSubmit',this.onClickSubmit);
+
+    //     this.storage.get('email').then((emailval) => {
+    //       this.userEmail = emailval;
+    //     });
+    //     this.storage.get('userId').then((idval) => {
+    //         this.newReviewData.userId = idval;
+    //     });
+    //     console.log('inside constructor: userid',this.newReviewData.userId);
+        
+    //   });
+    // });
+
+    // console.log('inside constructor: "isLoggedIn"',this.storage.get('isLoggedIn'));
+    // console.log('inside constructor: isLoggedIn',this.isLoggedIn);
+    // console.log('inside constructor: onClickSubmit',this.onClickSubmit);
+    // console.log('inside constructor: userId',this.newReviewData.userId);
+
+
+  }
 
 
 
@@ -75,6 +85,7 @@ export class RestReviewsAndRatingsPage {
 
       this.restReviewService.createReview(this.newReviewData).subscribe();
       this.onClickSubmit = false;
+      //this.ngOnInit();
       // if(this.newReviewData.userId = this.passed_id)
       //   this.thisUser = true;
 
@@ -87,6 +98,36 @@ export class RestReviewsAndRatingsPage {
     
 
   ngOnInit() {
+
+
+    this.events.subscribe('user:created', () => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      this.storage.get('isLoggedIn').then((val) => {
+        this.isLoggedIn = val;
+        this.storage.get('name').then((userval) => {
+          this.userName = userval;
+        });
+        console.log('inside constructor: "isLoggedIn"',this.storage.get('isLoggedIn'));
+        console.log('inside constructor: isLoggedIn',this.isLoggedIn);
+        console.log('inside constructor: onClickSubmit',this.onClickSubmit);
+
+        this.storage.get('email').then((emailval) => {
+          this.userEmail = emailval;
+        });
+        this.storage.get('userId').then((idval) => {
+            this.newReviewData.userId = idval;
+        });
+        console.log('inside constructor: userid',this.newReviewData.userId);
+        
+      });
+    });
+
+    console.log('inside constructor: "isLoggedIn"',this.storage.get('isLoggedIn'));
+    console.log('inside constructor: isLoggedIn',this.isLoggedIn);
+    console.log('inside constructor: onClickSubmit',this.onClickSubmit);
+    console.log('inside constructor: userId',this.newReviewData.userId);
+  
+
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
 
     this.restReviewService.getAllReviewsByRId(this.passed_id).subscribe((data: {}) => {
@@ -94,10 +135,8 @@ export class RestReviewsAndRatingsPage {
       //console.log(this.reviewData);
       this.newReviewData.restId = this.passed_id;
 
-  });
+   });
   
-
-
   }
 
   
