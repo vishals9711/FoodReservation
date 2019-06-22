@@ -80,6 +80,7 @@ export class HeaderComponent implements OnInit {
   public logoutUser() {
     this.loginAPI.clearUserData();
     this.isLoggedIn = false;
+    console.log('user logged out: isLggedIn', this.isLoggedIn);
     this.userName = '';
     this.userEmail = '';
   }

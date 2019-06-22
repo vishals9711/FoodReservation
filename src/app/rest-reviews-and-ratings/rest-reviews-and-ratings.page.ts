@@ -24,7 +24,7 @@ export class RestReviewsAndRatingsPage implements OnInit{
   public userName: string = '';
   public userEmail: string = '';
   public newReviewData: any = { restId: "", restReview: "", userRating: this.inputRating, userId: "" };
-  public onClickSubmit: boolean = true;
+  public onClickSubmit: boolean;
   public thisUser: boolean = false;
 
 
@@ -32,13 +32,21 @@ export class RestReviewsAndRatingsPage implements OnInit{
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, public restReviewService: RestaurantreviewsService,
     public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
 
+      this.onClickSubmit = true;
+
     events.subscribe('user:created', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
       this.isLoggedIn = this.userLoginApi.getIsloggedIn();
+      console.log('inside constructor: isLoggedIn', this.isLoggedIn);
       this.userName = this.userLoginApi.getName();
       this.userEmail = this.userLoginApi.getEmail();
       this.newReviewData.userId = this.userLoginApi.getUserId();
     });
+    
+    console.log('inside constructor: isLoggedIn', this.isLoggedIn);
+    console.log('inside constructor: onClickSubmit', this.onClickSubmit);
+    console.log('inside constructor: userId', this.newReviewData.userId);
+  
 
   }
 

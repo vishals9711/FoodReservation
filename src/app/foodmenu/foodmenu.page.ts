@@ -30,6 +30,13 @@ export class FoodmenuPage implements OnInit {
   public userEmail: string = '';
   public userId: any;
 
+  arrowClicked: boolean = false;
+  clickedItem: number;
+
+  itemTypes:string[] = new Array("Soups","Salads","Quick Bites","Starters",
+  "Main Course","Breads","Rice","Desserts","Beverages"); 
+
+
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
@@ -72,6 +79,9 @@ export class FoodmenuPage implements OnInit {
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
     this.restaurantAPI.getFood(this.passed_id).subscribe((data: {}) => {
       this.food_data = data;
+      console.log('food_data:', this.food_data);
+      console.log('itemTypes:',this.itemTypes);
+      console.log('arrowClicked:', this.arrowClicked);
 
       for (let eachItem of this.food_data) {
         let obj = {
@@ -116,6 +126,21 @@ export class FoodmenuPage implements OnInit {
 
     this.router.navigate(['cart-page']);
 
-
   }
+
+  onClickArrowDropRight(clickedItem:number){
+    this.arrowClicked = true;
+    this.clickedItem = clickedItem;
+    console.log('item clicked', this.itemTypes[clickedItem]);
+    console.log('onClickArrowDropRight: arrowClicked', this.arrowClicked);
+  }
+
+  onClickArrowDropDown(clickedItem:number){
+    this.arrowClicked = false;
+    this.clickedItem = clickedItem;
+    console.log('item clicked', this.itemTypes[clickedItem]);
+    console.log('onClickArrowDropDown: arrowClicked', this.arrowClicked);
+  }
+
+
 }
