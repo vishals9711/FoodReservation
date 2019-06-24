@@ -5,12 +5,20 @@
 </ion-header>
 
 <ion-content padding>
+  <ion-card>
+    <ion-item [hidden]="!!myDate">
+      <ion-label>Date</ion-label>
+      <ion-datetime (ngModelChange)="change(datePicker)" displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"
+        min="2019-06-24" max="2019-07-01"></ion-datetime>
+    </ion-item>
+    <ion-item [hidden]="!myDate">
+      <ion-label>Time</ion-label>
+      <ion-datetime #datePicker (ionCancel)="myDate=undefined" displayFormat="hh A" [(ngModel)]="myTime">
+      </ion-datetime>
+    </ion-item>
+  </ion-card>
   <ion-card *ngIf="isChartLoaded">
-    <ngx-charts-tree-map
-      [scheme]="colorScheme"
-      [results]="single"
-      (select)="onSelect($event)"
-    >
+    <ngx-charts-tree-map [scheme]="colorScheme" [results]="single" (select)="onSelect($event)">
     </ngx-charts-tree-map>
   </ion-card>
 </ion-content>

@@ -8,6 +8,7 @@ import { RestaurantinfoService } from '../service/restaurantinfo.service';
 import { BookinginfoService } from '../service/bookinginfo.service';
 import { LoginAPIService } from '../service/login-api.service';
 import { Router } from '@angular/router';
+import { Time } from 'highcharts';
 
 @Component({
   selector: 'app-booktable',
@@ -28,6 +29,10 @@ export class BooktablePage implements OnInit {
   img: any;
   bookingId: any;
   tables: any;
+  myDate: any;
+  date: Date;
+  time: Time;
+  myTime: any;
 
   public isLoggedIn: boolean = false;
   public userName: string = '';
@@ -50,8 +55,8 @@ export class BooktablePage implements OnInit {
   ngOnInit() {
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
+    this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('r_id');
-
     this.restaurantAPI.getRestaurant(this.passed_id).subscribe((data: {}) => {
       this.RestaurantData = data;
       this.name = this.RestaurantData[0].RName;
@@ -77,21 +82,38 @@ export class BooktablePage implements OnInit {
 
 
 
+
+  }
+  change(datePicker) {
+    datePicker.open();
   }
 
   onSelect(event) {
+    if (this.userLoginApi.getIsloggedIn() == true) {
+      this.date = new Date(this.myDate);
+      this.time = new Time(this.myTime);
 
-    this.bookingAPI.create_a_booking_session({ CId: this.userId }).subscribe((data: {}) => {
-      this.bookingId = data;
 
-      this.bookingAPI.create_a_session({ SId: this.bookingId.id, TId: event.value }).subscribe((data: {}) => {
 
+
+      this.bookingAPI.create_a_booking_session({ CId: this.userId }).subscribe((data: {}) => {
+        this.bookingId = data;
+
+        this.bookingAPI.create_a_session({ SId: this.bookingId.id, TId: event.value, date: this.myDate, time: this.myTime }).subscribe((data: {}) => {
+
+
+        });
 
       });
+      this.router.navigate(['foodmenu', this.passed_id]);
 
-    });
-    this.router.navigate(['foodmenu', this.passed_id]);
-
+    }
+    else {
+      console.log(this.myTime);
+      console.log(this.myTime);
+      window.alert("Please Log in to book")
+    }
   }
+
 
 }

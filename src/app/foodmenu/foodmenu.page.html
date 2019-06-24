@@ -8,11 +8,12 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<!--
 
 
 <ion-content>
 
-    <!-- <ion-item *ngFor="let eachRest of food_data; let i = index">
+     <ion-item *ngFor="let eachRest of food_data; let i = index">
         <ion-label>
           {{eachRest.Type}}
         </ion-label>
@@ -83,48 +84,42 @@
     </ion-fab-button>
   </ion-fab> -->
 
-<!-- //////////////////////////////////////////////////////////////////////////////////// -->
 
 
-<div class="menuList" *ngFor="let type of itemTypes; let j = index">
+<ion-content>
+  <div class="menuList" *ngFor="let type of itemTypes; let j = index">
 
-    <ion-title padding >
-        <ion-icon name="return-right"></ion-icon>
+    <ion-title padding>
+      <ion-icon name="return-right"></ion-icon>
       {{type}}
-      <ion-icon name="arrow-dropright" size="medium" (click)="onClickArrowDropRight(j)" *ngIf="!arrowClicked"></ion-icon>
-      <ion-icon name="arrow-dropdown" size="medium" (click)="onClickArrowDropDown(j)" *ngIf="arrowClicked"></ion-icon>
+      <ion-icon name="arrow-dropright" size="medium" (click)="onClickArrowDropRight(j)" *ngIf="!arrowClicked[j]">
+      </ion-icon>
+      <ion-icon name="arrow-dropdown" size="medium" (click)="onClickArrowDropDown(j)" *ngIf="arrowClicked[j]">
+      </ion-icon>
     </ion-title>
 
-    <ion-list *ngFor="let eachRest of food_data; let i = index" no-padding> 
-      <ion-item *ngIf="eachRest.Type == type && arrowClicked">
-          <img src="data:image/jpeg;base64,{{ eachRest.Fimage }}" style="height: 50px; width: 80px"/>
+    <ion-list *ngFor="let eachRest of food_data; let i = index" no-padding>
+      <ion-item *ngIf="eachRest.Type == type && arrowClicked[j]">
+        <img src="data:image/jpeg;base64,{{ eachRest.Fimage }}" style="height: 50px; width: 80px" />
         <ion-label padding>
           <h2 text-wrap>{{ eachRest.Name }}</h2>
           <p>
             {{eachRest.Ingredients}}
           </p>
         </ion-label>
-      <ion-icon
-        name="remove"
-        color="danger"
-        (click)="removeItem(eachRest.ItemID)"
-      ></ion-icon>
-      &nbsp;
-      {{ displayQty(eachRest.ItemID) }}
-      &nbsp;
-      <ion-icon
-        name="add"
-        color="success"
-        (click)="addItem(eachRest.ItemID)"
-      ></ion-icon>
-      <span slot="end">&#8377; {{ eachRest.Rate }}/- &nbsp; </span>
+        <ion-icon name="remove" color="danger" (click)="removeItem(eachRest.ItemID)"></ion-icon>
+        &nbsp;
+        {{ displayQty(eachRest.ItemID) }}
+        &nbsp;
+        <ion-icon name="add" color="success" (click)="addItem(eachRest.ItemID)"></ion-icon>
+        <span slot="end">&#8377; {{ eachRest.Rate }}/- &nbsp; </span>
       </ion-item>
     </ion-list>
 
-</div>
+  </div>
 
 
-<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="order()">
       <ion-icon name="cart"></ion-icon>
     </ion-fab-button>
