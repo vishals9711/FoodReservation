@@ -23,8 +23,6 @@ export class HomePage implements OnInit {
   public RestNameId: any = [];
   public currentDD: any;
 
-
-
   constructor(public modalController: ModalController, public api: APIBackendService,
     private router: Router, public restaurantAPI: RestaurantinfoService,
     private storage: Storage, public events: Events, public loginApi: LoginAPIService, ) {

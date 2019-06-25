@@ -54,6 +54,7 @@ export class CartPagePage implements OnInit {
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.cartData = this.restaurantAPI.getCartData();
+    console.log('cart data', this.cartData);
 
     this.passed_id = this.cartData[1].r_id;
     for (let eachItem of this.cartData) {

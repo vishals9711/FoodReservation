@@ -1,5 +1,7 @@
+
 <div>
-  <ion-searchbar placeholder="Cuisine/Restaurant" animated="true" [(ngModel)]="searchRest" (keyup)="searchRests($event)"></ion-searchbar>
+  <ion-searchbar placeholder="Cuisine/Restaurant" animated="true" [(ngModel)]="searchRest" 
+      (keyup)="searchRests($event)"></ion-searchbar>
   <div *ngIf="currentDD">
     <ion-item  *ngFor="let eachItem of currentDD" (click)="redirectToRestuarant(eachItem)">
       <ion-label>
@@ -10,12 +12,6 @@
  
 </div>
 
-
-  <!--
-  <ion-item>
-    <h4 padding>RECOMMENDED CUISINES</h4>
-  </ion-item>
-  -->
 
 <ion-content >
   <div scrollx=true direction="x">
