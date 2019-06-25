@@ -45,6 +45,8 @@ export class RestReviewsAndRatingsPage implements OnInit{
     
     console.log('inside constructor: isLoggedIn', this.isLoggedIn);
     console.log('inside constructor: onClickSubmit', this.onClickSubmit);
+    console.log('inside constructor: userName', this.userLoginApi.getName());
+    console.log('inside constructor: userId', this.userLoginApi.getUserId());
     console.log('inside constructor: userId', this.newReviewData.userId);
   
 
@@ -66,6 +68,9 @@ export class RestReviewsAndRatingsPage implements OnInit{
 
   submitReview() {
 
+    this.userName = this.userLoginApi.getName();
+    this.userEmail = this.userLoginApi.getEmail();
+    this.newReviewData.userId = this.userLoginApi.getUserId();
     this.newReviewData.userRating = this.inputRating;
     console.log('newReviewData', this.newReviewData);
 

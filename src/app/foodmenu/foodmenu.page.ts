@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { FoodinfoService } from '../service/foodinfo.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { BookinginfoService } from '../service/bookinginfo.service';
 import { LoginAPIService } from '../service/login-api.service';
 import { Events } from '@ionic/angular';
@@ -26,6 +26,7 @@ export class FoodmenuPage implements OnInit {
   quantity: any;
   cartData = [];
   total: number = 0;
+  veg: boolean = false;
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
@@ -39,7 +40,10 @@ export class FoodmenuPage implements OnInit {
     "Main Course", "Breads", "Rice", "Desserts", "Beverages");
 
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, 
+    public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, 
+    public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, 
+    private storage: Storage, public userLoginApi: LoginAPIService, public alertController: AlertController) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
@@ -99,9 +103,10 @@ export class FoodmenuPage implements OnInit {
 
         this.cartData.push(obj);
       }
+      this.food_data[0].open = true;
 
     });
-    this.food_data[0].open = true;
+    //this.food_data[0].open = true;
   }
   async buyItem(food_data) {
     let toast = await this.toastCtrl.create({
@@ -145,5 +150,15 @@ export class FoodmenuPage implements OnInit {
     console.log('onClickArrowDropDown: arrowClicked', this.arrowClicked);
   }
 
+  async itemDetails(clickedItem: number){
+    const alert = await this.alertController.create({
+      header: this.food_data[clickedItem].Name ,
+      subHeader: 'Ingredients: '+this.food_data[clickedItem].Ingredients,
+      message: 'Rating: '+this.food_data[clickedItem].FRating+'/5',
+      buttons: ['Cancel']
+    });
+
+    await alert.present();
+  }
 
 }

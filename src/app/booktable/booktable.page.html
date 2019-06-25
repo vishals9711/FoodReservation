@@ -17,6 +17,7 @@
       </ion-datetime>
     </ion-item>
   </ion-card>
+
   <ion-card *ngIf="isChartLoaded">
     <ngx-charts-tree-map [scheme]="colorScheme" [results]="single" (select)="onSelect($event)">
     </ngx-charts-tree-map>

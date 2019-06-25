@@ -9,6 +9,7 @@ import { BookinginfoService } from '../service/bookinginfo.service';
 import { LoginAPIService } from '../service/login-api.service';
 import { Router } from '@angular/router';
 import { Time } from 'highcharts';
+import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-booktable',
@@ -33,6 +34,9 @@ export class BooktablePage implements OnInit {
   date: Date;
   time: Time;
   myTime: any;
+  tempDate : Date = new Date();
+  currentDate: any;
+  lastDate : any;
 
   public isLoggedIn: boolean = false;
   public userName: string = '';
@@ -43,11 +47,22 @@ export class BooktablePage implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, public restaurantAPI: RestaurantinfoService, public api: APIBackendService, public bookingAPI: BookinginfoService, public router: Router, public userLoginApi: LoginAPIService) {
+  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, 
+    public restaurantAPI: RestaurantinfoService, public api: APIBackendService, 
+    public bookingAPI: BookinginfoService, public router: Router, 
+    public userLoginApi: LoginAPIService, public datePipe: DatePipe) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
     });
+    
+    this.currentDate = this.datePipe.transform(this.tempDate, 'yyyy-MM-dd');
+    //this.lastDate.setDate(this.currentDate.getDate() + 7);
+    //this.lastDate = this.datePipe.transform(this.lastDate, 'yyyy-MM-dd');
+
+    console.log('currentDate: in constructor',this.currentDate);
+    console.log('lastDate: in constructor',this.lastDate);
+
 
   }
   public userdata = { CId: this.userId };
@@ -80,10 +95,9 @@ export class BooktablePage implements OnInit {
       });
     });
 
-
-
-
   }
+
+
   change(datePicker) {
     datePicker.open();
   }
@@ -93,6 +107,8 @@ export class BooktablePage implements OnInit {
       this.date = new Date(this.myDate);
       this.time = new Time(this.myTime);
 
+      console.log('myDate',this.myDate);
+      console.log('myTime',this.myTime);
 
 
 
@@ -109,7 +125,7 @@ export class BooktablePage implements OnInit {
 
     }
     else {
-      console.log(this.myTime);
+      console.log(this.myDate);
       console.log(this.myTime);
       window.alert("Please Log in to book")
     }
