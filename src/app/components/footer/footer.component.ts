@@ -25,8 +25,9 @@ export class FooterComponent implements OnInit {
 
   }
 
-  gotoMyOrders(){
-    
+  gotoMyOrders() {
+    this.router.navigate(['orders'])
+
   }
 
 }

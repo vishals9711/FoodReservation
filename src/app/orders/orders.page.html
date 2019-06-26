@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Your Past Orders</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-card *ngFor="let eachOrder of order" (click)="onClickOrder(eachOrder)">
+    <ion-card-header>
+      <ion-card-subtitle></ion-card-subtitle>
+      <ion-card-title>Order ID:{{eachOrder.OId}} </ion-card-title>
+    </ion-card-header>
+
+    <ion-card-content>
+      <strong>
+        Bill:{{eachOrder.bill}}
+      </strong>
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>

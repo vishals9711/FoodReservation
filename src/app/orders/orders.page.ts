@@ -10,19 +10,18 @@ import { LoginAPIService } from '../service/login-api.service';
 import { Router } from '@angular/router';
 import { Time } from 'highcharts';
 import { DatePipe } from '@angular/common';
-
 @Component({
-  selector: 'app-list',
-  templateUrl: 'list.page.html',
-  styleUrls: ['list.page.scss']
+  selector: 'app-orders',
+  templateUrl: './orders.page.html',
+  styleUrls: ['./orders.page.scss'],
 })
-export class ListPage implements OnInit {
+export class OrdersPage implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
   public userId: any;
   public allOrder: any;
-  public passed_id: any;
+  public order: any;
 
   constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute,
     public restaurantAPI: RestaurantinfoService, public api: APIBackendService,
@@ -33,12 +32,21 @@ export class ListPage implements OnInit {
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
-    this.passed_id = this.activatedRoute.snapshot.paramMap.get('passed_id');
+    this.bookingAPI.getAllOrder(this.userId).subscribe((data: {}) => {
+      console.log(data);
+      this.allOrder = data;
+      this.bookingAPI.setOrderData(this.allOrder);
+      this.bookingAPI.getOrder(this.userId).subscribe((data: {}) => {
+        console.log(data);
+        this.order = data;
+      });
 
 
-    this.allOrder = this.bookingAPI.getOrderData();
-    console.log(this.allOrder);
+    });
 
+  }
+  onClickOrder(eachOrder) {
+    this.router.navigate(['list', eachOrder.OId]);
   }
 
 }

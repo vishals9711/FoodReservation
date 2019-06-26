@@ -7,6 +7,7 @@ import { map, catchError, tap } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class BookinginfoService {
+  public orderData: any;
 
   public url = "http://127.0.0.1:3800";
 
@@ -29,5 +30,23 @@ export class BookinginfoService {
     return this.http.post(this.url + '/order', data).pipe(
       map(this.extractData));
   }
+  public getOrder(passed_id): Observable<any> {
+
+    return this.http.get(this.url + '/order/' + passed_id).pipe(
+      map(this.extractData));
+  }
+  public getAllOrder(passed_id): Observable<any> {
+
+    return this.http.get(this.url + '/orders/' + passed_id).pipe(
+      map(this.extractData));
+  }
+
+  public setOrderData(orderobj) {
+    this.orderData = orderobj;
+  }
+  public getOrderData() {
+    return this.orderData;
+  }
+
 
 }

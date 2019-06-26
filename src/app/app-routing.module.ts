@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   {
-    path: 'list',
+    path: 'list/:passed_id',
     loadChildren: './list/list.module#ListPageModule'
   },
   { path: 'registration-page1', loadChildren: './registration-page1/registration-page1.module#RegistrationPage1PageModule' },
@@ -23,7 +23,9 @@ const routes: Routes = [
   { path: 'profile/:oid', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'booktable/:r_id', loadChildren: './booktable/booktable.module#BooktablePageModule' },
   { path: 'rest-reviews-and-ratings/:r_id', loadChildren: './rest-reviews-and-ratings/rest-reviews-and-ratings.module#RestReviewsAndRatingsPageModule' },
-  { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' }
+  { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' },
+  { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' }
+
 
 
 
