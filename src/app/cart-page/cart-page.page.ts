@@ -136,7 +136,7 @@ export class CartPagePage implements OnInit {
   }
 
   order() {
-
+    console.log('final order', this.final_order);
     this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
 
       this.orderid = data;

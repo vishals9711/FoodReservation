@@ -3,7 +3,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { RestaurantinfoService } from '../service/restaurantinfo.service';
-import { Time } from 'highcharts';
+import {FoodinfoService} from '../service/foodinfo.service';
+import { Time, each } from 'highcharts';
 
 
 @Component({
@@ -35,11 +36,14 @@ export class RestaurantExpandPage implements OnInit {
   currentDate: Date = new Date();
   currentTime: any;
   restOpen: boolean = false;
+  food_data: any;
+  recommendedItems: any = [];
+  specialItems: any = [];
 
 
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public api: APIBackendService, 
-    public restaurantAPI: RestaurantinfoService) { 
+    public restaurantAPI: RestaurantinfoService, public menuApi: FoodinfoService) { 
 
     this.currentTime = new Date().getHours() + ':' + new Date().getMinutes() + ':'+  new Date().getSeconds();
     
@@ -85,6 +89,26 @@ export class RestaurantExpandPage implements OnInit {
 
     });
 
+    this.menuApi.getFood(this.passed_id).subscribe((data: {}) => {
+      this.food_data = data;
+      
+      console.log('food data', this.food_data, (this.food_data).length);
+      let i:number = 0;
+      let j:number = 0;
+      for(let eachItem of this.food_data){
+        if(eachItem.FRating >= 4.3){
+          this.recommendedItems[i] = eachItem;
+          i++;
+        }
+        if(eachItem.chefsSpecial == true){
+          this.specialItems[j] = eachItem;
+          j++;
+        }
+      }
+      console.log('recommended:', this.recommendedItems);
+      console.log('chefs special', this.specialItems);
+
+    });
 
   } 
 

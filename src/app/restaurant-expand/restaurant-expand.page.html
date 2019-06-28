@@ -35,7 +35,7 @@
     </ion-item>
   </div>
 
-  <ion-img *ngIf="RestaurantData" src="data:image/jpeg;base64,{{RestaurantData[0].RImg}}"></ion-img>
+  <ion-img *ngIf="RestaurantData" src="../../{{RestaurantData[0].RImgAddress}}"></ion-img>
 
   <!-- <div class="ratingBar">
       <h3>
@@ -83,15 +83,29 @@
       </ion-row>
     </ion-grid>
 
+  <div >
+    <h1 padding>Recommended</h1>
+    <ion-slides [options]="sliderOpts">
+      <ion-slide *ngFor="let eachItem of recommendedItems; let i = index">
+        <ion-card >
+          <ion-card-title padding>{{eachItem.Name}}</ion-card-title>
+          <img src="../../{{eachItem.FImageAddress}}" >
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
 
-  <h1 padding>Bestsellers</h1>
-  <ion-slides [options]="sliderOpts">
-    <ion-slide *ngFor="let img of [1, 2, 3, 4, 5, 6, 7, 8, 9]">
-      <ion-card>
-        <img src="../../assets/foodItems/i{{img}}.jpg">
-      </ion-card>
-    </ion-slide>
-  </ion-slides>
+  <div >
+    <h1 padding>Chef's Special</h1>
+    <ion-slides [options]="sliderOpts">
+      <ion-slide *ngFor="let eachItem of specialItems; let i = index">
+        <ion-card >
+            <ion-card-title padding>{{eachItem.Name}}</ion-card-title>
+          <img src="../../{{eachItem.FImageAddress}}" >
+        </ion-card>
+      </ion-slide>
+    </ion-slides>
+  </div>
 
 
 
