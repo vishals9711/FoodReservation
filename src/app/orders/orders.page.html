@@ -5,7 +5,7 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-card *ngFor="let eachOrder of order" (click)="onClickOrder(eachOrder)">
+  <ion-card *ngFor="let eachOrder of allOrder" (click)="onClickOrder(eachOrder)">
     <ion-card-header>
       <ion-card-subtitle></ion-card-subtitle>
       <ion-card-title>Order ID:{{eachOrder.OId}} </ion-card-title>

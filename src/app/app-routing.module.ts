@@ -24,7 +24,9 @@ const routes: Routes = [
   { path: 'booktable/:r_id', loadChildren: './booktable/booktable.module#BooktablePageModule' },
   { path: 'rest-reviews-and-ratings/:r_id', loadChildren: './rest-reviews-and-ratings/rest-reviews-and-ratings.module#RestReviewsAndRatingsPageModule' },
   { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' },
-  { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' }
+  { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' },
+  { path: 'payment/:passed_id', loadChildren: './payment/payment.module#PaymentPageModule' }
+
 
 
 

@@ -33,13 +33,14 @@ export class OrdersPage implements OnInit {
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     this.bookingAPI.getAllOrder(this.userId).subscribe((data: {}) => {
+      console.log("-------group by")
       console.log(data);
       this.allOrder = data;
       this.bookingAPI.setOrderData(this.allOrder);
-      this.bookingAPI.getOrder(this.userId).subscribe((data: {}) => {
-        console.log(data);
-        this.order = data;
-      });
+      // this.bookingAPI.getOrder(this.userId).subscribe((data: {}) => {
+      //   console.log(data);
+      //   this.order = data;
+      // });
 
 
     });

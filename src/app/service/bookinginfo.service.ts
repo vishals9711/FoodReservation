@@ -8,6 +8,7 @@ import { map, catchError, tap } from 'rxjs/operators';
 })
 export class BookinginfoService {
   public orderData: any;
+  public currOrder: any;
 
   public url = "http://127.0.0.1:3800";
 
@@ -35,6 +36,8 @@ export class BookinginfoService {
     return this.http.get(this.url + '/order/' + passed_id).pipe(
       map(this.extractData));
   }
+
+
   public getAllOrder(passed_id): Observable<any> {
 
     return this.http.get(this.url + '/orders/' + passed_id).pipe(
@@ -45,6 +48,12 @@ export class BookinginfoService {
     this.orderData = orderobj;
   }
   public getOrderData() {
+    return this.orderData;
+  }
+  public setCurrOrder(orderobj) {
+    this.currOrder = orderobj;
+  }
+  public getCurrOrder() {
     return this.orderData;
   }
 

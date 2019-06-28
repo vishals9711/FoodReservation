@@ -1,20 +1,10 @@
 <ion-header>
-  Order ID: {{passed_id}}
+  <ion-toolbar>
+    <ion-title>Payment</ion-title>
+  </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <!-- <ion-card *ngFor="let eachOrder of allOrder">
-    <ion-card-header>
-      <ion-card-title>{{eachOrder.Name}} </ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      Quantity:
-      {{eachOrder.qty}}
-      Price:
-      {{eachOrder.price}}
-    </ion-card-content>
-  </ion-card> -->
+<ion-content padding>
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -33,7 +23,7 @@
         </div>
       </ion-col>
     </ion-row>
-    <ion-row *ngFor="let eachOrder of allOrder">
+    <ion-row *ngFor="let eachOrder of currentOrder">
       <ion-col>
         <div>
           {{ eachOrder.Name}}
@@ -51,6 +41,15 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-
+  <h2>
+    Total : {{total}}
+  </h2>
+  <h1>
+    Pay By Cash
+  </h1>
+  <h1>
+    Pay Using UPI
+  </h1>
+  <h1>Pay Using Wallet</h1>
 
 </ion-content>

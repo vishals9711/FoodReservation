@@ -9,7 +9,7 @@ import { BookinginfoService } from '../service/bookinginfo.service';
 import { LoginAPIService } from '../service/login-api.service';
 import { Router } from '@angular/router';
 import { Time } from 'highcharts';
-import {DatePipe} from '@angular/common';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-booktable',
@@ -34,9 +34,15 @@ export class BooktablePage implements OnInit {
   date: Date;
   time: Time;
   myTime: any;
-  tempDate : Date = new Date();
-  currentDate: any;
-  lastDate : any;
+  tempDate: Date = new Date();
+  today: any;
+  dd: any;
+  mm: any;
+  yyyy: any;
+  cd: any;
+  cm: any;
+  futDate: any;
+
 
   public isLoggedIn: boolean = false;
   public userName: string = '';
@@ -47,27 +53,56 @@ export class BooktablePage implements OnInit {
     domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA']
   };
 
-  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute, 
-    public restaurantAPI: RestaurantinfoService, public api: APIBackendService, 
-    public bookingAPI: BookinginfoService, public router: Router, 
+  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute,
+    public restaurantAPI: RestaurantinfoService, public api: APIBackendService,
+    public bookingAPI: BookinginfoService, public router: Router,
     public userLoginApi: LoginAPIService, public datePipe: DatePipe) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
     });
-    
-    this.currentDate = this.datePipe.transform(this.tempDate, 'yyyy-MM-dd');
+
+
     //this.lastDate.setDate(this.currentDate.getDate() + 7);
     //this.lastDate = this.datePipe.transform(this.lastDate, 'yyyy-MM-dd');
 
-    console.log('currentDate: in constructor',this.currentDate);
-    console.log('lastDate: in constructor',this.lastDate);
 
 
   }
   public userdata = { CId: this.userId };
 
   ngOnInit() {
+    this.today = new Date();
+    this.dd = this.today.getDate();
+    this.mm = this.today.getMonth() + 1;
+    this.yyyy = this.today.getFullYear();
+    if (this.dd < 10) {
+      this.dd = '0' + this.dd;
+    }
+
+    if (this.mm < 10) {
+      this.mm = '0' + this.mm;
+    }
+    this.today = this.yyyy + '-' + this.mm + '-' + this.dd;
+    console.log(this.today, typeof (this.today));
+    //////////////////////////////////////////////////////////////////
+    var someDate = new Date();
+    var numberOfDaysToAdd = 7;
+    someDate.setDate(someDate.getDate() + numberOfDaysToAdd);
+    this.cd = someDate.getDate();
+    this.cm = someDate.getMonth() + 1;
+    if (this.cd < 10) {
+      this.cd = '0' + this.cd;
+    }
+
+    if (this.cm < 10) {
+      this.cm = '0' + this.cm;
+    }
+    var y = someDate.getFullYear();
+    this.futDate = y + '-' + this.cm + '-' + this.cd;
+    console.log(this.futDate);
+
+
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
@@ -107,11 +142,9 @@ export class BooktablePage implements OnInit {
       this.date = new Date(this.myDate);
       this.time = new Time(this.myTime);
 
-      console.log('myDate',this.myDate);
-      console.log('myTime',this.myTime);
-
-
-
+      console.log('myDate', this.myDate);
+      console.log('myTime', this.myTime);
+      this.userId = this.userLoginApi.getUserId();
       this.bookingAPI.create_a_booking_session({ CId: this.userId }).subscribe((data: {}) => {
         this.bookingId = data;
 

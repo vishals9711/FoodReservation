@@ -40,9 +40,9 @@ export class FoodmenuPage implements OnInit {
     "Main Course", "Breads", "Rice", "Desserts", "Beverages");
 
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, 
-    public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, 
-    public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, 
+  constructor(public router: Router, private activatedRoute: ActivatedRoute,
+    public restaurantAPI: FoodinfoService, private toastCtrl: ToastController,
+    public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events,
     private storage: Storage, public userLoginApi: LoginAPIService, public alertController: AlertController) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
@@ -95,10 +95,10 @@ export class FoodmenuPage implements OnInit {
           ItemID: eachItem.ItemID,
           price: eachItem.Rate,
           qty: 0,
-          userid: this.userId,
+          userid: this.userLoginApi.getUserId(),
           r_id: this.passed_id,
           Name: eachItem.Name,
-          Photo: eachItem.Fimage
+          Photo: eachItem.FImageAddress
         };
 
         this.cartData.push(obj);
@@ -150,11 +150,11 @@ export class FoodmenuPage implements OnInit {
     console.log('onClickArrowDropDown: arrowClicked', this.arrowClicked);
   }
 
-  async itemDetails(clickedItem: number){
+  async itemDetails(clickedItem: number) {
     const alert = await this.alertController.create({
-      header: this.food_data[clickedItem].Name ,
-      subHeader: 'Ingredients: '+this.food_data[clickedItem].Ingredients,
-      message: 'Rating: '+this.food_data[clickedItem].FRating+'/5',
+      header: this.food_data[clickedItem].Name,
+      subHeader: 'Ingredients: ' + this.food_data[clickedItem].Ingredients,
+      message: 'Rating: ' + this.food_data[clickedItem].FRating + '/5',
       buttons: ['Cancel']
     });
 
