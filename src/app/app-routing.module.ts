@@ -23,7 +23,8 @@ const routes: Routes = [
   { path: 'profile/:oid', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'booktable/:r_id', loadChildren: './booktable/booktable.module#BooktablePageModule' },
   { path: 'rest-reviews-and-ratings/:r_id', loadChildren: './rest-reviews-and-ratings/rest-reviews-and-ratings.module#RestReviewsAndRatingsPageModule' },
-  { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' }
+  { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' },  { path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
+
 
 
 
