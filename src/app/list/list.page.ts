@@ -34,11 +34,10 @@ export class ListPage implements OnInit {
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     this.passed_id = this.activatedRoute.snapshot.paramMap.get('passed_id');
-
-
     this.allOrder = this.bookingAPI.getOrderData();
+    console.log("All Order");
     console.log(this.allOrder);
-
+    console.log(this.allOrder[0].OId);
   }
 
 }

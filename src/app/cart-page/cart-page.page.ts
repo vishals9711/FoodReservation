@@ -40,12 +40,12 @@ export class CartPagePage implements OnInit {
   counter = 1200;
   tick = 1000;
   public showCounter: boolean = false;
-  showOrderButton:boolean;
-  
+  showOrderButton: boolean;
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, 
-    private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, 
-    public events: Events, private storage: Storage, public userLoginApi: LoginAPIService, 
+
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService,
+    private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService,
+    public events: Events, private storage: Storage, public userLoginApi: LoginAPIService,
     public alertController: AlertController, public toastController: ToastController) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
@@ -53,7 +53,7 @@ export class CartPagePage implements OnInit {
       this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     });
 
-    console.log('isLOggedIn inside constructor',this.isLoggedIn);
+    console.log('isLOggedIn inside constructor', this.isLoggedIn);
   }
 
   ngOnInit() {
@@ -62,8 +62,8 @@ export class CartPagePage implements OnInit {
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
-    console.log('isLOggedIn inside ngOnit',this.isLoggedIn);
-    console.log('showOrderButton inside ngOnit',this.showOrderButton);
+    console.log('isLOggedIn inside ngOnit', this.isLoggedIn);
+    console.log('showOrderButton inside ngOnit', this.showOrderButton);
 
     this.cartData = this.restaurantAPI.getCartData();
     console.log('cart data', this.cartData);
@@ -91,15 +91,18 @@ export class CartPagePage implements OnInit {
 
 
     this.final_order.unshift({ total: this.total });
-    this.final_order.unshift({ userid: this.userId });
+    this.final_order.unshift({ userid: this.userLoginApi.getUserId() });
     this.final_order.unshift({ r_id: this.r_id });
+    console.log("Cart Data");
+    console.log(this.cart);
+
 
 
 
   }
 
 
-  async promptLogin(){
+  async promptLogin() {
     const toast = await this.toastController.create({
       position: 'middle',
       message: 'You are not logged in! Please Login to place your Order!',
@@ -136,11 +139,14 @@ export class CartPagePage implements OnInit {
   }
 
   order() {
+<<<<<<< HEAD
     console.log('final order', this.final_order);
+=======
+    this.bookingAPI.setOrderData(this.cart);
+
+>>>>>>> d3536f0825c5785e7eb20eb8b5f29e6b1c60e7ef
     this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
-
       this.orderid = data;
-
       this.countDown = Observable.timer(0, this.tick)
         .take(this.counter)
         .map(() => --this.counter)
@@ -149,8 +155,10 @@ export class CartPagePage implements OnInit {
     });
 
   }
+  onClick() {
+    this.router.navigate(['payment', this.orderid.id]);
+  }
 
-  
 
 }
 
@@ -166,6 +174,6 @@ export class FormatTimePipe implements PipeTransform {
   }
 
 
-  
+
 
 }

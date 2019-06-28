@@ -8,8 +8,8 @@
   <ion-card>
     <ion-item [hidden]="!!myDate">
       <ion-label>Date</ion-label>
-      <ion-datetime (ngModelChange)="change(datePicker)" displayFormat="MM/DD/YYYY" [(ngModel)]="myDate"
-        min="2019-06-24" max="2019-07-01"></ion-datetime>
+      <ion-datetime (ngModelChange)="change(datePicker)" displayFormat="DD/MM/YYYY" [(ngModel)]="myDate"
+        min="{{this.today}}" max="{{this.futDate}}"></ion-datetime>
     </ion-item>
     <ion-item [hidden]="!myDate">
       <ion-label>Time</ion-label>

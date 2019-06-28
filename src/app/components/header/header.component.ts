@@ -3,6 +3,7 @@ import { ModalController } from '@ionic/angular';
 import { ModalComponent } from '../modal/modal.component';
 import { LoginAPIService } from '../../service/login-api.service';
 import { Storage } from '@ionic/storage';
+import { Router } from '@angular/router';
 import { ActionSheetController } from '@ionic/angular';
 import { Events } from '@ionic/angular';
 
@@ -19,7 +20,7 @@ export class HeaderComponent implements OnInit {
   public userEmail: string = '';
   public userData = { email: '', password: '' };
 
-  constructor(public modalController: ModalController, private storage: Storage,
+  constructor(public modalController: ModalController, private storage: Storage,private router: Router,
     public actionSheetController: ActionSheetController, public events: Events, public loginAPI: LoginAPIService) {
     events.subscribe('user:created', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
@@ -64,6 +65,12 @@ export class HeaderComponent implements OnInit {
         role: 'destructive',
         handler: () => {
           this.logoutUser();
+        }
+      }, {
+        text: 'Profile',
+        icon: 'person',
+        handler: () => {
+          this.router.navigate(['/editinfo']);
         }
       }, {
         text: 'Cancel',

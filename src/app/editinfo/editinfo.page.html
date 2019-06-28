@@ -1,0 +1,27 @@
+<ion-header>
+  <ion-card>
+  <ion-toolbar>
+    <ion-card-title>PROFILE</ion-card-title>
+  </ion-toolbar>
+</ion-card>
+</ion-header>
+
+<ion-content >
+  <ion-card >
+    <ion-card-content>
+      <ion-list>
+        <ion-item>
+          <ion-input placeholder="Enter Email" [(ngModel)]="registerdata.email"></ion-input>
+        </ion-item>
+        <ion-item>
+          <ion-input placeholder="Enter Old Password" type="password" [(ngModel)]="registerdata.opassword"></ion-input>
+        </ion-item>
+       <ion-item>
+          <ion-input placeholder="Enter New Password" type="password" [(ngModel)]="registerdata.npassword"></ion-input>
+        </ion-item>
+        
+    <ion-button expand="block" (click)="Register()" shape="round">Change Password</ion-button>
+      </ion-list>
+    </ion-card-content>
+  </ion-card>
+  </ion-content>
