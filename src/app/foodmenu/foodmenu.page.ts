@@ -31,6 +31,8 @@ export class FoodmenuPage implements OnInit {
   public userName: string = '';
   public userEmail: string = '';
   public userId: any;
+  userBudget: number = 1000;
+  budgetExceeded: boolean = false;
 
   //arrowClicked: boolean = false;
   arrowClicked: boolean[] = new Array(false);
@@ -107,7 +109,12 @@ export class FoodmenuPage implements OnInit {
 
     });
     //this.food_data[0].open = true;
+
+
   }
+
+
+
   async buyItem(food_data) {
     let toast = await this.toastCtrl.create({
       message: 'Added : ${food_data.name}'
@@ -160,5 +167,6 @@ export class FoodmenuPage implements OnInit {
 
     await alert.present();
   }
+
 
 }

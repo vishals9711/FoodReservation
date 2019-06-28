@@ -6,6 +6,20 @@
     <ion-title *ngIf="food_data" padding>
       Total Cost - &#8377;{{ total }}
     </ion-title>
+    <ion-item >
+      <ion-button >
+        Set Budget
+      </ion-button>
+      &#8377;&nbsp;
+      <ion-input type="number" max-length="4" wrap="soft" [(ngModel)]="userBudget" style="border:solid 1px black; border-radius: 10px; ">
+      </ion-input>
+      <ion-label color="danger" *ngIf="total > userBudget" slot="end" style="margin-left:40px">
+        Budget Exceeded!
+      </ion-label>
+      <ion-label color="success" slot="end" *ngIf="total <= userBudget" style="margin-left:100px">
+        In Budget!
+      </ion-label>
+    </ion-item>
   </ion-toolbar>
 </ion-header>
 <!--
@@ -89,10 +103,10 @@
 <ion-content>
 
     <ion-item>
-        <ion-label color="success">Only Veg</ion-label>
         <ion-toggle [(ngModel)]="veg" color="success" slot="start"></ion-toggle>
+        <ion-label color="success">Veg</ion-label>
     </ion-item>
-
+    
   <div class="menuList" *ngFor="let type of itemTypes; let j = index">
     <ion-title padding>
       <ion-icon name="return-right"></ion-icon>
@@ -108,7 +122,7 @@
         <ion-item *ngIf="eachRest.Type == type && arrowClicked[j]">
           <img src="../../assets/icon/veg_icon.png" *ngIf="!eachRest.nonVeg"  style="height:15px; width:15px; margin-bottom: 40px;" no-padding>
           <img src="../../assets/icon/non-veg_icon.png" *ngIf="eachRest.nonVeg"  style="height:15px; width:15px; margin-bottom: 40px;" no-padding>
-          <img src="data:image/jpeg;base64,{{ eachRest.Fimage }}" style="height: 50px; width: 80px" />
+          <img src="../../{{eachRest.FImageAddress}}" style="height: 50px; width: 80px" />
           <ion-label padding (click)="itemDetails(i)">
             <h2 text-wrap>{{ eachRest.Name }}</h2>
             <p>
