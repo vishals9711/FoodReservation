@@ -91,6 +91,12 @@
     <ion-item>
         <ion-label color="success">Only Veg</ion-label>
         <ion-toggle [(ngModel)]="veg" color="success" slot="start"></ion-toggle>
+        <span slot="end">
+          <ion-button shape="round" color="primary">
+            Set Budget: 
+        </ion-button>  
+        <ion-input style="width: 20px"></ion-input>
+        </span>
     </ion-item>
 
   <div class="menuList" *ngFor="let type of itemTypes; let j = index">
@@ -108,7 +114,7 @@
         <ion-item *ngIf="eachRest.Type == type && arrowClicked[j]">
           <img src="../../assets/icon/veg_icon.png" *ngIf="!eachRest.nonVeg"  style="height:15px; width:15px; margin-bottom: 40px;" no-padding>
           <img src="../../assets/icon/non-veg_icon.png" *ngIf="eachRest.nonVeg"  style="height:15px; width:15px; margin-bottom: 40px;" no-padding>
-          <img src="data:image/jpeg;base64,{{ eachRest.Fimage }}" style="height: 50px; width: 80px" />
+          <img src="../../{{eachRest.FImageAddress}}" style="height: 50px; width: 80px" />
           <ion-label padding (click)="itemDetails(i)">
             <h2 text-wrap>{{ eachRest.Name }}</h2>
             <p>
