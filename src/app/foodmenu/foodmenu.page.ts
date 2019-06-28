@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { FoodinfoService } from '../service/foodinfo.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { BookinginfoService } from '../service/bookinginfo.service';
 import { LoginAPIService } from '../service/login-api.service';
 import { Events } from '@ionic/angular';
@@ -18,6 +18,7 @@ import { Storage } from '@ionic/storage';
 })
 export class FoodmenuPage implements OnInit {
 
+
   automaticClose = false;
   passed_id: string;
   food_data: any;
@@ -25,22 +26,30 @@ export class FoodmenuPage implements OnInit {
   quantity: any;
   cartData = [];
   total: number = 0;
+  veg: boolean = false;
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
   public userId: any;
+  userBudget: number = 1000;
+  budgetExceeded: boolean = false;
 
-  arrowClicked: boolean = false;
+  //arrowClicked: boolean = false;
+  arrowClicked: boolean[] = new Array(false);
   clickedItem: number;
 
-  itemTypes:string[] = new Array("Soups","Salads","Quick Bites","Starters",
-  "Main Course","Breads","Rice","Desserts","Beverages"); 
+  itemTypes: string[] = new Array("Soups", "Salads", "Quick Bites", "Starters",
+    "Main Course", "Breads", "Rice", "Desserts", "Beverages");
 
 
-  constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
+  constructor(public router: Router, private activatedRoute: ActivatedRoute, 
+    public restaurantAPI: FoodinfoService, private toastCtrl: ToastController, 
+    public api: APIBackendService, public bookingAPI: BookinginfoService, public events: Events, 
+    private storage: Storage, public userLoginApi: LoginAPIService, public alertController: AlertController) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
+      this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     });
 
   }
@@ -80,7 +89,7 @@ export class FoodmenuPage implements OnInit {
     this.restaurantAPI.getFood(this.passed_id).subscribe((data: {}) => {
       this.food_data = data;
       console.log('food_data:', this.food_data);
-      console.log('itemTypes:',this.itemTypes);
+      console.log('itemTypes:', this.itemTypes);
       console.log('arrowClicked:', this.arrowClicked);
 
       for (let eachItem of this.food_data) {
@@ -96,10 +105,16 @@ export class FoodmenuPage implements OnInit {
 
         this.cartData.push(obj);
       }
+      this.food_data[0].open = true;
 
     });
-    this.food_data[0].open = true;
+    //this.food_data[0].open = true;
+
+
   }
+
+
+
   async buyItem(food_data) {
     let toast = await this.toastCtrl.create({
       message: 'Added : ${food_data.name}'
@@ -128,18 +143,29 @@ export class FoodmenuPage implements OnInit {
 
   }
 
-  onClickArrowDropRight(clickedItem:number){
-    this.arrowClicked = true;
-    this.clickedItem = clickedItem;
+  onClickArrowDropRight(clickedItem: number) {
+    this.arrowClicked[clickedItem] = true;
+    //this.clickedItem = clickedItem;
     console.log('item clicked', this.itemTypes[clickedItem]);
     console.log('onClickArrowDropRight: arrowClicked', this.arrowClicked);
   }
 
-  onClickArrowDropDown(clickedItem:number){
-    this.arrowClicked = false;
-    this.clickedItem = clickedItem;
+  onClickArrowDropDown(clickedItem: number) {
+    this.arrowClicked[clickedItem] = false;
+    //this.clickedItem = clickedItem;
     console.log('item clicked', this.itemTypes[clickedItem]);
     console.log('onClickArrowDropDown: arrowClicked', this.arrowClicked);
+  }
+
+  async itemDetails(clickedItem: number){
+    const alert = await this.alertController.create({
+      header: this.food_data[clickedItem].Name ,
+      subHeader: 'Ingredients: '+this.food_data[clickedItem].Ingredients,
+      message: 'Rating: '+this.food_data[clickedItem].FRating+'/5',
+      buttons: ['Cancel']
+    });
+
+    await alert.present();
   }
 
 

@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { APIBackendService } from '../service/apibackend.service';
 import { FoodinfoService } from '../service/foodinfo.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, AlertController } from '@ionic/angular';
 import { BookinginfoService } from '../service/bookinginfo.service';
 import { Events } from '@ionic/angular';
 import { Storage } from '@ionic/storage';
@@ -40,20 +40,33 @@ export class CartPagePage implements OnInit {
   counter = 1200;
   tick = 1000;
   public showCounter: boolean = false;
+  showOrderButton:boolean;
+  
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService, 
     private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService, 
-    public events: Events, private storage: Storage, public userLoginApi: LoginAPIService) {
+    public events: Events, private storage: Storage, public userLoginApi: LoginAPIService, 
+    public alertController: AlertController, public toastController: ToastController) {
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
+      this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     });
+
+    console.log('isLOggedIn inside constructor',this.isLoggedIn);
   }
 
   ngOnInit() {
+    this.showOrderButton = true;
+
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
+    this.isLoggedIn = this.userLoginApi.getIsloggedIn();
+    console.log('isLOggedIn inside ngOnit',this.isLoggedIn);
+    console.log('showOrderButton inside ngOnit',this.showOrderButton);
+
     this.cartData = this.restaurantAPI.getCartData();
+    console.log('cart data', this.cartData);
 
     this.passed_id = this.cartData[1].r_id;
     for (let eachItem of this.cartData) {
@@ -84,6 +97,44 @@ export class CartPagePage implements OnInit {
 
 
   }
+
+
+  async promptLogin(){
+    const toast = await this.toastController.create({
+      position: 'middle',
+      message: 'You are not logged in! Please Login to place your Order!',
+      duration: 2000
+    });
+    toast.present();
+  }
+
+
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      header: 'Confirm!',
+      message: 'Your order will be sent to the kitchen',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: () => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Accept',
+          handler: () => {
+            console.log('Confirm Okay');
+            this.showOrderButton = false;
+            this.order();
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
   order() {
 
     this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
@@ -99,7 +150,11 @@ export class CartPagePage implements OnInit {
 
   }
 
+  
+
 }
+
+
 @Pipe({
   name: 'formatTime'
 })
@@ -109,5 +164,8 @@ export class FormatTimePipe implements PipeTransform {
     const minutes: number = Math.floor(value / 60);
     return ('00' + minutes).slice(-2) + ':' + ('00' + Math.floor(value - minutes * 60)).slice(-2);
   }
+
+
+  
 
 }

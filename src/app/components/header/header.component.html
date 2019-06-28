@@ -11,7 +11,7 @@
 
   <ion-buttons slot="success" *ngIf="isLoggedIn" (click)="presentActionSheet()" slot="end">
       <ion-button color="success" fill="solid" shape="round">
-        <ion-icon slot="icon-only" name="contact"></ion-icon>{{userName}}
+          <ion-icon slot="icon-only" name="contact" text-wrap></ion-icon>{{userName}}
       </ion-button>
     </ion-buttons>
 

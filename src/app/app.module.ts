@@ -26,6 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { ChartModule } from 'angular2-highcharts';
 import {RestReviewsAndRatingsPageModule} from './rest-reviews-and-ratings/rest-reviews-and-ratings.module';
+import {DatePipe} from '@angular/common';
 
 
 
@@ -61,6 +62,7 @@ const appRoutes: Routes = [
   providers: [
     StatusBar,
     SplashScreen,
+    DatePipe,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent],

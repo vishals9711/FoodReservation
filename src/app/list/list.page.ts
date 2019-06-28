@@ -1,4 +1,15 @@
 import { Component, OnInit } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import { ActionSheetController } from '@ionic/angular';
+import { Events } from '@ionic/angular';
+import { ActivatedRoute } from '@angular/router';
+import { APIBackendService } from '../service/apibackend.service';
+import { RestaurantinfoService } from '../service/restaurantinfo.service';
+import { BookinginfoService } from '../service/bookinginfo.service';
+import { LoginAPIService } from '../service/login-api.service';
+import { Router } from '@angular/router';
+import { Time } from 'highcharts';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-list',
@@ -6,34 +17,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['list.page.scss']
 })
 export class ListPage implements OnInit {
-  private selectedItem: any;
-  private icons = [
-    'flask',
-    'wifi',
-    'beer',
-    'football',
-    'basketball',
-    'paper-plane',
-    'american-football',
-    'boat',
-    'bluetooth',
-    'build'
-  ];
-  public items: Array<{ title: string; note: string; icon: string }> = [];
-  constructor() {
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
-    }
-  }
+  public isLoggedIn: boolean = false;
+  public userName: string = '';
+  public userEmail: string = '';
+  public userId: any;
+  public allOrder: any;
+  public passed_id: any;
+
+  constructor(private storage: Storage, public events: Events, private activatedRoute: ActivatedRoute,
+    public restaurantAPI: RestaurantinfoService, public api: APIBackendService,
+    public bookingAPI: BookinginfoService, public router: Router,
+    public userLoginApi: LoginAPIService, public datePipe: DatePipe) { }
 
   ngOnInit() {
+    this.userId = this.userLoginApi.getUserId();
+    this.userEmail = this.userLoginApi.getEmail();
+    this.isLoggedIn = this.userLoginApi.getIsloggedIn();
+    this.passed_id = this.activatedRoute.snapshot.paramMap.get('passed_id');
+
+
+    this.allOrder = this.bookingAPI.getOrderData();
+    console.log(this.allOrder);
+
   }
-  // add back when alpha.4 is out
-  // navigate(item) {
-  //   this.router.navigate(['/list', JSON.stringify(item)]);
-  // }
+
 }

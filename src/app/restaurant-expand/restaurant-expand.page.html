@@ -15,9 +15,29 @@
   clickable reservation and menu buttons -->
 
 <ion-content>
+  <div>
+    <ion-item *ngIf="restOpen">
+      <ion-label slot="start" color="success" (click)="testFunction()" >
+        Now Open
+      </ion-label>
+      <p slot="end">
+        Closes at: {{closingTime}}
+      </p>
+    </ion-item>
+
+    <ion-item *ngIf="!restOpen">
+        <ion-label slot="start" color="success" (click)="testFunction()" >
+          Now Closed
+        </ion-label>
+        <p slot="end">
+          Opens at: {{openingTime}}
+        </p>
+    </ion-item>
+  </div>
+
   <ion-img *ngIf="RestaurantData" src="data:image/jpeg;base64,{{RestaurantData[0].RImg}}"></ion-img>
 
-    <div class="ratingBar">
+  <!-- <div class="ratingBar">
       <h3>
         &nbsp;
         <ion-icon name="create" (click)="viewReviews()"></ion-icon>
@@ -25,7 +45,23 @@
           <u (click)="viewReviews()">User Ratings and Reviews:</u> &nbsp; {{rating}}/5
         <ion-icon name="star" ></ion-icon> 
       </h3>
-    </div>
+  </div> -->
+
+  <div class="ratingBar">
+    <ion-item (click)="viewReviews()" no-padding>
+      <ion-icon name="create"  color="primary" padding></ion-icon>
+      <ion-label padding>
+        User Ratings and Reviews 
+      </ion-label>
+      <span slot="end">
+        <p>
+          {{rating}}/5
+          <ion-icon name="star" color="warning"></ion-icon> 
+        </p>
+      </span>
+      
+     </ion-item>
+  </div>
 
 
   <ion-grid>
