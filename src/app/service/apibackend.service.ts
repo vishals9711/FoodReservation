@@ -22,4 +22,9 @@ export class APIBackendService {
       map(this.extractData));
   }
 
+  public getCustomerDetailsById(passed_id): Observable<any> {
+    return this.http.get(this.url + '/customers'+ passed_id).pipe(
+      map(this.extractData));
+  }
+
 }

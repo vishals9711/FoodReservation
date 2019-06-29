@@ -139,12 +139,9 @@ export class CartPagePage implements OnInit {
   }
 
   order() {
-<<<<<<< HEAD
     console.log('final order', this.final_order);
-=======
     this.bookingAPI.setOrderData(this.cart);
 
->>>>>>> d3536f0825c5785e7eb20eb8b5f29e6b1c60e7ef
     this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
       this.orderid = data;
       this.countDown = Observable.timer(0, this.tick)

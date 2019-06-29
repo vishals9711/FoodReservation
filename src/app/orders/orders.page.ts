@@ -32,9 +32,9 @@ export class OrdersPage implements OnInit {
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
-    this.bookingAPI.getAllOrder(this.userId).subscribe((data: {}) => {
+    this.bookingAPI.getAllOrder(this.userLoginApi.getUserId()).subscribe((data: {}) => {
       console.log("-------group by")
-      console.log(data);
+      console.log('all orders',data);
       this.allOrder = data;
       this.bookingAPI.setOrderData(this.allOrder);
       // this.bookingAPI.getOrder(this.userId).subscribe((data: {}) => {
