@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -24,54 +24,8 @@ const routes: Routes = [
   { path: 'profile/:oid', loadChildren: './profile/profile.module#ProfilePageModule' },
   { path: 'booktable/:r_id', loadChildren: './booktable/booktable.module#BooktablePageModule' },
   { path: 'rest-reviews-and-ratings/:r_id', loadChildren: './rest-reviews-and-ratings/rest-reviews-and-ratings.module#RestReviewsAndRatingsPageModule' },
-  { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' },  { path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
-
-
-
-
-
-
-
-
-
-
-];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-=======
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-
-const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'home',
-    pathMatch: 'full'
-  },
-  {
-    path: 'home',
-    loadChildren: './home/home.module#HomePageModule'
-  },
-  {
-    path: 'list/:passed_id',
-    loadChildren: './list/list.module#ListPageModule'
-  },
-  { path: 'registration-page1', loadChildren: './registration-page1/registration-page1.module#RegistrationPage1PageModule' },
-  { path: 'favpage', loadChildren: './favpage/favpage.module#FavpagePageModule' },
-  { path: 'restaurant-expand/:r_id', loadChildren: './restaurant-expand/restaurant-expand.module#RestaurantExpandPageModule' },
-  { path: 'foodmenu/:r_id', loadChildren: './foodmenu/foodmenu.module#FoodmenuPageModule' },
-  { path: 'profile', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'profile/:oid', loadChildren: './profile/profile.module#ProfilePageModule' },
-  { path: 'booktable/:r_id', loadChildren: './booktable/booktable.module#BooktablePageModule' },
-  { path: 'rest-reviews-and-ratings/:r_id', loadChildren: './rest-reviews-and-ratings/rest-reviews-and-ratings.module#RestReviewsAndRatingsPageModule' },
   { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' },
-  { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' },
-  { path: 'payment/:passed_id', loadChildren: './payment/payment.module#PaymentPageModule' }
-
+  { path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
 
 
 
@@ -84,9 +38,10 @@ const routes: Routes = [
 
 ];
 
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
->>>>>>> 9608df6a95048d31e4e557eb5952b13c9a9fe512
+
