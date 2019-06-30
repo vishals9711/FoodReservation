@@ -1,4 +1,3 @@
-
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -25,6 +24,12 @@ const routes: Routes = [
   { path: 'booktable/:r_id', loadChildren: './booktable/booktable.module#BooktablePageModule' },
   { path: 'rest-reviews-and-ratings/:r_id', loadChildren: './rest-reviews-and-ratings/rest-reviews-and-ratings.module#RestReviewsAndRatingsPageModule' },
   { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' },
+  { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' },
+  { path: 'payment/:passed_id', loadChildren: './payment/payment.module#PaymentPageModule' },
+  { path: 'wallet-payment/:passed_id', loadChildren: './wallet-payment/wallet-payment.module#WalletPaymentPageModule' },
+  //{ path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
+
+
   { path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
 
 
@@ -44,4 +49,3 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
-
