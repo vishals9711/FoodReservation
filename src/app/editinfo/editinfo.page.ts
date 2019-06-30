@@ -31,7 +31,7 @@ export class EditinfoPage implements OnInit {
           this.userName = this.loginAPI.getName();
           console.log('header: isLoggedIn', this.isLoggedIn);
           this.userEmail = this.loginAPI.getEmail();
-          this.userPhone = this.loginAPI.getPhone();
+         
         }
   
       });
