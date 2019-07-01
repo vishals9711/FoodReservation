@@ -140,7 +140,7 @@ export class BooktablePage implements OnInit {
   }
 
   onSelect(event) {
-    if (this.userLoginApi.getIsloggedIn() == true && this.myDate === undefined && this.myDate === undefined) {
+    if (this.userLoginApi.getIsloggedIn() == true && typeof (this.myDate) == 'string' ) {
       this.date = new Date(this.myDate);
       this.time = new Time(this.myTime);
 
@@ -162,15 +162,18 @@ export class BooktablePage implements OnInit {
       this.router.navigate(['foodmenu', this.rId]);
 
     }
-    if (this.userLoginApi.getIsloggedIn() == false) {
-      console.log(this.myDate);
-      console.log(this.myTime);
-      window.alert("Please Log in to book")
-    }
     else {
       window.alert("Please enter Date/Time")
     }
+            if (this.userLoginApi.getIsloggedIn() == false) {
+              console.log(this.myDate);
+              console.log(this.myTime);
+              window.alert("Please Log in to book")
+            }
+            
+    
   }
+  
 
 
 }

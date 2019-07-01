@@ -22,81 +22,7 @@
     </ion-item>
   </ion-toolbar>
 </ion-header>
-<!--
 
-
-<ion-content>
-
-     <ion-item *ngFor="let eachRest of food_data; let i = index">
-        <ion-label>
-          {{eachRest.Type}}
-        </ion-label>
-    </ion-item>
-
-  <ion-list
-    *ngFor="let eachRest of food_data; let i = index"
-    class="accordion-list"
-    lines="none"
-    detail="false"
-    no-padding
-  >
-
-    <ion-item *ngIf="food_data[i].Type == eachRest.Type">
-      <img
-        src="data:image/jpeg;base64,{{ eachRest.Fimage }}"
-        style="height: 50px; width: 80px"
-      />
-      <ion-label padding>
-        <h2 text-wrap>{{ eachRest.Name }}</h2>
-
-        <p
-          tappable
-          (click)="toggleSection(i)"
-          [ngClass]="{
-            'section-active': eachRest.open,
-            section: !eachRest.open
-          }"
-        >
-          Ingredient list
-          <ion-icon
-            slot="start"
-            name="arrow-down"
-            *ngIf="eachRest.open"
-          ></ion-icon>
-          <ion-icon
-            slot="start"
-            name="arrow-forward"
-            *ngIf="!eachRest.open"
-          ></ion-icon>
-        </p>
-      </ion-label>
-      <ion-icon
-        name="remove"
-        color="danger"
-        (click)="removeItem(eachRest.ItemID)"
-      ></ion-icon>
-      &nbsp;
-      {{ displayQty(eachRest.ItemID) }}
-      &nbsp;
-      <ion-icon
-        name="add"
-        color="success"
-        (click)="addItem(eachRest.ItemID)"
-      ></ion-icon>
-      <span slot="end">&#8377; {{ eachRest.Rate }}/- &nbsp; </span>
-
-
-    </ion-item>
-    <div *ngIf="eachRest.children && eachRest.open">
-      Test
-    </div>
-  </ion-list>
-
-  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="order()">
-      <ion-icon name="cart"></ion-icon>
-    </ion-fab-button>
-  </ion-fab> -->
 
 
 
@@ -145,7 +71,7 @@
           <ion-item *ngIf="eachRest.Type == type && arrowClicked[j] && !eachRest.nonVeg">
             <img src="../../assets/icon/veg_icon.png" *ngIf="!eachRest.nonVeg"  style="height:15px; width:15px; margin-bottom: 40px;" no-padding>
             <img src="../../assets/icon/non-veg_icon.png" *ngIf="eachRest.nonVeg"  style="height:15px; width:15px; margin-bottom: 40px;" no-padding>
-            <img src="data:image/jpeg;base64,{{ eachRest.Fimage }}" style="height: 50px; width: 80px" />
+            <img src="../../{{eachRest.FImageAddress}}" style="height: 50px; width: 80px" />
             <ion-label padding (click)="itemDetails(i)">
               <h2 text-wrap>{{ eachRest.Name }}</h2>
               <p>

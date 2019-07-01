@@ -37,13 +37,7 @@ export class OrdersPage implements OnInit {
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
-<<<<<<< HEAD
-    // this.userId = 14;
-    // this.isLoggedIn = true;
-    this.bookingAPI.getAllOrder(this.userId).subscribe((data: {}) => {
-=======
     this.bookingAPI.getAllOrder(this.userLoginApi.getUserId()).subscribe((data: {}) => {
->>>>>>> 5e243c170a9a2632c1cae22fb5baec932c768ed5
       console.log("-------group by")
       console.log('all orders',data);
       this.allOrder = data;
