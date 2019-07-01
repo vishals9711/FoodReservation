@@ -22,7 +22,7 @@ import { LoginAPIService } from '../service/login-api.service';
   styleUrls: ['./cart-page.page.scss'],
 })
 export class CartPagePage implements OnInit {
-  cartData: any;
+  public cartData: any;
   cart = [];
   final_order = [];
   passed_id: string;
@@ -144,6 +144,11 @@ export class CartPagePage implements OnInit {
 
     console.log('final order', this.final_order);
     this.bookingAPI.setOrderData(this.cart);
+
+    if (this.noteToChef == '') {
+      this.noteToChef = '-';
+      this.final_order.unshift({ note_to_chef: this.noteToChef });
+    }
 
     this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
       this.orderid = data;
