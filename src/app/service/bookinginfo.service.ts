@@ -33,12 +33,13 @@ export class BookinginfoService {
   }
 
   public setOId(data): Observable<any> {
-    console.log('inside setOId service');
+    console.log('inside setOId service: data', data);
     return this.http.post(this.url + '/setOId', data).pipe(
       map(this.extractData));
   }
 
   public createOrder(data): Observable<any> {
+    console.log('inside service create order: final order data', data);
     return this.http.post(this.url + '/order', data).pipe(
       map(this.extractData));
   }
