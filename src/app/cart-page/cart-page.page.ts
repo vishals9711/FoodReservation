@@ -41,6 +41,7 @@ export class CartPagePage implements OnInit {
   tick = 1000;
   public showCounter: boolean = false;
   showOrderButton: boolean;
+  tId: any;
 
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService,
@@ -144,14 +145,27 @@ export class CartPagePage implements OnInit {
 
     this.bookingAPI.createOrder(this.final_order).subscribe((data: {}) => {
       this.orderid = data;
+      console.log('order id', this.orderid);
       this.countDown = Observable.timer(0, this.tick)
         .take(this.counter)
         .map(() => --this.counter)
       // this.router.navigate(['profile', this.orderid.id]);
       this.showCounter = true;
+
+      this.bookingAPI.setOrderId(this.orderid.id);
+      this.tId = this.bookingAPI.getTableId();
+
+      this.bookingAPI.setOId({OId: this.orderid.id, CId: this.userLoginApi.getUserId(), RId: this.r_id, TId: this.tId}).subscribe((data: {}) => {
+        console.log('setOid successfull!');
+      });
+    
     });
 
+   
+
   }
+
+
   onClick() {
     this.router.navigate(['payment', this.orderid.id]);
   }

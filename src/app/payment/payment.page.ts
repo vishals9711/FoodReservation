@@ -50,11 +50,13 @@ export class PaymentPage implements OnInit {
     private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService,
     public events: Events, private storage: Storage, public userLoginApi: LoginAPIService,
     public alertController: AlertController, public toastController: ToastController) {
+      
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
       this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     });
+
   }
 
   ngOnInit() {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginAPIService } from '../service/login-api.service';
 import { APIBackendService } from '../service/apibackend.service';
 import { Events, ToastController } from '@ionic/angular';
+import { Router } from '@angular/router';
+import { BookinginfoService } from '../service/bookinginfo.service';
 
 @Component({
   selector: 'app-favpage',
@@ -19,10 +21,11 @@ export class FavpagePage implements OnInit {
   topUpButtonClicked: boolean = false;
   topUpAmount: number = 0;
   public walletData: any = {user_id: this.userId, wallet_amount: this.walletAmount};
+  orderId: any;
 
 
   constructor(public userLoginApi: LoginAPIService, public userApi: APIBackendService, public events: Events,
-    public toastController: ToastController) {
+    public toastController: ToastController, private router: Router, public bookingAPI: BookinginfoService) {
 
     events.subscribe('user:created', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
@@ -32,6 +35,8 @@ export class FavpagePage implements OnInit {
         console.log('header: isLoggedIn', this.isLoggedIn);
         this.userEmail = this.userLoginApi.getEmail();
         this.userId = this.userLoginApi.getUserId();
+
+        this.orderId = this.bookingAPI.getOrderId();
 
         this.userApi.getCustomerDetailsById(this.userId).subscribe((data: {}) => {
           this.userData = data;
@@ -76,5 +81,8 @@ export class FavpagePage implements OnInit {
     toast.present();
   }
 
+  gotoWalletPaymentPage(){
+    this.router.navigate(['wallet-payment', this.orderId] );
+  }
 
 }

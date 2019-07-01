@@ -28,6 +28,7 @@ export class BooktablePage implements OnInit {
   addre: any;
   cuisine: any;
   img: any;
+  rId: any;
   bookingId: any;
   tables: any;
   myDate: any;
@@ -113,6 +114,7 @@ export class BooktablePage implements OnInit {
       this.addre = this.RestaurantData[0].RAddress;
       this.cuisine = this.RestaurantData[0].RCuisine;
       this.img = this.RestaurantData[0].RImg;
+      this.rId = this.RestaurantData[0].RId;
       this.restaurantAPI.getTable(this.passed_id).subscribe((data: {}) => {
         this.tables = data;
 
@@ -145,16 +147,19 @@ export class BooktablePage implements OnInit {
       console.log('myDate', this.myDate);
       console.log('myTime', this.myTime);
       this.userId = this.userLoginApi.getUserId();
-      this.bookingAPI.create_a_booking_session({ CId: this.userId }).subscribe((data: {}) => {
+      this.bookingAPI.create_a_booking_session({ CId: this.userId, restId: this.rId, tId: event.value }).subscribe((data: {}) => {
         this.bookingId = data;
-
+        console.log('booking id', this.bookingId);
         this.bookingAPI.create_a_session({ SId: this.bookingId.id, TId: event.value, date: this.myDate, time: this.myTime }).subscribe((data: {}) => {
-
+          console.log('inside create sess');
 
         });
 
       });
-      this.router.navigate(['foodmenu', this.passed_id]);
+
+      this.bookingAPI.setTableId(event.value);
+
+      this.router.navigate(['foodmenu', this.rId]);
 
     }
     else {

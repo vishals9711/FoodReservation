@@ -19,7 +19,7 @@ export class FooterComponent implements OnInit {
 
   }
   gotoFav() {
-    this.router.navigate(['favpage', ]);
+    this.router.navigate(['favpage']);
 
   }
   gotoProf() {

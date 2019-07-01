@@ -1,6 +1,9 @@
 <ion-header>
   <ion-toolbar>
     <ion-title padding>User Wallet</ion-title>
+    <ion-label *ngIf="oderId != null" color="primary" slot="end" (click)="gotoWalletPaymentPage()">
+      Go to Payments Page
+    </ion-label>
   </ion-toolbar>
 </ion-header>
 

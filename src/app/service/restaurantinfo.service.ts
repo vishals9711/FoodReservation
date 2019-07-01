@@ -34,5 +34,15 @@ export class RestaurantinfoService {
       map(this.extractData));
   }
 
+  public getRIdFromOId(passed_id): Observable<any> {
+    return this.http.get(this.url + '/restinfo_getRId/' + passed_id).pipe(
+      map(this.extractData));
+  }
+
+  public getInfoFromDinesAt(passed_id): Observable<any> {
+    console.log('service getInfoFromDinesAt', passed_id);
+    return this.http.get(this.url + '/dines_at/' + passed_id).pipe(
+      map(this.extractData));
+  }
 
 }

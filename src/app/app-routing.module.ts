@@ -30,7 +30,9 @@ const routes: Routes = [
   //{ path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
 
 
-  { path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
+  { path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' },
+  { path: 'exit-page/:passed_id', loadChildren: './exit-page/exit-page.module#ExitPagePageModule' }
+
 
 
 

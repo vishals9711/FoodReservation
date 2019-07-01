@@ -9,6 +9,8 @@ import { map, catchError, tap } from 'rxjs/operators';
 export class BookinginfoService {
   public orderData: any;
   public currOrder: any;
+  public tableId: any;
+  public orderId: any;
 
   public url = "http://127.0.0.1:3800";
 
@@ -20,13 +22,22 @@ export class BookinginfoService {
   constructor(public http: HttpClient) { }
 
   public create_a_booking_session(data): Observable<any> {
+    console.log('inside create a book sess service');
     return this.http.post(this.url + '/bookinfo', data).pipe(
       map(this.extractData));
   }
   public create_a_session(data): Observable<any> {
+    console.log('inside create sess service');
     return this.http.post(this.url + '/booksess', data).pipe(
       map(this.extractData));
   }
+
+  public setOId(data): Observable<any> {
+    console.log('inside setOId service');
+    return this.http.post(this.url + '/setOId', data).pipe(
+      map(this.extractData));
+  }
+
   public createOrder(data): Observable<any> {
     return this.http.post(this.url + '/order', data).pipe(
       map(this.extractData));
@@ -55,6 +66,22 @@ export class BookinginfoService {
   }
   public getCurrOrder() {
     return this.orderData;
+  }
+
+  public setTableId(tableId){
+    this.tableId = tableId;
+  }
+
+  public getTableId(){
+    return this.tableId;
+  }
+
+  public setOrderId(orderId){
+    this.orderId = orderId;
+  }
+
+  public getOrderId(){
+    return this.orderId;
   }
 
 
