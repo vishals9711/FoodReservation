@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
-
+import * as global from '../global';
 import { Events } from '@ionic/angular';
 
 @Injectable({
@@ -10,7 +10,8 @@ import { Events } from '@ionic/angular';
 })
 export class LoginAPIService {
 
-  public url = "http://127.0.0.1:3800";
+  // public url = "http://127.0.0.1:3800";
+  private url = global.apiUrl;
 
   public userId = null;
   public email = null;
@@ -18,7 +19,7 @@ export class LoginAPIService {
   public phone = null;
   public isLoggedIn: boolean = false;
 
-  public transactionId : number = 0;
+  public transactionId: number = 0;
 
   private extractData(res: Response) {
     let body = res;
@@ -73,36 +74,36 @@ export class LoginAPIService {
   }
 
   public getBill(dataString): Observable<any> {
-    console.log('service:getBill dataString',dataString);
+    console.log('service:getBill dataString', dataString);
     return this.http.get(this.url + '/getBill/' + dataString).pipe(
       map(this.extractData));
   }
 
 
   public changeBillStatus(data): Observable<any> {
-    console.log('service: changeBillStatus',data);
+    console.log('service: changeBillStatus', data);
     return this.http.post(this.url + '/changeStatus', data).pipe(
       map(this.extractData));
   }
 
   public getRnTIds(dataString): Observable<any> {
-    console.log('service:getRnTIds dataString',dataString);
+    console.log('service:getRnTIds dataString', dataString);
     return this.http.get(this.url + '/getIds/' + dataString).pipe(
       map(this.extractData));
   }
 
 
   public changeTableBookingStatus(data): Observable<any> {
-    console.log('service: changeTableBookingStatus',data);
+    console.log('service: changeTableBookingStatus', data);
     return this.http.post(this.url + '/changeTableBookingStatus', data).pipe(
       map(this.extractData));
   }
 
-  public setTransactionId(transactionId){
+  public setTransactionId(transactionId) {
     this.transactionId = transactionId;
   }
 
-  public getTransactionId(){
+  public getTransactionId() {
     return this.transactionId;
   }
 

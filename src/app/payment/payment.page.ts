@@ -45,12 +45,13 @@ export class PaymentPage implements OnInit {
   currentOrder: any = [];
   currOrder: any;
   bill: any;
+  point: number = 0;
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService,
     private toastCtrl: ToastController, public api: APIBackendService, public bookingAPI: BookinginfoService,
     public events: Events, private storage: Storage, public userLoginApi: LoginAPIService,
     public alertController: AlertController, public toastController: ToastController) {
-      
+
     events.subscribe('user:created', () => {
       this.userId = this.userLoginApi.getUserId();
       this.userEmail = this.userLoginApi.getEmail();
@@ -86,6 +87,10 @@ export class PaymentPage implements OnInit {
       }
       this.currentOrder.unshift({ total: this.total });
       console.log('current order:', this.currentOrder);
+      this.point = this.total / 10;
+      this.bookingAPI.setPoint({ point: this.point, OId: this.orderid }).subscribe((data: {}) => {
+        console.log('setOid successfull!');
+      });
     });
 
 
@@ -93,8 +98,8 @@ export class PaymentPage implements OnInit {
 
   }
 
-  walletPayment(){
-    this.router.navigate(['wallet-payment', this.orderid] );
+  walletPayment() {
+    this.router.navigate(['wallet-payment', this.orderid]);
   }
 
 }

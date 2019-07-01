@@ -39,7 +39,7 @@ export class OrdersPage implements OnInit {
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     this.bookingAPI.getAllOrder(this.userLoginApi.getUserId()).subscribe((data: {}) => {
       console.log("-------group by")
-      console.log('all orders',data);
+      console.log('all orders', data);
       this.allOrder = data;
       this.bookingAPI.setOrderData(this.allOrder);
       for (let eachOd of this.allOrder) {

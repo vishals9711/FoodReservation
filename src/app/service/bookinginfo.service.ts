@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError, tap } from 'rxjs/operators';
+import * as global from '../global';
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,8 @@ export class BookinginfoService {
   public tableId: any;
   public orderId: any;
 
-  public url = "http://127.0.0.1:3800";
+  // public url = "http://127.0.0.1:3800";
+  private url = global.apiUrl;
 
   private extractData(res: Response) {
     let body = res;
@@ -35,6 +37,21 @@ export class BookinginfoService {
   public setOId(data): Observable<any> {
     console.log('inside setOId service');
     return this.http.post(this.url + '/setOId', data).pipe(
+      map(this.extractData));
+  }
+  public setPoint(data): Observable<any> {
+    console.log('inside setPoint service');
+    return this.http.post(this.url + '/setPoint', data).pipe(
+      map(this.extractData));
+  }
+  public getPoint(data): Observable<any> {
+    console.log('inside getPoint service');
+    return this.http.post(this.url + '/getPoint', data).pipe(
+      map(this.extractData));
+  }
+  public setZero(data): Observable<any> {
+    console.log('inside getPoint service');
+    return this.http.post(this.url + '/setZero', data).pipe(
       map(this.extractData));
   }
 
@@ -68,19 +85,19 @@ export class BookinginfoService {
     return this.orderData;
   }
 
-  public setTableId(tableId){
+  public setTableId(tableId) {
     this.tableId = tableId;
   }
 
-  public getTableId(){
+  public getTableId() {
     return this.tableId;
   }
 
-  public setOrderId(orderId){
+  public setOrderId(orderId) {
     this.orderId = orderId;
   }
 
-  public getOrderId(){
+  public getOrderId() {
     return this.orderId;
   }
 

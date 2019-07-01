@@ -42,7 +42,7 @@ export class CartPagePage implements OnInit {
   public showCounter: boolean = false;
   showOrderButton: boolean;
   tId: any;
-  public noteToChef:any;
+  public noteToChef: string = '';
   enableNote: boolean = true;
 
 
@@ -92,7 +92,7 @@ export class CartPagePage implements OnInit {
     this.final_order.unshift({ total: this.total });
     this.final_order.unshift({ userid: this.userLoginApi.getUserId() });
     this.final_order.unshift({ r_id: this.r_id });
-    
+
     console.log("Cart Data");
     console.log(this.cart);
 
@@ -140,7 +140,7 @@ export class CartPagePage implements OnInit {
 
   order() {
 
-    
+
 
     console.log('final order', this.final_order);
     this.bookingAPI.setOrderData(this.cart);
@@ -156,14 +156,15 @@ export class CartPagePage implements OnInit {
 
       this.bookingAPI.setOrderId(this.orderid.id);
       this.tId = this.bookingAPI.getTableId();
+      // var point = this.total / 10;
 
-      this.bookingAPI.setOId({OId: this.orderid.id, CId: this.userLoginApi.getUserId(), RId: this.r_id, TId: this.tId}).subscribe((data: {}) => {
+      this.bookingAPI.setOId({ OId: this.orderid.id, CId: this.userLoginApi.getUserId(), RId: this.r_id, TId: this.tId }).subscribe((data: {}) => {
         console.log('setOid successfull!');
       });
-    
+
     });
 
-   
+
 
   }
 

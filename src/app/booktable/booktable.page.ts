@@ -64,10 +64,6 @@ export class BooktablePage implements OnInit {
     });
 
 
-    //this.lastDate.setDate(this.currentDate.getDate() + 7);
-    //this.lastDate = this.datePipe.transform(this.lastDate, 'yyyy-MM-dd');
-
-
 
   }
   public userdata = { CId: this.userId };
@@ -140,7 +136,7 @@ export class BooktablePage implements OnInit {
   }
 
   onSelect(event) {
-    if (this.userLoginApi.getIsloggedIn() == true && typeof (this.myDate) == 'string' ) {
+    if (this.userLoginApi.getIsloggedIn() == true && typeof (this.myDate) == 'string') {
       this.date = new Date(this.myDate);
       this.time = new Time(this.myTime);
 
@@ -165,15 +161,15 @@ export class BooktablePage implements OnInit {
     else {
       window.alert("Please enter Date/Time")
     }
-            if (this.userLoginApi.getIsloggedIn() == false) {
-              console.log(this.myDate);
-              console.log(this.myTime);
-              window.alert("Please Log in to book")
-            }
-            
-    
+    if (this.userLoginApi.getIsloggedIn() == false) {
+      console.log(this.myDate);
+      console.log(this.myTime);
+      window.alert("Please Log in to book")
+    }
+
+
   }
-  
+
 
 
 }

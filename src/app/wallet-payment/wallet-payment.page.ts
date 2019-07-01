@@ -4,6 +4,7 @@ import { ToastController, Events, AlertController } from '@ionic/angular';
 import { LoginAPIService } from '../service/login-api.service';
 import { APIBackendService } from '../service/apibackend.service';
 import { RestaurantinfoService } from '../service/restaurantinfo.service';
+import { BookinginfoService } from '../service/bookinginfo.service';
 
 @Component({
   selector: 'app-wallet-payment',
@@ -23,51 +24,54 @@ export class WalletPaymentPage implements OnInit {
 
   orderid: any;
   restId: any;
-  public restnTableIdData: any = {rest_id: '', table_id: ''};
+  public restnTableIdData: any = { rest_id: '', table_id: '' };
   public RnTData: any;
+  public pPoints: number = 0;
+  public pData: any;
+  pay_amt: number = 0;
 
-  custOrderData: any = {OId:'', CId:''};
-  public walletData: any = {user_id: this.userId, wallet_amount: this.walletAmount};
+  custOrderData: any = { OId: '', CId: '' };
+  public walletData: any = { user_id: this.userId, wallet_amount: this.walletAmount };
 
   tableInfoData: any;
 
-  constructor(public activatedRoute: ActivatedRoute, public userLoginApi: LoginAPIService, 
+  constructor(public activatedRoute: ActivatedRoute, public userLoginApi: LoginAPIService,
     public userApi: APIBackendService, public events: Events,
-    public toastController: ToastController, public restInfoService: RestaurantinfoService, 
-    private router: Router, public alertController: AlertController) { 
+    public toastController: ToastController, public restInfoService: RestaurantinfoService,
+    private router: Router, public alertController: AlertController, public bookingAPI: BookinginfoService) {
 
-      events.subscribe('user:created', () => {
-        // user and time are the same arguments passed in `events.publish(user, time)`
-        if (this.userLoginApi.getIsloggedIn() == true) {
-          this.isLoggedIn = this.userLoginApi.getIsloggedIn();
-          this.userName = this.userLoginApi.getName();
-          console.log('header: isLoggedIn', this.isLoggedIn);
-          this.userEmail = this.userLoginApi.getEmail();
-          this.userId = this.userLoginApi.getUserId();
-  
-          this.userApi.getCustomerDetailsById(this.userId).subscribe((data: {}) => {
-            this.userData = data;
-            this.walletAmount = this.userData[0].CWalletAmount;
-            console.log('Data inside const', data);
-            console.log('userData inside const', this.userData);
+    events.subscribe('user:created', () => {
+      // user and time are the same arguments passed in `events.publish(user, time)`
+      if (this.userLoginApi.getIsloggedIn() == true) {
+        this.isLoggedIn = this.userLoginApi.getIsloggedIn();
+        this.userName = this.userLoginApi.getName();
+        console.log('header: isLoggedIn', this.isLoggedIn);
+        this.userEmail = this.userLoginApi.getEmail();
+        this.userId = this.userLoginApi.getUserId();
 
-            
-          });
+        this.userApi.getCustomerDetailsById(this.userId).subscribe((data: {}) => {
+          this.userData = data;
+          this.walletAmount = this.userData[0].CWalletAmount;
+          console.log('Data inside const', data);
+          console.log('userData inside const', this.userData);
 
-        }
-  
-      });
 
-    }
+        });
+
+      }
+
+    });
+
+  }
 
 
 
   ngOnInit() {
 
     this.orderid = this.activatedRoute.snapshot.paramMap.get('passed_id');
-    console.log('orderid', this.orderid); 
+    console.log('orderid', this.orderid);
     this.restInfoService.getRIdFromOId(this.orderid).subscribe((data: {}) => {
-            
+
       this.restId = data;
 
       console.log('restId', this.restId);
@@ -83,17 +87,30 @@ export class WalletPaymentPage implements OnInit {
         // this.restInfoService.getInfoFromDinesAt(this.orderid).subscribe((data: {}) => {
         //   this.tableInfoData = data;
         //   console.log('table info data:', this.tableInfoData);
+        this.custOrderData.OId = this.orderid;
+        this.custOrderData.CId = this.userId;
+        console.log('custOrderData', this.custOrderData);
+        console.log('JSON.stringify(this.custOrderData)', JSON.stringify(this.custOrderData));
 
-          this.custOrderData.OId = this.orderid;
-          this.custOrderData.CId = this.userId;
+        this.userLoginApi.getBill(JSON.stringify(this.custOrderData)).subscribe((data: {}) => {
+          this.billAmount = data[0].bill;
+        });
+        this.bookingAPI.getPoint({ CId: this.userId, RId: this.restId[0].RId }).subscribe((data: {}) => {
+          console.log("points")
+          this.pData = data;
+          for (let eachPoint of this.pData) {
+            this.pPoints += eachPoint.priviledgePoints;
+          }
+          console.log(this.pPoints);
+          this.pPoints = this.pPoints / 10;
+          this.pay_amt = this.billAmount - this.pPoints;
+          this.bookingAPI.getPoint({ CId: this.userId, RId: this.restId[0].RId }).subscribe((data: {}) => {
 
-          console.log('custOrderData', this.custOrderData);
-          console.log('JSON.stringify(this.custOrderData)', JSON.stringify(this.custOrderData));
 
-          this.userLoginApi.getBill(JSON.stringify(this.custOrderData)).subscribe((data: {}) => {
-            this.billAmount = data[0].bill;
           });
-        
+
+        });
+
 
         //});
 
@@ -102,7 +119,7 @@ export class WalletPaymentPage implements OnInit {
     });
   }
 
-  gotoWalletTopUp(){
+  gotoWalletTopUp() {
     this.router.navigate(['favpage']);
   }
 
@@ -131,7 +148,7 @@ export class WalletPaymentPage implements OnInit {
     await alert.present();
   }
 
-  payBill(){
+  payBill() {
 
     this.walletAmount = this.walletAmount - this.billAmount;
     console.log('walletData', this.walletAmount);
@@ -147,25 +164,21 @@ export class WalletPaymentPage implements OnInit {
       console.log('RnTData', this.RnTData);
       this.restnTableIdData.rest_id = this.RnTData[0].RId;
       this.restnTableIdData.table_id = this.RnTData[0].TId;
-
       this.transactionId = this.RnTData[0].transactionId;
-
       this.userLoginApi.setTransactionId(this.transactionId);
     });
-
-
     this.userLoginApi.changeTableBookingStatus(this.restnTableIdData).subscribe();
 
     this.presentToast();
 
     this.router.navigate(['exit-page', this.restnTableIdData.rest_id]);
 
-    
+
 
   }
 
 
-  async presentToast(){
+  async presentToast() {
     const toast = await this.toastController.create({
       position: 'bottom',
       message: 'Payment successfull!',
