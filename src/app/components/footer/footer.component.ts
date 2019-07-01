@@ -8,6 +8,8 @@ import { Router } from '@angular/router';
 })
 export class FooterComponent implements OnInit {
 
+  userId:any;
+
   constructor(private router: Router) { }
 
   ngOnInit() {
@@ -17,11 +19,11 @@ export class FooterComponent implements OnInit {
 
   }
   gotoFav() {
-    this.router.navigate(['favpage']);
+    this.router.navigate(['favpage', ]);
 
   }
   gotoProf() {
-    this.router.navigate(['profile']);
+    this.router.navigate(['/editinfo']);
 
   }
 

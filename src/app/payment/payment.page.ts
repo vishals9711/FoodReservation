@@ -62,15 +62,14 @@ export class PaymentPage implements OnInit {
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
-    this.passed_id = this.activatedRoute.snapshot.paramMap.get('passed_id');
-    this.currOrder = this.bookingAPI.getCurrOrder()
-    console.log("----book api---")
-    console.log(this.currOrder)
-    console.log(this.passed_id)
+    this.orderid = this.activatedRoute.snapshot.paramMap.get('passed_id');
+    this.currOrder = this.bookingAPI.getCurrOrder();
+    console.log('curr order:', this.currOrder);
+    console.log('orderid:', this.orderid);
     this.bookingAPI.getAllOrder(this.userId).subscribe((data: {}) => {
       this.allOrder = data;
       console.log("-------------------------------")
-      console.log(this.allOrder[2].OId)
+      console.log('allOrder', this.allOrder);
       for (let eachItem of this.currOrder) {
 
         let obj = {
@@ -84,12 +83,16 @@ export class PaymentPage implements OnInit {
 
       }
       this.currentOrder.unshift({ total: this.total });
-
+      console.log('current order:', this.currentOrder);
     });
 
 
 
 
+  }
+
+  walletPayment(){
+    this.router.navigate(['wallet-payment', this.orderid] );
   }
 
 }

@@ -22,4 +22,15 @@ export class APIBackendService {
       map(this.extractData));
   }
 
+  public getCustomerDetailsById(passed_id): Observable<any> {
+    return this.http.get(this.url + '/customers/'+ passed_id).pipe(
+      map(this.extractData));
+  }
+
+  public updateWallet(data): Observable<any> {
+    console.log('service: wallet data', data);
+    return this.http.post(this.url + '/customers_walletTopUp', data).pipe(
+      map(this.extractData));
+  }
+
 }

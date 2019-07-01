@@ -12,7 +12,7 @@ const routes: Routes = [
     loadChildren: './home/home.module#HomePageModule'
   },
   {
-    path: 'list/:passed_id',
+    path: 'list',
     loadChildren: './list/list.module#ListPageModule'
   },
   { path: 'registration-page1', loadChildren: './registration-page1/registration-page1.module#RegistrationPage1PageModule' },
@@ -25,8 +25,12 @@ const routes: Routes = [
   { path: 'rest-reviews-and-ratings/:r_id', loadChildren: './rest-reviews-and-ratings/rest-reviews-and-ratings.module#RestReviewsAndRatingsPageModule' },
   { path: 'cart-page', loadChildren: './cart-page/cart-page.module#CartPagePageModule' },
   { path: 'orders', loadChildren: './orders/orders.module#OrdersPageModule' },
-  { path: 'payment/:passed_id', loadChildren: './payment/payment.module#PaymentPageModule' }
+  { path: 'payment/:passed_id', loadChildren: './payment/payment.module#PaymentPageModule' },
+  { path: 'wallet-payment/:passed_id', loadChildren: './wallet-payment/wallet-payment.module#WalletPaymentPageModule' },
+  //{ path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
 
+
+  { path: 'editinfo', loadChildren: './editinfo/editinfo.module#EditinfoPageModule' }
 
 
 
@@ -38,6 +42,7 @@ const routes: Routes = [
 
 
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
