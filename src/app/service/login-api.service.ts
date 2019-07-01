@@ -18,7 +18,7 @@ export class LoginAPIService {
   public phone = null;
   public isLoggedIn: boolean = false;
 
-  public transactionId = null;
+  public transactionId : number = 0;
 
   private extractData(res: Response) {
     let body = res;

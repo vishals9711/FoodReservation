@@ -42,6 +42,8 @@ export class CartPagePage implements OnInit {
   public showCounter: boolean = false;
   showOrderButton: boolean;
   tId: any;
+  public noteToChef:any;
+  enableNote: boolean = true;
 
 
   constructor(public router: Router, private activatedRoute: ActivatedRoute, public restaurantAPI: FoodinfoService,
@@ -59,21 +61,17 @@ export class CartPagePage implements OnInit {
 
   ngOnInit() {
     this.showOrderButton = true;
-
     this.userId = this.userLoginApi.getUserId();
     this.userEmail = this.userLoginApi.getEmail();
     this.isLoggedIn = this.userLoginApi.getIsloggedIn();
     console.log('isLOggedIn inside ngOnit', this.isLoggedIn);
     console.log('showOrderButton inside ngOnit', this.showOrderButton);
-
     this.cartData = this.restaurantAPI.getCartData();
     console.log('cart data', this.cartData);
-
     this.passed_id = this.cartData[1].r_id;
     for (let eachItem of this.cartData) {
       if (eachItem.qty > 0) {
         this.cart.push(eachItem);
-
       }
     }
 
@@ -94,6 +92,7 @@ export class CartPagePage implements OnInit {
     this.final_order.unshift({ total: this.total });
     this.final_order.unshift({ userid: this.userLoginApi.getUserId() });
     this.final_order.unshift({ r_id: this.r_id });
+    
     console.log("Cart Data");
     console.log(this.cart);
 
@@ -140,6 +139,9 @@ export class CartPagePage implements OnInit {
   }
 
   order() {
+
+    
+
     console.log('final order', this.final_order);
     this.bookingAPI.setOrderData(this.cart);
 
@@ -168,6 +170,11 @@ export class CartPagePage implements OnInit {
 
   onClick() {
     this.router.navigate(['payment', this.orderid.id]);
+  }
+  confirm() {
+    this.enableNote = false;
+    console.log(this.noteToChef)
+    this.final_order.unshift({ note_to_chef: this.noteToChef });
   }
 
 

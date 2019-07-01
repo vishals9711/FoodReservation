@@ -27,7 +27,14 @@ export class FavpagePage implements OnInit {
   constructor(public userLoginApi: LoginAPIService, public userApi: APIBackendService, public events: Events,
     public toastController: ToastController, private router: Router, public bookingAPI: BookinginfoService) {
 
-    events.subscribe('user:created', () => {
+    
+
+  }
+
+
+  ngOnInit() {  
+
+    this.events.subscribe('user:created', () => {
       // user and time are the same arguments passed in `events.publish(user, time)`
       if (this.userLoginApi.getIsloggedIn() == true) {
         this.isLoggedIn = this.userLoginApi.getIsloggedIn();
@@ -48,11 +55,6 @@ export class FavpagePage implements OnInit {
       }
 
     });
-
-  }
-
-
-  ngOnInit() {  
 
   }
 

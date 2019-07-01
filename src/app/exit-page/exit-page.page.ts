@@ -46,7 +46,7 @@ export class ExitPagePage implements OnInit {
       console.log(this.RestaurantData[0]);
       this.rest_name = this.RestaurantData[0].RName;
 
-      this.transactionId = this.userLoginApi.setTransactionId(this.transactionId);
+      this.transactionId = this.userLoginApi.getTransactionId();
 
     });
 
