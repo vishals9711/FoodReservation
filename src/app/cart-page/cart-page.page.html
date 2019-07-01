@@ -27,7 +27,7 @@
   </ion-list>
 
   <ion-item *ngIf="enableNote">
-    <ion-input type="text" placeholder="Note to chef" [(ngModel)]="noteToChef"></ion-input>
+    <ion-input type="text" placeholder="Note to chef" [(ngModel)]="noteToChef" style="border:solid 1px black; border-radius: 10px; "></ion-input>
     <ion-button shape="round" (click)="confirm()" color="success">
       Send Note to chef
     </ion-button>

@@ -162,7 +162,11 @@ export class FoodmenuPage implements OnInit {
       header: this.food_data[clickedItem].Name,
       subHeader: 'Ingredients: ' + this.food_data[clickedItem].Ingredients,
       message: 'Rating: ' + this.food_data[clickedItem].FRating + '/5',
-      buttons: ['Cancel']
+      buttons: [
+        {
+          text: 'Calories in 1 serving: '+this.food_data[clickedItem].caloriesInOneServing+' kcal',
+          role:'cancel'
+        }]
     });
 
     await alert.present();
