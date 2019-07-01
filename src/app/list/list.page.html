@@ -3,18 +3,6 @@
 </ion-header>
 
 <ion-content>
-  <!-- <ion-card *ngFor="let eachOrder of allOrder">
-    <ion-card-header>
-      <ion-card-title>{{eachOrder.Name}} </ion-card-title>
-    </ion-card-header>
-
-    <ion-card-content>
-      Quantity:
-      {{eachOrder.qty}}
-      Price:
-      {{eachOrder.price}}
-    </ion-card-content>
-  </ion-card> -->
   <ion-grid>
     <ion-row>
       <ion-col>
@@ -32,11 +20,16 @@
           Price
         </div>
       </ion-col>
-    </ion-row>
-    <ion-row *ngFor="let eachOrder of allOrder">
       <ion-col>
         <div>
-          {{ eachOrder.Name}}
+          Total
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngFor="let eachOrder of unique_Order">
+      <ion-col>
+        <div>
+          {{ eachOrder.name}}
         </div>
       </ion-col>
       <ion-col>
@@ -49,8 +42,14 @@
           {{eachOrder.price}}
         </div>
       </ion-col>
+      <ion-col>
+        <div>
+          {{eachOrder.total}}
+        </div>
+      </ion-col>
     </ion-row>
   </ion-grid>
+  <strong>Total Bill:{{bill}}</strong>
 
 
 </ion-content>

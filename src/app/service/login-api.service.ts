@@ -15,6 +15,7 @@ export class LoginAPIService {
   public userId = null;
   public email = null;
   public name = null;
+  public phone = null;
   public isLoggedIn: boolean = false;
 
   public transactionId = null;
@@ -50,6 +51,9 @@ export class LoginAPIService {
     return this.name;
   }
 
+  public getPhone() {
+    return this.phone;
+  }
   public getIsloggedIn() {
     return this.isLoggedIn;
   }
@@ -58,6 +62,7 @@ export class LoginAPIService {
     this.userId = null;
     this.email = null;
     this.name = null;
+    this.phone = null;
     this.isLoggedIn = false;
   }
 
