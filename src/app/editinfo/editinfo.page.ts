@@ -16,6 +16,7 @@ export class EditinfoPage implements OnInit {
   public userName: string = '';
   public userEmail: string = '';
   public userPhone: string = '';
+  public userId: any;
   public userData = { email: '', password: '' };
 
   public registerdata = { email: "", opassword: "", npassword: "" };
@@ -38,6 +39,16 @@ export class EditinfoPage implements OnInit {
     }
 
   ngOnInit() {
+    if (this.loginAPI.getIsloggedIn() == true) {
+      this.isLoggedIn = this.loginAPI.getIsloggedIn();
+      this.userName = this.loginAPI.getName();
+      console.log('header: isLoggedIn', this.isLoggedIn);
+      this.userEmail = this.loginAPI.getEmail();
+      this.userId = this.loginAPI.getUserId();
+
+      
+
+    }
   }
   
   Register() {
