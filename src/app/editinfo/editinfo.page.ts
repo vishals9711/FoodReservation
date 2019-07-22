@@ -5,6 +5,8 @@ import { Storage } from '@ionic/storage';
 import { ModalController } from '@ionic/angular';
 import { EditinfoService } from '../service/editinfo.service';
 import { LoginAPIService } from '../service/login-api.service';
+import { Time } from 'highcharts';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-editinfo',
@@ -15,8 +17,15 @@ export class EditinfoPage implements OnInit {
   public isLoggedIn: boolean = false;
   public userName: string = '';
   public userEmail: string = '';
-  public userPhone: string = '';
+  public userPhone: any;
   public userId: any;
+  public userDob: any;
+  public doB: any;
+  dd: any;
+  mm: any;
+  yyyy: any;
+  cd: any;
+
   public userData = { email: '', password: '' };
 
   public registerdata = { email: "", opassword: "", npassword: "" };
@@ -32,6 +41,23 @@ export class EditinfoPage implements OnInit {
           this.userName = this.loginAPI.getName();
           console.log('header: isLoggedIn', this.isLoggedIn);
           this.userEmail = this.loginAPI.getEmail();
+          //this.doB = this.loginAPI.getDoB();
+          this.userPhone = this.loginAPI.getPhone();
+
+          this.doB = new Date(this.loginAPI.getDoB());
+          this.dd = this.doB.getDate();
+          this.mm = this.doB.getMonth() + 1;
+          this.yyyy = this.doB.getFullYear();
+          if (this.dd < 10) {
+            this.dd = '0' + this.dd;
+          }
+
+          if (this.mm < 10) {
+            this.mm = '0' + this.mm;
+          }
+          
+          this.userDob = this.yyyy + '-' + this.mm + '-' + this.dd;
+          console.log('userDob', this.userDob);
          
         }
   
@@ -45,8 +71,26 @@ export class EditinfoPage implements OnInit {
       console.log('header: isLoggedIn', this.isLoggedIn);
       this.userEmail = this.loginAPI.getEmail();
       this.userId = this.loginAPI.getUserId();
+      this.doB = this.loginAPI.getDoB();
+      this.userPhone = this.loginAPI.getPhone();
 
-      
+
+    
+    this.dd = this.doB.getDate();
+    this.mm = this.doB.getMonth() + 1;
+    this.yyyy = this.doB.getFullYear();
+    if (this.dd < 10) {
+      this.dd = '0' + this.dd;
+    }
+
+    if (this.mm < 10) {
+      this.mm = '0' + this.mm;
+    }
+    
+    this.userDob = this.yyyy + '-' + this.mm + '-' + this.dd;
+    console.log('userDob', this.userDob);
+
+    //this.userDob = this.doB;
 
     }
   }

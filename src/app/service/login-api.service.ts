@@ -18,6 +18,7 @@ export class LoginAPIService {
   public name = null;
   public phone = null;
   public isLoggedIn: boolean = false;
+  public dob = null;
 
   public transactionId: number = 0;
 
@@ -33,10 +34,12 @@ export class LoginAPIService {
       map(this.extractData));
   }
 
-  public setUserData(userid, email, name) {
+  public setUserData(userid, email, name, dob, phone) {
     this.userId = userid;
     this.email = email;
     this.name = name;
+    this.dob = dob;
+    this.phone = phone;
     this.isLoggedIn = true;
   }
 
@@ -55,6 +58,11 @@ export class LoginAPIService {
   public getPhone() {
     return this.phone;
   }
+
+  public getDoB() {
+    return this.dob;
+  }
+
   public getIsloggedIn() {
     return this.isLoggedIn;
   }

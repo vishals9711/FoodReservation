@@ -31,8 +31,8 @@ export class ModalComponent {
       console.log('email:', this.userData.email, 'password:', this.userData.password);
       this.api.authenticateUser(this.userData).subscribe((data: {}) => {
         if (Object.entries(data).length != 0) {
-
-          this.api.setUserData(data[0].CId, data[0].CEmail, data[0].CName);
+          console.log('userData', data);
+          this.api.setUserData(data[0].CId, data[0].CEmail, data[0].CName, data[0].CDoB, data[0].CPhone);
           this.storage.set('userId', data[0].CId);
           this.storage.set('email', data[0].CEmail);
           this.storage.set('name', data[0].CName);
