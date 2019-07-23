@@ -33,6 +33,9 @@
         <ion-item>
           <ion-input placeholder="Enter OTP" placeholder="otp" [(ngModel)]="registerdata.otp"></ion-input>
         </ion-item>
+        <ion-note *ngIf="wrongCredentials" color="danger" text-center>
+          <ion-icon name="alert"></ion-icon>&nbsp;&nbsp;Invalid Otp!
+        </ion-note>
         <ion-button expand="block" (click)="Register()" shape="round">Register</ion-button>
       </ion-list>
     </ion-card-content>
